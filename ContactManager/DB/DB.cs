@@ -25,13 +25,18 @@ namespace ContactManager.DB
             return null;
         }
         //GetContact
-        public void GetContact(int id)
+        public Contact GetContact(int id)
         {
             SqlCommand sq = new SqlCommand("Select * from Contact where Id = @Id", con);
             sq.Parameters.AddWithValue("@Id", id);
             con.Open();
             SqlDataReader reader = sq.ExecuteReader();
-            string firstName = reader["firstName"].ToString();
+            Contact contact = new Contact();
+            contact.FirstName = reader["firstName"].ToString();
+            contact.LastName = reader["lastName"].ToString();
+            contact.LastUpdated = reader["LastUpdated"].ToString();
+            contact.Created = reader["Created"].ToString();
+            return contact;
         }
         //GetAddresses
         //GetAddress
