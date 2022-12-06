@@ -7,6 +7,33 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+       
+        <DockPanel>
+
+            <DockPanel LastChildFill = "True">
+                <Label Content = "Contact Info" DockPanel.Dock = "Top"/>
+                <Button Content = "Bottom" DockPanel.Dock = "Bottom"  Width="83" />
+                <ListView Name="lvDataBinding">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <TextBlock Text="Name: " />
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                                <TextBlock Text=", " />
+                                <TextBlock Text="Age: " />
+                                <TextBlock Text="{Binding Age}" FontWeight="Bold" />
+                                <TextBlock Text=" (" />
+                                <TextBlock Text="{Binding Email}"
+TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                                <TextBlock Text=")" />
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </DockPanel>
+
+        </DockPanel>
+
     </Grid>
 </Window>
