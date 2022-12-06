@@ -5,17 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" MinWidth="275" MinHeight="500">
     <Grid>
 
         <DockPanel>
 
             <Label DockPanel.Dock="Top" FontSize="20" Margin="10,0,0,0">Contact Informations</Label>
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="10,10,10,10">
-                <Button Margin="0,0,50,0" Width="90" Height="28">Add Contact</Button>
+                <Button Margin="0,0,25,0" Width="90" Height="28">Add Contact</Button>
+                <Button Margin="0,0,25,0" Width="90" Height="28">Delete</Button>
             </StackPanel>
                
-            <ListView Name="lvDataBinding">
+            <ListView Name="lvDataBinding" Padding="0,5,0,5">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
@@ -31,9 +32,9 @@ TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
                         </WrapPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                <ListViewItem Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="0,0,0,5">Contact #1</ListViewItem>
-                <ListViewItem Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="0,0,0,5">Contact #1</ListViewItem>
-                <ListViewItem Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="0,0,0,5">Contact #1</ListViewItem>
+                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
+                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
+                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
             </ListView>
 
             
