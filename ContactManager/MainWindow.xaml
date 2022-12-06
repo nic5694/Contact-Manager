@@ -7,31 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-       
+
         <DockPanel>
 
-            <DockPanel LastChildFill = "True">
-                <Label Content = "Contact Info" DockPanel.Dock = "Top"/>
-                <Button Content = "Bottom" DockPanel.Dock = "Bottom"  Width="83" />
-                <ListView Name="lvDataBinding">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <WrapPanel>
-                                <TextBlock Text="Name: " />
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                                <TextBlock Text=", " />
-                                <TextBlock Text="Age: " />
-                                <TextBlock Text="{Binding Age}" FontWeight="Bold" />
-                                <TextBlock Text=" (" />
-                                <TextBlock Text="{Binding Email}"
+            <Label DockPanel.Dock="Top" FontSize="20" Margin="10,0,0,0">Contact Informations</Label>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="10,10,10,10">
+                <Button Margin="0,0,50,0" Width="90" Height="28">Add Contact</Button>
+            </StackPanel>
+               
+            <ListView Name="lvDataBinding">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="Name: " />
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                            <TextBlock Text=", " />
+                            <TextBlock Text="Age: " />
+                            <TextBlock Text="{Binding Age}" FontWeight="Bold" />
+                            <TextBlock Text=" (" />
+                            <TextBlock Text="{Binding Email}"
 TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
-                                <TextBlock Text=")" />
-                            </WrapPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            <TextBlock Text=")" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListViewItem Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="0,0,0,5">Contact #1</ListViewItem>
+                <ListViewItem Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="0,0,0,5">Contact #1</ListViewItem>
+                <ListViewItem Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="0,0,0,5">Contact #1</ListViewItem>
+            </ListView>
 
-            </DockPanel>
+            
 
         </DockPanel>
 
