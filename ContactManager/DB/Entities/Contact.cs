@@ -34,5 +34,6 @@ namespace ContactManager.DB.Entities
             Active = active;
             Image_Id = image_Id;
         }
+        public Contact() { }
     }
 }
