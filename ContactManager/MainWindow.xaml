@@ -12,8 +12,8 @@
 
             <Label DockPanel.Dock="Top" FontSize="20" Margin="10,0,0,0">Contact Informations</Label>
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="10,10,10,10">
-                <Button Margin="0,0,25,0" Width="90" Height="28">Add Contact</Button>
-                <Button Margin="0,0,25,0" Width="90" Height="28">Delete</Button>
+                <Button Margin="0,0,25,0" Width="90" Height="28" Click="AddContact">Add Contact</Button>
+                <Button Margin="0,0,25,0" Width="90" Height="28" Click="DeleteContact">Delete</Button>
             </StackPanel>
                
             <ListView Name="lvDataBinding" Padding="0,5,0,5">
