@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ContactManager.DB;
+using ContactManager.DB.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +19,14 @@ namespace ContactManager
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class DetailsWindow : Window
     {
-        public Window1()
+        Contact contact;
+        public DetailsWindow(int id)
         {
             InitializeComponent();
+            DataBase db = new DataBase();
+            contact = db.GetContact(id);
         }
     }
 }
