@@ -6,9 +6,8 @@
         xmlns:local="clr-namespace:ContactManager"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
         <StackPanel/>
         <Label x:Name="show" Content="" HorizontalAlignment="Left" Margin="152,90,0,0" VerticalAlignment="Top"/>
-
     </Grid>
 </Window>
