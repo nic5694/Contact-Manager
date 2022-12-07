@@ -23,9 +23,12 @@ namespace ContactManager
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-   
+
+    
+
     public partial class MainWindow : Window
     {
+        AddContactWindow addwindow = new AddContactWindow();
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +38,16 @@ namespace ContactManager
         {
             DataBase db = new DataBase();
             db.GetContact(1) ;
+        }
+
+        private void AddContact(object sender, RoutedEventArgs e)
+        {
+            addwindow.Show();
+        }
+
+        private void DeleteContact(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Are you sure you want to delete that Contact ?","Delete",MessageBoxButton.YesNo);
         }
     }
 }
