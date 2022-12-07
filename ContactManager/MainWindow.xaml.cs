@@ -46,10 +46,6 @@ namespace ContactManager
 
         private void DeleteContact(object sender, RoutedEventArgs e)
         {
-            DataBase db = new DataBase();
-            Contact c = new Contact();
-            c = db.GetContact(1);
-            MessageBox.Show(c.FirstName, "Contact");
             MessageBox.Show("Are you sure you want to delete that Contact ?","Delete",MessageBoxButton.YesNo);
         }
 
