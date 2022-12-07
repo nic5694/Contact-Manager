@@ -52,11 +52,14 @@ namespace ContactManager
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
-            /*
+            
             List<Contact> contacts = new List<Contact>();
             DataBase db = new DataBase();
             contacts = db.getAllContacts();
-            lvDataBinding.ItemsSource = contacts;*/
+           // Contact t = new Contact();
+           // t = db.GetContact(1);
+           // lvDataBinding.ItemsSource = contacts;
+           // MessageBox.Show(t.FirstName);
         }
     }
 }
