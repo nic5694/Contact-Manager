@@ -27,6 +27,7 @@ namespace ContactManager
             InitializeComponent();
             DataBase db = new DataBase();
             contact = db.GetContact(id);
+            show.Content = contact.FirstName;
         }
     }
 }
