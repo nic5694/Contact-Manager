@@ -1,13 +1,95 @@
-﻿USE [ContactManager]
+﻿USE [master]
 GO
-/****** Object:  User [visualstudio]    Script Date: 2022-11-29 2:05:31 PM ******/
+/****** Object:  Database [ContactManager]    Script Date: 2022-12-07 3:00:58 PM ******/
+CREATE DATABASE [ContactManager]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'ContactManager', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\ContactManager.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'ContactManager_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\ContactManager_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT
+GO
+ALTER DATABASE [ContactManager] SET COMPATIBILITY_LEVEL = 150
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [ContactManager].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [ContactManager] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [ContactManager] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [ContactManager] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [ContactManager] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [ContactManager] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [ContactManager] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [ContactManager] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [ContactManager] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [ContactManager] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [ContactManager] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [ContactManager] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [ContactManager] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [ContactManager] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [ContactManager] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [ContactManager] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [ContactManager] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [ContactManager] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [ContactManager] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [ContactManager] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [ContactManager] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [ContactManager] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [ContactManager] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [ContactManager] SET RECOVERY FULL 
+GO
+ALTER DATABASE [ContactManager] SET  MULTI_USER 
+GO
+ALTER DATABASE [ContactManager] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [ContactManager] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [ContactManager] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [ContactManager] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [ContactManager] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [ContactManager] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'ContactManager', N'ON'
+GO
+ALTER DATABASE [ContactManager] SET QUERY_STORE = OFF
+GO
+USE [ContactManager]
+GO
+/****** Object:  User [visualstudio]    Script Date: 2022-12-07 3:00:58 PM ******/
 CREATE USER [visualstudio] FOR LOGIN [visualstudio] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_datareader] ADD MEMBER [visualstudio]
 GO
 ALTER ROLE [db_datawriter] ADD MEMBER [visualstudio]
 GO
-/****** Object:  Table [dbo].[Address]    Script Date: 2022-11-29 2:05:31 PM ******/
+/****** Object:  Table [dbo].[Address]    Script Date: 2022-12-07 3:00:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -20,16 +102,16 @@ CREATE TABLE [dbo].[Address](
 	[PostalCode] [varchar](10) NULL,
 	[Country] [varchar](30) NULL,
 	[ApartmentNumber] [int] NULL,
-	[LastUpdated] [datetime] NOT NULL,
 	[Contact_Id] [int] NOT NULL,
 	[Type_Code] [varchar](1) NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
  CONSTRAINT [PK_Address] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Contact]    Script Date: 2022-11-29 2:05:31 PM ******/
+/****** Object:  Table [dbo].[Contact]    Script Date: 2022-12-07 3:00:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -40,17 +122,17 @@ CREATE TABLE [dbo].[Contact](
 	[LastName] [varchar](50) NULL,
 	[Title] [varchar](4) NULL,
 	[Birthday] [date] NULL,
-	[LastUpdated] [datetime] NOT NULL,
-	[Created] [date] NOT NULL,
+	[LastUpdated] [datetime] NULL,
 	[Active] [bit] NOT NULL,
 	[Image_Id] [int] NULL,
+	[Created] [datetime] NOT NULL,
  CONSTRAINT [PK_Contact] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Email]    Script Date: 2022-11-29 2:05:31 PM ******/
+/****** Object:  Table [dbo].[Email]    Script Date: 2022-12-07 3:00:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -58,16 +140,16 @@ GO
 CREATE TABLE [dbo].[Email](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Email] [varchar](50) NOT NULL,
-	[LastUpdated] [datetime] NOT NULL,
 	[Contact_Id] [int] NOT NULL,
 	[Type_Code] [varchar](1) NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
  CONSTRAINT [PK_Email] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Image]    Script Date: 2022-11-29 2:05:31 PM ******/
+/****** Object:  Table [dbo].[Image]    Script Date: 2022-12-07 3:00:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -81,7 +163,7 @@ CREATE TABLE [dbo].[Image](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Phone]    Script Date: 2022-11-29 2:05:31 PM ******/
+/****** Object:  Table [dbo].[Phone]    Script Date: 2022-12-07 3:00:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -90,16 +172,16 @@ CREATE TABLE [dbo].[Phone](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Number] [varchar](10) NOT NULL,
 	[ContryCode] [varchar](4) NULL,
-	[LastUpdated] [datetime] NOT NULL,
 	[Contact_Id] [int] NOT NULL,
 	[Type_Contact] [varchar](1) NOT NULL,
+	[LastUpdated] [datetime] NOT NULL,
  CONSTRAINT [PK_Phone] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Type]    Script Date: 2022-11-29 2:05:31 PM ******/
+/****** Object:  Table [dbo].[Type]    Script Date: 2022-12-07 3:00:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -112,6 +194,8 @@ CREATE TABLE [dbo].[Type](
 	[Code] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Contact] ADD  CONSTRAINT [DF_Contact_Created]  DEFAULT (sysdatetime()) FOR [Created]
 GO
 ALTER TABLE [dbo].[Address]  WITH CHECK ADD  CONSTRAINT [FK_Address_Contact] FOREIGN KEY([Contact_Id])
 REFERENCES [dbo].[Contact] ([Id])
@@ -147,4 +231,8 @@ ALTER TABLE [dbo].[Phone]  WITH CHECK ADD  CONSTRAINT [FK_Phone_Type] FOREIGN KE
 REFERENCES [dbo].[Type] ([Code])
 GO
 ALTER TABLE [dbo].[Phone] CHECK CONSTRAINT [FK_Phone_Type]
+GO
+USE [master]
+GO
+ALTER DATABASE [ContactManager] SET  READ_WRITE 
 GO

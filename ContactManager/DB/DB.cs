@@ -38,6 +38,26 @@ namespace ContactManager.DB
             contact.Created = reader["Created"].ToString();
             return contact;
         }
+        public List<Contact> getAllContacts()
+        {
+            {
+                List<Contact> contacts = new List<Contact>();
+                SqlCommand sq = new SqlCommand("Select * from Contact", con);
+                con.Open();
+                SqlDataReader reader = sq.ExecuteReader();
+                while (reader.Read())
+                {
+                    Contact contact = new Contact();
+                    contact.Id = (int)reader["Id"];
+                    contact.FirstName = reader["firstName"].ToString();
+                    contact.LastName = reader["lastName"].ToString();
+                    contact.LastUpdated = reader["LastUpdated"].ToString();
+                    contact.Created = reader["Created"].ToString();
+                    contacts.Add(contact);
+                }
+                return contacts;
+            }
+        }
         //GetAddresses
         //GetAddress
     }

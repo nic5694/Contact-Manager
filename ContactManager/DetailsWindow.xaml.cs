@@ -22,11 +22,18 @@ namespace ContactManager
     public partial class DetailsWindow : Window
     {
         Contact contact;
-        public DetailsWindow(int id)
+        public DetailsWindow()
         {
             InitializeComponent();
+          
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
             DataBase db = new DataBase();
-            contact = db.GetContact(id);
+            contact = db.GetContact(1);
+            show.Content = contact.FirstName;
+            
         }
     }
 }
