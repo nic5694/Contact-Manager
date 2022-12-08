@@ -55,16 +55,17 @@ namespace ContactManager
             
             //check the field if a field is true
             List<Contact> contacts = new List<Contact>();
+            List<Contact> displayedContacts = new List<Contact>();
             DataBase db = new DataBase();
             contacts = db.getAllContacts();
             foreach (Contact contact in contacts)
             {
                 if (contact.Active == true)
                 {
-                    contacts.Add(contact);
+                    displayedContacts.Add(contact);
                 }
             }
-            lvDataBinding.ItemsSource = contacts;
+            lvDataBinding.ItemsSource = displayedContacts;
             // Contact t = new Contact();
             // t = db.GetContact(1);
             // lvDataBinding.ItemsSource = contacts;
