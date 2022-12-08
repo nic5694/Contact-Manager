@@ -33,7 +33,7 @@ namespace ContactManager
         string name { get; set; }
         int age { get; set; }
         DetailsWindow detailsWindow = new DetailsWindow();
-        AddContactWindow addwindow = new AddContactWindow();
+       
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +41,7 @@ namespace ContactManager
 
         private void AddContact(object sender, RoutedEventArgs e)
         {
+            AddContactWindow addwindow = new AddContactWindow();
             addwindow.Show();
         }
 
