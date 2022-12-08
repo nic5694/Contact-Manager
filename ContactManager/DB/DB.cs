@@ -13,7 +13,7 @@ namespace ContactManager.DB
 
     internal class DataBase
     {
-        private string ConString = ConfigurationManager.ConnectionStrings["conf"].ConnectionString;
+        private string ConString = ConfigurationManager.ConnectionStrings["SqlServerConnection"].ConnectionString;
         SqlConnection con;
         public DataBase()
         {
