@@ -53,14 +53,22 @@ namespace ContactManager
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
-            
+            //check the field if a field is true
             List<Contact> contacts = new List<Contact>();
             DataBase db = new DataBase();
             contacts = db.getAllContacts();
-           // Contact t = new Contact();
-           // t = db.GetContact(1);
-           // lvDataBinding.ItemsSource = contacts;
-           // MessageBox.Show(t.FirstName);
+            foreach (Contact contact in contacts)
+            {
+                if (contact.Active == true)
+                {
+                    contacts.Add(contact);
+                }
+            }
+            lvDataBinding.ItemsSource = contacts;
+            // Contact t = new Contact();
+            // t = db.GetContact(1);
+            // lvDataBinding.ItemsSource = contacts;
+            // MessageBox.Show(t.FirstName);
         }
     }
 }

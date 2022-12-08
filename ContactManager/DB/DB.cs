@@ -42,15 +42,16 @@ namespace ContactManager.DB
         {
             {
                 List<Contact> contacts = new List<Contact>();
-                SqlCommand sq = new SqlCommand("Select Id, FirstName, LastName, LastUpdated, Active, Created from Contact", con);
+                SqlCommand sq = new SqlCommand("Select * from Contact", con);
                 con.Open();
                 SqlDataReader reader = sq.ExecuteReader();
                 while (reader.Read())
                 {
+                    //TODO check null coalescence
                     Contact contact = new Contact();
                     contact.Id = (int)reader["Id"];
                     contact.FirstName = reader["FirstName"].ToString();
-                    contact.LastName = reader["FastName"].ToString();
+                    contact.LastName = reader["LastName"].ToString();
                     contact.LastUpdated = reader["LastUpdated"].ToString();
                     contact.Active = (bool)reader["Active"];
                     contact.Created = reader["Created"].ToString();
