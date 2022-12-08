@@ -66,10 +66,6 @@ namespace ContactManager
                 }
             }
             lvDataBinding.ItemsSource = displayedContacts;
-            // Contact t = new Contact();
-            // t = db.GetContact(1);
-            // lvDataBinding.ItemsSource = contacts;
-            // MessageBox.Show(t.FirstName);
         }
     }
 }
