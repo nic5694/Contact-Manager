@@ -34,12 +34,6 @@ namespace ContactManager
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            DataBase db = new DataBase();
-            db.GetContact(1) ;
-        }
-
         private void AddContact(object sender, RoutedEventArgs e)
         {
             addwindow.Show();

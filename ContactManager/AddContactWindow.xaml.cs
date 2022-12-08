@@ -24,10 +24,5 @@ namespace ContactManager
             InitializeComponent();
 
         }
-
-        private void ConfirmAdding(object sender, RoutedEventArgs e)
-        {
-           
-        }
     }
 }
