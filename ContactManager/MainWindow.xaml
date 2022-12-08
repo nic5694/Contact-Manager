@@ -34,9 +34,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 
+                <!--<ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
                 <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
-                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
-                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
+                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>-->
             </ListView>
 
             

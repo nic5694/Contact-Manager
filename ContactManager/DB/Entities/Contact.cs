@@ -35,5 +35,14 @@ namespace ContactManager.DB.Entities
             Image_Id = image_Id;
         }
         public Contact() { }
+        public Contact(int id, string firstName, string lastName, string lastUpdated, bool active, string created)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            LastUpdated = lastUpdated;
+            Active = active;
+            Created = created;
+        }
     }
 }
