@@ -1,6 +1,6 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [ContactManager]    Script Date: 2022-12-08 11:22:38 AM ******/
+/****** Object:  Database [ContactManager]    Script Date: 2022-12-13 2:49:25 PM ******/
 CREATE DATABASE [ContactManager]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,14 +82,14 @@ ALTER DATABASE [ContactManager] SET QUERY_STORE = OFF
 GO
 USE [ContactManager]
 GO
-/****** Object:  User [visualstudio]    Script Date: 2022-12-08 11:22:39 AM ******/
+/****** Object:  User [visualstudio]    Script Date: 2022-12-13 2:49:25 PM ******/
 CREATE USER [visualstudio] FOR LOGIN [visualstudio] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_datareader] ADD MEMBER [visualstudio]
 GO
 ALTER ROLE [db_datawriter] ADD MEMBER [visualstudio]
 GO
-/****** Object:  Table [dbo].[Address]    Script Date: 2022-12-08 11:22:39 AM ******/
+/****** Object:  Table [dbo].[Address]    Script Date: 2022-12-13 2:49:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -111,7 +111,7 @@ CREATE TABLE [dbo].[Address](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Contact]    Script Date: 2022-12-08 11:22:39 AM ******/
+/****** Object:  Table [dbo].[Contact]    Script Date: 2022-12-13 2:49:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -132,7 +132,7 @@ CREATE TABLE [dbo].[Contact](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Email]    Script Date: 2022-12-08 11:22:39 AM ******/
+/****** Object:  Table [dbo].[Email]    Script Date: 2022-12-13 2:49:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -149,7 +149,7 @@ CREATE TABLE [dbo].[Email](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Image]    Script Date: 2022-12-08 11:22:39 AM ******/
+/****** Object:  Table [dbo].[Image]    Script Date: 2022-12-13 2:49:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -163,7 +163,7 @@ CREATE TABLE [dbo].[Image](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Phone]    Script Date: 2022-12-08 11:22:39 AM ******/
+/****** Object:  Table [dbo].[Phone]    Script Date: 2022-12-13 2:49:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -181,7 +181,7 @@ CREATE TABLE [dbo].[Phone](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Type]    Script Date: 2022-12-08 11:22:39 AM ******/
+/****** Object:  Table [dbo].[Type]    Script Date: 2022-12-13 2:49:25 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -194,6 +194,20 @@ CREATE TABLE [dbo].[Type](
 	[Code] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Contact] ON 
+GO
+INSERT [dbo].[Contact] ([Id], [FirstName], [LastName], [Title], [Birthday], [LastUpdated], [Active], [Image_Id], [Created]) VALUES (1, N'Tawfiq', N'Jawhar', NULL, NULL, CAST(N'2022-12-08T11:23:59.857' AS DateTime), 1, NULL, CAST(N'2022-11-29T00:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Contact] ([Id], [FirstName], [LastName], [Title], [Birthday], [LastUpdated], [Active], [Image_Id], [Created]) VALUES (2, N'Brendan', N'Wood', N'Mr', NULL, CAST(N'2022-12-07T14:56:49.640' AS DateTime), 1, NULL, CAST(N'2022-12-07T14:23:50.143' AS DateTime))
+GO
+SET IDENTITY_INSERT [dbo].[Contact] OFF
+GO
+INSERT [dbo].[Type] ([Code], [Description]) VALUES (N'B', N'Buisness specification code for buisness or work records.')
+GO
+INSERT [dbo].[Type] ([Code], [Description]) VALUES (N'O', N'Other specification code for other records.')
+GO
+INSERT [dbo].[Type] ([Code], [Description]) VALUES (N'P', N'Personal specification code for personal records.')
 GO
 ALTER TABLE [dbo].[Contact] ADD  CONSTRAINT [DF_Contact_Created]  DEFAULT (getdate()) FOR [Created]
 GO
