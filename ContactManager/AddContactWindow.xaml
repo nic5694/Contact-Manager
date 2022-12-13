@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactManager"
         mc:Ignorable="d"
-        Title="AddContactWindow" Height="250" Width="393" VerticalAlignment="Bottom" MinWidth="393" MinHeight="250" MaxWidth="393" MaxHeight="250">
+        Title="AddContactWindow" Height="250" Width="393" VerticalAlignment="Bottom" MinWidth="393" MinHeight="250" MaxWidth="393" MaxHeight="250" Closing="AddContact_Closing">
 
 
     <Grid Margin="0,0,0,17">
