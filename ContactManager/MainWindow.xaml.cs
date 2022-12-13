@@ -33,7 +33,7 @@ namespace ContactManager
         string name { get; set; }
         int age { get; set; }
         DetailsWindow detailsWindow = new DetailsWindow();
-        AddContactWindow addwindow = new AddContactWindow();
+       
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +41,7 @@ namespace ContactManager
 
         private void AddContact(object sender, RoutedEventArgs e)
         {
+            AddContactWindow addwindow = new AddContactWindow();
             addwindow.Show();
         }
 
@@ -52,14 +53,19 @@ namespace ContactManager
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             
-            
+            //check the field if a field is true
             List<Contact> contacts = new List<Contact>();
+            List<Contact> displayedContacts = new List<Contact>();
             DataBase db = new DataBase();
             contacts = db.getAllContacts();
-           // Contact t = new Contact();
-           // t = db.GetContact(1);
-           // lvDataBinding.ItemsSource = contacts;
-           // MessageBox.Show(t.FirstName);
+            foreach (Contact contact in contacts)
+            {
+                if (contact.Active == true)
+                {
+                    displayedContacts.Add(contact);
+                }
+            }
+            lvDataBinding.ItemsSource = displayedContacts;
         }
     }
 }

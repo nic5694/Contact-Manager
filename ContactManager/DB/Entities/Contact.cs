@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,11 @@ namespace ContactManager.DB.Entities
      * 
      * 
      */
+    //address entity everty table is going to be a diffrent eentity 
+    //for the type you would include the type in that entity you would do a join with the type 
+    //type would be a field in address
+    //but both one description one char
+    //
     internal class Contact
     {
         public int Id { get; set; }
@@ -35,5 +41,15 @@ namespace ContactManager.DB.Entities
             Image_Id = image_Id;
         }
         public Contact() { }
+        public Contact(int id, string firstName, string lastName, string lastUpdated, bool active, string created)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            LastUpdated = lastUpdated;
+            Active = active;
+            Created = created;
+        }
+        public override string ToString() => this.FirstName + ", " + this.LastName;
     }
 }

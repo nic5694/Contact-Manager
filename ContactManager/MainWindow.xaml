@@ -19,25 +19,22 @@
             </StackPanel>
                
             <ListView Name="lvDataBinding" Padding="0,5,0,5">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <TextBlock Text="Name: " />
-                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                            <TextBlock Text=", " />
-                            <TextBlock Text="Age: " />
-                            <TextBlock Text="{Binding Age}" FontWeight="Bold" />
-                            <TextBlock Text=" (" />
-                            <TextBlock Text="{Binding Email}"
-                                TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
-                            <TextBlock Text=")" />
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="First Name" Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FirstName}" Foreground="Blue"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Last Name" Width="50" DisplayMemberBinding="{Binding LastName}" />
+                    </GridView>
+                </ListView.View>
                 
+                <!--<ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
                 <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
-                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
-                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
+                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>-->
             </ListView>
 
             
