@@ -82,7 +82,10 @@ namespace ContactManager
 
         private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Contact contact = (Contact)lvDataBinding.SelectedItem;
+            Contact contact = new Contact();
+            contact = (Contact)lvDataBinding.SelectedItem;
+            DetailsWindow details = new DetailsWindow(contact.Id);
+            details.Show();
         }
     }
 }
