@@ -30,9 +30,6 @@ namespace ContactManager
 
     public partial class MainWindow : Window
     {
-        string name { get; set; }
-        int age { get; set; }
-        DetailsWindow detailsWindow = new DetailsWindow();
        
         public MainWindow()
         {
