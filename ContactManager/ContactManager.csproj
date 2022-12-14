@@ -89,7 +89,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DB\DB.cs" />
+    <Compile Include="DB\DataBase.cs" />
     <Compile Include="DB\Entities\Contact.cs" />
     <Compile Include="EmailInfo.xaml.cs">
       <DependentUpon>EmailInfo.xaml</DependentUpon>

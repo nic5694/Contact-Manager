@@ -30,9 +30,6 @@ namespace ContactManager
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            DataBase db = new DataBase();
-            
-            show.Content = contact.FirstName;
             
         }
     }
