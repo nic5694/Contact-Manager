@@ -32,10 +32,11 @@ namespace ContactManager.DB
             con.Open();
             SqlDataReader reader = sq.ExecuteReader();
             Contact contact = new Contact();
-            contact.FirstName = reader["firstName"].ToString();
-            contact.LastName = reader["lastName"].ToString();
+            contact.FirstName = reader["FirstName"].ToString();
+            contact.LastName = reader["LastName"].ToString();
             contact.LastUpdated = reader["LastUpdated"].ToString();
             contact.Created = reader["Created"].ToString();
+            con.Close();
             return contact;
         }
         public List<Contact> getAllContacts()
@@ -49,6 +50,7 @@ namespace ContactManager.DB
                 {
                     //TODO check null coalescence
                     Contact contact = new Contact();
+                    contact.Title = reader["Title"].ToString();
                     contact.Id = (int)reader["Id"];
                     contact.FirstName = reader["FirstName"].ToString();
                     contact.LastName = reader["LastName"].ToString();

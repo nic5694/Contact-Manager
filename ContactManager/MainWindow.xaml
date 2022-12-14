@@ -5,16 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinWidth="350" MinHeight="500" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" MinWidth="526" MinHeight="500" Loaded="Window_Loaded">
 
     <Grid>
 
         <DockPanel>
 
             <Label DockPanel.Dock="Top" FontSize="20" Margin="10,0,0,0">Contact Informations</Label>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="10,10,10,10">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="10,10,10,10" HorizontalAlignment="Center">
                 <Button Margin="0,0,25,0" Width="90" Height="28" Click="AddContact">Add Contact</Button>
-                <Button Margin="0,0,25,0" Width="90" Height="28" Click="DeleteContact">Delete</Button>
                 <Button Margin="0,0,25,0" Width="90" Height="28" >Export</Button>
             </StackPanel>
                
@@ -29,12 +28,11 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Last Name" Width="100" DisplayMemberBinding="{Binding LastName}" />
+                        <GridViewColumn Header="Last Updated" Width="150" DisplayMemberBinding="{Binding LastUpdated}" />
+                        <GridViewColumn Header="Created" Width="150" DisplayMemberBinding="{Binding Created}" />
                     </GridView>
                 </ListView.View>
-                
-                <!--<ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
-                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>
-                <ListViewItem Content="Contact #1" Padding="10,10,10,10" BorderBrush="#FFB5B5B5" Margin="10,0,10,5"></ListViewItem>-->
+               
             </ListView>
 
             

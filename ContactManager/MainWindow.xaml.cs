@@ -45,10 +45,6 @@ namespace ContactManager
             addwindow.Show();
         }
 
-        private void DeleteContact(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Are you sure you want to delete that Contact ?","Delete",MessageBoxButton.YesNo);
-        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -56,6 +52,7 @@ namespace ContactManager
             List<Contact> displayedContacts = new List<Contact>();
             DataBase db = new DataBase();
             contacts = db.getAllContacts();
+
             foreach (Contact contact in contacts)
             {
                 if (contact.Active == true)
@@ -64,6 +61,8 @@ namespace ContactManager
                 }
             }
             lvDataBinding.ItemsSource = displayedContacts;
+
+            
         }
     }
 }
