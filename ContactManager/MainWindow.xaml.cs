@@ -79,6 +79,11 @@ namespace ContactManager
             PhoneInfo phoneinfo = new PhoneInfo(); 
             phoneinfo.Show();
         }
+
+        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Contact contact = (Contact)lvDataBinding.SelectedItem;
+        }
     }
 }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ContactManager.DB.Entities
 {
-    internal class Adress
+    internal class Address
     {
         public string StreetAddress { get; set; }
         public string City { get; set; }
@@ -19,7 +19,7 @@ namespace ContactManager.DB.Entities
         public char Type_Code { get; set; }
         public DateTime LastUpdated { get; set; }
 
-        public Adress(string streetAddress, string city, string province, string postalCode, string country, int apartmentNumber, int contact_Id, char type_Code, DateTime lastUpdated)
+        public Address(string streetAddress, string city, string province, string postalCode, string country, int apartmentNumber, int contact_Id, char type_Code, DateTime lastUpdated)
         {
             StreetAddress = streetAddress;
             City = city;
@@ -31,7 +31,7 @@ namespace ContactManager.DB.Entities
             Type_Code = type_Code;
             LastUpdated = lastUpdated;
         }
-        public Adress() { }
+        public Address() { }
 
     }
 }

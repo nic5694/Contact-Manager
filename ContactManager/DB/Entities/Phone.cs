@@ -8,15 +8,15 @@ namespace ContactManager.DB.Entities
 {
     internal class Phone
     {
-        public string Number { get; set; }
+        public string PhoneNumber { get; set; }
         public string CountryCode { get; set; }
         public int Contact_Id { get; set; }
         public char Type_Code { get; set; }
         public DateTime LastUpdated { get; set; }
         
-        public Phone(string number, string countryCode, int contact_Id, char type_Code, DateTime lastUpdated)
+        public Phone(string phoneNumber, string countryCode, int contact_Id, char type_Code, DateTime lastUpdated)
         {
-            Number = number;
+            PhoneNumber = phoneNumber;
             CountryCode = countryCode;
             Contact_Id = contact_Id;
             Type_Code = type_Code;

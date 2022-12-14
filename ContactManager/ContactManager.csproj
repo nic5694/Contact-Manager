@@ -62,7 +62,7 @@
     <Compile Include="AddressInfo.xaml.cs">
       <DependentUpon>AddressInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DB\Entities\Adress.cs" />
+    <Compile Include="DB\Entities\Address.cs" />
     <Compile Include="DB\Entities\Email.cs" />
     <Compile Include="DB\Entities\Phone.cs" />
     <Compile Include="DB\Entities\Type.cs" />

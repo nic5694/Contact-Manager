@@ -23,18 +23,24 @@ namespace ContactManager.DB.Entities
         public string LastName { get; set; }
         public string Title { get; set; }
         public string Birthday { get; set; }
+        public List<Address> Addresses { get; set; }
+        public List<Email> Emails { get; set; }
+        public List<Phone> Phones { get; set; }
         public DateTime LastUpdated { get; set; }
         public DateTime Created { get; set; }
         public bool Active { get; set; }
         public int Image_Id { get; set; }
 
-        public Contact(int id, string firstName, string lastName, string title, string birthday, DateTime lastUpdated, DateTime created, bool active, int image_Id)
+        public Contact(int id, string firstName, string lastName, string title, string birthday, List<Address> addresses, List<Email> emails, List<Phone> phones, DateTime lastUpdated, DateTime created, bool active, int image_Id)
         {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
             Title = title;
             Birthday = birthday;
+            Addresses = addresses;
+            Emails = emails;
+            Phones = phones;
             LastUpdated = lastUpdated;
             Created = created;
             Active = active;

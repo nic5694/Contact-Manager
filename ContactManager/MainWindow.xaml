@@ -26,7 +26,7 @@
                         <GridViewColumn Header="First Name" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding FirstName}" Foreground="Blue"/>
+                                    <TextBlock Text="{Binding FirstName}" Foreground="Blue" PreviewMouseDown="TextBlock_PreviewMouseDown" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

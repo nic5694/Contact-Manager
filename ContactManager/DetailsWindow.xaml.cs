@@ -25,13 +25,13 @@ namespace ContactManager
         public DetailsWindow()
         {
             InitializeComponent();
-          
         }
+        
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             DataBase db = new DataBase();
-            contact = db.GetContact(1);
+            
             show.Content = contact.FirstName;
             
         }
