@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinWidth="350" MinHeight="500">
+        Title="MainWindow" Height="450" Width="800" MinWidth="350" MinHeight="500" Loaded="Window_Loaded">
 
     <Grid>
 
@@ -21,14 +21,14 @@
             <ListView Name="lvDataBinding" Padding="0,5,0,5">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="First Name" Width="120">
+                        <GridViewColumn Header="First Name" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding FirstName}" Foreground="Blue"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Last Name" Width="50" DisplayMemberBinding="{Binding LastName}" />
+                        <GridViewColumn Header="Last Name" Width="100" DisplayMemberBinding="{Binding LastName}" />
                     </GridView>
                 </ListView.View>
                 

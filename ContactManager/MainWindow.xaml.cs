@@ -52,8 +52,6 @@ namespace ContactManager
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            //check the field if a field is true
             List<Contact> contacts = new List<Contact>();
             List<Contact> displayedContacts = new List<Contact>();
             DataBase db = new DataBase();
