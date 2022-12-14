@@ -16,8 +16,8 @@
                 <Button Margin="0,0,25,0" Width="90" Height="28" Click="AddContact">Add Contact</Button>
                 <Button Margin="0,0,25,0" Width="90" Height="28" >Export</Button>
                 <Button Margin="0,0,25,0" Content="Test address window" Click="ShowAddress" />
-                <Button Margin="0,0,25,0" Content="Test email window" Click="ShowAddress" />
-                <Button Margin="0,0,25,0" Content="Test phone window" Click="ShowAddress" />
+                <Button Margin="0,0,25,0" Content="Test email window" Click="ShowEmail" />
+                <Button Margin="0,0,25,0" Content="Test phone window" Click="ShowPhone" />
             </StackPanel>
                
             <ListView Name="lvDataBinding" Padding="0,5,0,5">
