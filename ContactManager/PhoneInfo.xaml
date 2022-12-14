@@ -9,7 +9,7 @@
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF2D2D2D">
-                <Label  Height="29" Margin="10,0,0,0" FontWeight="Bold" Background="Transparent" Foreground="White">PhoneInfo</Label>
+                <Label  Height="29" Margin="10,0,0,0" FontWeight="Bold" Background="Transparent" Foreground="White">Phone Info</Label>
                 <Button x:Name="editBtn" Content="Edit" Width="72" HorizontalContentAlignment="Center" ScrollViewer.CanContentScroll="True" Margin="269,0,0,0" Height="22" Foreground="Black" Background="White" BorderBrush="#FF656565" Click="Edit_Phone"/>
             </StackPanel>
 
@@ -27,14 +27,14 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Type :</Label>
+                <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Type : </Label>
                 <Label x:Name="typeLabel" Content="Ex.House " Grid.Column="1" Grid.Row="0" Margin="25,0,0,0" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center"/>
 
-                <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Phone Number :</Label>
+                <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Phone Number : </Label>
                 <TextBox x:Name="phoneBox" Grid.Column="1" Grid.Row="1" Margin="25,8,0,8" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center"></TextBox>
 
             </Grid>
             
-            </DockPanel>
+         </DockPanel>
     </Grid>
 </Window>

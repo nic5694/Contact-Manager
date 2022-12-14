@@ -58,6 +58,7 @@ namespace ContactManager
 
         private void Save_Address(object sender, RoutedEventArgs e)
         {
+            //update contact address
             editBtn.Visibility = Visibility.Visible;
             appNumberBox.IsEnabled = false;
             addressBox.IsEnabled = false;
@@ -66,8 +67,6 @@ namespace ContactManager
             countryBox.IsEnabled = false;
             postalCodeBox.IsEnabled = false;
             saveBtn.Visibility = Visibility.Hidden;
-
-            
         }
     }
 }

@@ -26,6 +26,7 @@ namespace ContactManager
 
         private void Save_Phone(object sender, RoutedEventArgs e)
         {
+            //update contact Phone
             saveBtn.Visibility = Visibility.Hidden;
             phoneBox.IsEnabled = false;
             editBtn.Visibility = Visibility.Visible;
