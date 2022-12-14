@@ -34,8 +34,8 @@ namespace ContactManager.DB
             Contact contact = new Contact();
             contact.FirstName = reader["FirstName"].ToString();
             contact.LastName = reader["LastName"].ToString();
-            contact.LastUpdated = reader["LastUpdated"].ToString();
-            contact.Created = reader["Created"].ToString();
+            contact.LastUpdated = (DateTime) reader["LastUpdated"];
+            contact.Created = (DateTime) reader["Created"];
             con.Close();
             return contact;
         }
@@ -54,10 +54,10 @@ namespace ContactManager.DB
                     contact.Id = (int)reader["Id"];
                     contact.FirstName = reader["FirstName"].ToString();
                     contact.LastName = reader["LastName"].ToString();
-                    contact.LastUpdated = reader["LastUpdated"].ToString();
+                    contact.LastUpdated = (DateTime) reader["LastUpdated"];
                     contact.Active = (bool)reader["Active"];
-                    contact.Created = reader["Created"].ToString();
-                    contacts.Add(new Contact(contact.Id, contact.FirstName, contact.LastName, contact.LastUpdated, contact.Active, contact.Created));
+                    contact.Created = (DateTime) reader["Created"];
+                    contacts.Add(new Contact(contact.Id, contact.FirstName, contact.LastName, contact.LastUpdated, contact.Created, contact.Active));
                 }
                 con.Close();
                 return contacts;
