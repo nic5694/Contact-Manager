@@ -70,6 +70,18 @@ namespace ContactManager
             AddressInfo addressinfo = new AddressInfo();
             addressinfo.Show();
         }
+
+        private void ShowEmail(object sender, RoutedEventArgs e)
+        {
+            EmailInfo emailinfo = new EmailInfo();
+            emailinfo.Show();
+        }
+
+        private void ShowPhone(object sender, RoutedEventArgs e)
+        {
+            PhoneInfo phoneinfo = new PhoneInfo(); 
+            phoneinfo.Show();
+        }
     }
 }
 

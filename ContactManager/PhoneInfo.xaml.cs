@@ -23,5 +23,31 @@ namespace ContactManager
         {
             InitializeComponent();
         }
+
+        private void Save_Phone(object sender, RoutedEventArgs e)
+        {
+            saveBtn.Visibility = Visibility.Hidden;
+            phoneBox.IsEnabled = false;
+            editBtn.Visibility = Visibility.Visible;
+        }
+
+        private void Edit_Phone(object sender, RoutedEventArgs e)
+        {
+            editBtn.Visibility = Visibility.Hidden;
+            saveBtn.Visibility = Visibility.Visible;
+            phoneBox.IsEnabled = true;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            saveBtn.Visibility = Visibility.Hidden;
+            phoneBox.IsEnabled = false;
+        }
     }
 }
