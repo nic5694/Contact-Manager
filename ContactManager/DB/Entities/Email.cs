@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ContactManager.DB.Entities
+{
+    internal class Email
+    {
+        public string EmailAddress { get; set; }
+        public int Contact_Id { get; set; }
+        public char Type_Code { get; set; }
+        public DateTime LastUpdated { get; set; }
+
+        public Email(string emailAddress, int contact_Id, char type_Code, DateTime lastUpdated)
+        {
+            EmailAddress = emailAddress;
+            Contact_Id = contact_Id;
+            Type_Code = type_Code;
+            LastUpdated = lastUpdated;
+        }
+        public Email() { }  
+    }
+}
