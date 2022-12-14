@@ -64,6 +64,12 @@ namespace ContactManager
 
             
         }
+
+        private void ShowAddress(object sender, RoutedEventArgs e)
+        {
+            AddressInfo addressinfo = new AddressInfo();
+            addressinfo.Show();
+        }
     }
 }
 
