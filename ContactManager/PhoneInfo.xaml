@@ -9,7 +9,7 @@
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF2D2D2D">
-                <Label  Height="29" Margin="10,0,0,0" FontWeight="Bold" Background="Transparent" Foreground="White">PhoneInfo</Label>
+                <Label  Height="29" Margin="10,0,0,0" FontWeight="Bold" Background="Transparent" Foreground="White">Phone Info</Label>
                 <Button x:Name="editBtn" Content="Edit" Width="72" HorizontalContentAlignment="Center" ScrollViewer.CanContentScroll="True" Margin="269,0,0,0" Height="22" Foreground="Black" Background="White" BorderBrush="#FF656565" Click="Edit_Phone"/>
             </StackPanel>
 
@@ -35,6 +35,6 @@
 
             </Grid>
             
-            </DockPanel>
+         </DockPanel>
     </Grid>
 </Window>
