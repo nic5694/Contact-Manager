@@ -2,6 +2,7 @@
 using ContactManager.DB.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,6 @@ namespace ContactManager
         public AddContactWindow()
         {
             InitializeComponent();
-            calender1.SelectedDate = DateTime.Now;
         }
 
         private void AddContact_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -35,12 +35,19 @@ namespace ContactManager
 
         private void AddContact(object sender, RoutedEventArgs e)
         {
+
+            if(FirstNameBox.Text == "" || LastNameBox.Text == "")
+            {
+                MessageBox.Show("The first name or the last name is missing !","Info Missing",MessageBoxButton.OK,MessageBoxImage.Error);
+                return;
+            }
+
             DataBase db = new DataBase();
-            
+     
             String FirstName = FirstNameBox.Text;
-            String title = TitleBox.Text;
-            String lastname = LastNameBox.Text;
             var birthday = calender1.SelectedDate;
+            String lastname = LastNameBox.Text;
+            String title = TitleBox.Text;
 
             Contact contact = new Contact();
 
@@ -48,6 +55,7 @@ namespace ContactManager
             contact.Title = title;
             contact.LastName = lastname;
             contact.Birthday = birthday.ToString();
+            
 
             db.addNewContact(contact);
 
