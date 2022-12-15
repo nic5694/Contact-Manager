@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ContactManager"
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
-    <Grid Loaded="Grid_Loaded">
+    <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <StackPanel>
             <Image />
             <Grid>
@@ -18,19 +18,65 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Row="0" Grid.Column="0">
-                    <Label>First Name:</Label>
-                    <TextBox />
-                    <Label>Last Name:</Label>
-                    <TextBox />
-                    <Label>Birthday:</Label>
-                    <TextBox />
-                </StackPanel>
-                <ListView Grid.Row="0" Grid.Column="1" />
-                <ListView Grid.Row="1" Grid.Column="0" />
-                <ListView Grid.Row="1" Grid.Column="1" />
-                </Grid>
+                <Border Grid.Row="0" Grid.Column="0">
+                    <StackPanel>
+                        <Label>First Name:</Label>
+                        <TextBox />
+                        <Label>Last Name:</Label>
+                        <TextBox />
+                        <Label>Birthday:</Label>
+                        <Calendar />
+                    </StackPanel>
+                </Border>
+                <GroupBox Grid.Row="0" Grid.Column="1" Header="Addresses">
+                    <ListView />
+                </GroupBox>
+                <GroupBox Grid.Row="1" Grid.Column="0" Header="Phone Numbers">
+                    <ListView>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Type" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding PhoneNumberTypes}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Number" Width="*">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Number}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </GroupBox>
+                <GroupBox Grid.Row="1" Grid.Column="1" Header="Email Addresses">
+                    <ListView>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Type" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding EmailAddressTypes}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Address" Width="*">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Text="{Binding Address}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </GroupBox>
+            </Grid>
+            <Button Name="saveButton">Save</Button>
         </StackPanel>
-        <Label x:Name="show" Content="" HorizontalAlignment="Left" Margin="152,90,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
