@@ -25,9 +25,6 @@ namespace ContactManager
     /// </summary>
     /// 
     
-
-    
-
     public partial class MainWindow : Window
     {
        
@@ -62,30 +59,48 @@ namespace ContactManager
             
         }
 
-        private void ShowAddress(object sender, RoutedEventArgs e)
-        {
-            AddressInfo addressinfo = new AddressInfo();
-            addressinfo.Show();
-        }
-
-        private void ShowEmail(object sender, RoutedEventArgs e)
-        {
-            EmailInfo emailinfo = new EmailInfo();
-            emailinfo.Show();
-        }
-
-        private void ShowPhone(object sender, RoutedEventArgs e)
-        {
-            PhoneInfo phoneinfo = new PhoneInfo(); 
-            phoneinfo.Show();
-        }
-
         private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             Contact contact = new Contact();
             contact = (Contact)lvDataBinding.SelectedItem;
             DetailsWindow details = new DetailsWindow(contact.Id);
             details.Show();
+        }
+
+        private void Export_Contacts(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to export all contacts to a csv file","Export Contacts",MessageBoxButton.YesNo,MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                DataBase db = new DataBase();
+                List<Contact> contacts = db.getAllContacts();
+
+                string csv = "";
+
+                csv += "ID,FirstName,LastName\n";
+
+                foreach(Contact contact in contacts)
+                {
+                    csv += contact.Id.ToString() + "," + contact.FirstName + "," + contact.LastName + "\n";
+                }
+
+                var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+
+                saveFileDialog.DefaultExt = ".csv";
+
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                   
+                    System.IO.File.WriteAllText(saveFileDialog.FileName, csv);
+                }
+
+            }
+            else
+            {
+                return;
+            }
+            
         }
     }
 }
