@@ -78,6 +78,10 @@
             </Grid>
             <Button Name="saveButton">Save</Button>
         </StackPanel>
+        <StackPanel HorizontalAlignment="Right">
+            <Label Content="{Binding CreatedDate}" FontSize="9" />
+            <Label Content="{Binding ModifiedDate}" FontSize="9" />
+        </StackPanel>
     </Grid>
 
 </Window>
