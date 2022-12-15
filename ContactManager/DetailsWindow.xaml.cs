@@ -29,8 +29,12 @@ namespace ContactManager
             contact = db.GetContact(id);
             this.DataContext = contact;
         }
-        
 
+        private void CalendarButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Show the calendar when the button is clicked
+            birthdayCalendar.Visibility = Visibility.Visible;
+        }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             /*

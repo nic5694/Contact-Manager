@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-        <StackPanel>
+            <StackPanel>
             <Image />
             <Grid>
                 <Grid.RowDefinitions>
@@ -24,16 +24,26 @@
                         <StackPanel Orientation="Horizontal">
                             <CheckBox Content="Mr." />
                             <CheckBox Content="Ms." />
-                            <CheckBox Content="Other" />
+                            <CheckBox x:Name="otherCheckBox" Content="Other" />
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Specify:</Label>
+                                <TextBox IsEnabled="{Binding ElementName=otherCheckBox, Path=IsChecked}"
+                                 Background="LightGray" />
+                            </StackPanel>
                         </StackPanel>
-                        <Label>Specify:</Label>
-                        <TextBox IsEnabled="{Binding ElementName=otherCheckBox, Path=IsChecked}" />
                         <Label>First Name:</Label>
                         <TextBox />
                         <Label>Last Name:</Label>
                         <TextBox />
-                        <Label>Birthday:</Label>
-                        <Calendar />
+                        <StackPanel>
+                            <Label>Birthday:</Label>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="birthdayTextBox" />
+                                <Calendar x:Name="birthdayCalendar" Visibility="Collapsed"
+                  SelectedDate="{Binding ElementName=birthdayTextBox, Path=Text}" />
+                                <Button Content="Select" Click="CalendarButton_Click" />
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
                 <GroupBox Grid.Row="0" Grid.Column="1" Header="Addresses">
