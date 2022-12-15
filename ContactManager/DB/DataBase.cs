@@ -29,9 +29,9 @@ namespace ContactManager.DB
             {
                 Contact contact = new Contact();
                 con.Open();
-                using (SqlCommand getContactInfo = new SqlCommand("Select * from Contact where Id = 1", con))
+                using (SqlCommand getContactInfo = new SqlCommand("Select * from Contact where Id = @Id", con))
                 {
-                    //getContactInfo.Parameters.AddWithValue("@Id", id);
+                    getContactInfo.Parameters.AddWithValue("@Id", id);
                     using (SqlDataReader readInfo = getContactInfo.ExecuteReader())
                     {
                         readInfo.Read();
