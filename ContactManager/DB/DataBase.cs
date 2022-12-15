@@ -24,25 +24,28 @@ namespace ContactManager.DB
         //GetContact
         public Contact GetContact(int id)
         {
+            SqlConnection c = new SqlConnection(ConString);
 
-            using (con)
+            using (c)
             {
                 Contact contact = new Contact();
-                con.Open();
-                using (SqlCommand getContactInfo = new SqlCommand("Select * from Contact where Id = 1", con))
+                c.Open();
+                using (SqlCommand getContactInfo = new SqlCommand("Select * from Contact where Id = @Id", c))
                 {
-                    //getContactInfo.Parameters.AddWithValue("@Id", id);
+                    getContactInfo.Parameters.AddWithValue("@Id", id);
                     using (SqlDataReader readInfo = getContactInfo.ExecuteReader())
                     {
                         readInfo.Read();
+                        contact.Title = readInfo["Title"].ToString();
                         contact.Id = (int)readInfo["Id"];
                         contact.FirstName = readInfo["FirstName"].ToString();
                         contact.LastName = readInfo["LastName"].ToString();
+                        contact.Birthday = readInfo["Birthday"].ToString();
                         contact.LastUpdated = (DateTime)readInfo["LastUpdated"];
                         contact.Created = (DateTime)readInfo["Created"];
                     }
                 }
-                using (SqlCommand getAdresses = new SqlCommand("Select * from Address where Contact_Id = @Id", con))
+                using (SqlCommand getAdresses = new SqlCommand("Select * from Address where Contact_Id = @Id", c))
                 {
                     getAdresses.Parameters.AddWithValue("@Id", id);
                     using (SqlDataReader readAddress = getAdresses.ExecuteReader())
@@ -63,7 +66,7 @@ namespace ContactManager.DB
                         }
                     }
                 }
-                using (SqlCommand getEmail = new SqlCommand("Select * from Email where Contact_Id = @Id", con))
+                using (SqlCommand getEmail = new SqlCommand("Select * from Email where Contact_Id = @Id", c))
                 {
                     getEmail.Parameters.AddWithValue("@Id", id);
                     using (SqlDataReader readEmail = getEmail.ExecuteReader())
@@ -79,7 +82,7 @@ namespace ContactManager.DB
                         }
                     }
                 }
-                using (SqlCommand getPhone = new SqlCommand("Select * from Phone where Contact_Id = @Id", con))
+                using (SqlCommand getPhone = new SqlCommand("Select * from Phone where Contact_Id = @Id", c))
                 {
                     getPhone.Parameters.AddWithValue("@Id", id);
                     using (SqlDataReader readPhone = getPhone.ExecuteReader())
@@ -124,6 +127,26 @@ namespace ContactManager.DB
                 }
                 return contacts;
             }
+        }
+
+        public void addNewContact(Contact contact)
+        {
+            SqlConnection c = new SqlConnection(ConString);
+
+            c.Open();
+            
+            String query = "Insert into Contact (FirstName,LastName,Title,Birthday,LastUpdated,Active,Created) values (@FirstName,@LastName,@Title,@Birthday,GETDATE(),1,GETDATE())";
+
+            SqlCommand cmd = new SqlCommand(query, c);
+
+            cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", contact.LastName);
+            cmd.Parameters.AddWithValue("@Title", contact.Title);
+            cmd.Parameters.AddWithValue("@Birthday", contact.Birthday);
+
+            cmd.ExecuteNonQuery();
+
+            c.Close();
         }
     }
 }
