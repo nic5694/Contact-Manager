@@ -13,7 +13,7 @@
         <DockPanel>
 
 
-            <Label Background="#FF2D2D2D" DockPanel.Dock="Top" Height="29" Padding="10,5,0,0" Margin="0,0,0,0" FontWeight="Bold" Foreground="White">Adding Contact</Label>
+            <Label Background="#FF2D2D2D" DockPanel.Dock="Top" Height="29" FontWeight="Bold" Foreground="White" HorizontalContentAlignment="Center">Adding Contact</Label>
 
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Height="82" HorizontalAlignment="Center">
                 <Button x:Name="addBtn" Content="Add Contact"  Width="117" Margin="0,25,25,20" Background="#FF4C4C4C" Foreground="White" BorderBrush="Black" FontWeight="Bold" Height="25" />
