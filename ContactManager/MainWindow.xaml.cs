@@ -78,11 +78,11 @@ namespace ContactManager
 
                 string csv = "";
 
-                csv += "ID,FirstName,LastName\n";
+                csv += "ID,FirstName,LastName,LastUpdated,Created\n";
 
                 foreach(Contact contact in contacts)
                 {
-                    csv += contact.Id.ToString() + "," + contact.FirstName + "," + contact.LastName + "\n";
+                    csv += contact.Id.ToString() + "," + contact.FirstName + "," + contact.LastName + "," + contact.LastUpdated.ToString() + "," + contact.Created.ToString() + "\n";
                 }
 
                 var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
