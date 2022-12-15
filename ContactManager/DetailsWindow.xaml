@@ -21,7 +21,13 @@
                 <Border Grid.Row="0" Grid.Column="0">
                     <StackPanel>
                         <Label>Title:</Label>
-                        <TextBox />
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Content="Mr." />
+                            <CheckBox Content="Ms." />
+                            <CheckBox Content="Other" />
+                        </StackPanel>
+                        <Label>Specify:</Label>
+                        <TextBox IsEnabled="{Binding ElementName=otherCheckBox, Path=IsChecked}" />
                         <Label>First Name:</Label>
                         <TextBox />
                         <Label>Last Name:</Label>
