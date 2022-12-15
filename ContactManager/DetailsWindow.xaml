@@ -42,7 +42,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Number" Width="*">
+                                <GridViewColumn Header="Number" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBox Text="{Binding Number}" />
@@ -64,7 +64,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Address" Width="*">
+                                <GridViewColumn Header="Address" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBox Text="{Binding Address}" />
@@ -79,4 +79,5 @@
             <Button Name="saveButton">Save</Button>
         </StackPanel>
     </Grid>
+
 </Window>
