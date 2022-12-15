@@ -33,7 +33,11 @@ namespace ContactManager
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            /*
+             * here you will take all the fields in the xaml and yhou will .content all fpo the the information
+             * from the Conatact that you revceived like i did below
             fName.Content = contact.FirstName;
+            */
         }
     }
 }
