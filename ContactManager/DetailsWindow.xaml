@@ -8,7 +8,28 @@
         Title="Window1" Height="450" Width="800">
     <Grid Loaded="Grid_Loaded">
         <StackPanel>
-            <Label x:Name="fName" Content="Label"/>
+            <Image />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0">
+                    <Label>First Name:</Label>
+                    <TextBox />
+                    <Label>Last Name:</Label>
+                    <TextBox />
+                    <Label>Birthday:</Label>
+                    <TextBox />
+                </StackPanel>
+                <ListView Grid.Row="0" Grid.Column="1" />
+                <ListView Grid.Row="1" Grid.Column="0" />
+                <ListView Grid.Row="1" Grid.Column="1" />
+                </Grid>
         </StackPanel>
         <Label x:Name="show" Content="" HorizontalAlignment="Left" Margin="152,90,0,0" VerticalAlignment="Top"/>
     </Grid>
