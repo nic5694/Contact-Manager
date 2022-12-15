@@ -102,6 +102,23 @@ namespace ContactManager
             }
             
         }
+
+        private void ResfreshList(object sender, RoutedEventArgs e)
+        {
+            List<Contact> contacts = new List<Contact>();
+            List<Contact> displayedContacts = new List<Contact>();
+            DataBase db = new DataBase();
+            contacts = db.getAllContacts();
+
+            foreach (Contact contact in contacts)
+            {
+                if (contact.Active == true)
+                {
+                    displayedContacts.Add(contact);
+                }
+            }
+            lvDataBinding.ItemsSource = displayedContacts;
+        }
     }
 }
 
