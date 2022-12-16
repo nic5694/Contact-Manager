@@ -36,6 +36,7 @@ namespace ContactManager
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            //here you will assign all the data to the list views
             
         }
     }
