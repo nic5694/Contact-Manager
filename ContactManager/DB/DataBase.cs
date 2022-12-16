@@ -153,7 +153,7 @@ namespace ContactManager.DB
 
             c.Open();
             
-            String query = "Insert into Contact (FirstName,LastName,Title,Birthday,LastUpdated,Active,Created) values (@FirstName,@LastName,@Title,@Birthday,GETDATE(),1,GETDATE())";
+            String query = "Insert into Contact (FirstName,LastName,Title,Birthday,Active) values (@FirstName,@LastName,@Title,@Birthday,1)";
 
             SqlCommand cmd = new SqlCommand(query, c);
 
