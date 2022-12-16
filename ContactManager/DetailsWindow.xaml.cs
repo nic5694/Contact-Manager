@@ -39,7 +39,20 @@ namespace ContactManager
             //here you will assign all the data to the list views
             List<Address> temp = new List<Address>();
             temp = contact.Addresses;
-            //name of the listview
+            PhoneListView.ItemsSource = contact.Addresses;
+            //email
+            //(emailListView)(example name).ItemsSources = contact.Emails;
+            //(phoneListView)(Example name).ItemsSources = contact.phones;
+            //names of the first name field
+            //fieldnameisforName.content = contact.firstname
+            //fieldsnameforlastName.content = contact.lastname
+            //fiedlsnamefortitle.content = contect.title
+           //bithday.content = contact.birthday maybe need to do .toString();
         }
+        /*
+         * the edit will undo the text boxes where their isenabled so you take the elements .isenabled = true.
+         * for the double click of an address you will use the xaml that youssef created and you just bind the data needed
+         */
+       
     }
 }
