@@ -102,12 +102,33 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NewAddress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewEmail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewPhone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PhoneInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NewAddress.xaml.cs">
+      <DependentUpon>NewAddress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewEmail.xaml.cs">
+      <DependentUpon>NewEmail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewPhone.xaml.cs">
+      <DependentUpon>NewPhone.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PhoneInfo.xaml.cs">
       <DependentUpon>PhoneInfo.xaml</DependentUpon>
     </Compile>

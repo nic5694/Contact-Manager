@@ -1,6 +1,7 @@
 ﻿using ContactManager.DB;
 using ContactManager.DB.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,12 @@ namespace ContactManager
     /// </summary>
     public partial class AddContactWindow : Window
     {
+        private int emailCount = 0;
+        private int phoneCount = 0;
+        static List<Email> emails = new List<Email>();
+        static List<Phone> phones = new List<Phone>();
+        static List<Address> addresses = new List<Address>();
+
         public AddContactWindow()
         {
             InitializeComponent();
@@ -30,6 +37,8 @@ namespace ContactManager
         private void AddContact_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
+            emailCount = 0;
+            emails.Clear();
             this.Hide();
         }
 
@@ -63,6 +72,8 @@ namespace ContactManager
             LastNameBox.Clear();
             TitleBox.Clear();
             calender1.SelectedDate = DateTime.Now;
+            emails.Clear();
+            emailCount = 0;
 
         }
 
@@ -72,6 +83,67 @@ namespace ContactManager
             LastNameBox.Clear();
             TitleBox.Clear();
             calender1.SelectedDate = DateTime.Now;
+            emailCount = 0;
+            emails.Clear();
+        }
+
+        private void newEmailWindow(object sender, RoutedEventArgs e)
+        {
+            emailCount++;
+            if(emailCount < 4)
+            {
+                NewEmail newEmail = new NewEmail(emailCount);
+                newEmail.Show();
+
+            } else
+            {
+                MessageBox.Show("3 E-mails is the max !");
+            }
+            
+        }
+
+        public void addEmailToList(object e)
+        {
+            Email contactEmail = e as Email;
+            emails.Add(contactEmail);
+        }
+
+        private void newPhoneWindow(object sender, RoutedEventArgs e)
+        {
+            phoneCount++;
+            if (phoneCount < 4)
+            {
+                NewPhone newPhone = new NewPhone(phoneCount);
+                newPhone.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("3 Phone Numbers is the max !");
+            }
+        }
+
+        public void addPhoneToList(object p)
+        {
+            Phone phone = p as Phone;
+            phones.Add(phone);
+        }
+
+
+        private void showPhones(object sender, RoutedEventArgs e)
+        {
+            foreach(Phone phone in phones)
+            {
+                MessageBox.Show(phone.Type_Code.ToString() + " : " + phone.CountryCode + phone.PhoneNumber);
+            }
+        }
+
+        private void showEmails(object sender, RoutedEventArgs e)
+        {
+            foreach (Email email in emails)
+            {
+                MessageBox.Show(email.Type_Code.ToString() + " : " + email.EmailAddress);
+            }
         }
     }
 }
