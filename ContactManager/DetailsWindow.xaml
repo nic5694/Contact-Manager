@@ -76,9 +76,7 @@
                                 <GridViewColumn Header="Number" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBox Text="{Binding Number}"
-                                     TextChanged="PhoneNumber_TextChanged"
-                                     />
+                                            <TextBox Text="{Binding Number}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
