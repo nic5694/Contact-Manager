@@ -61,10 +61,10 @@ namespace ContactManager
 
         private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Contact contact = new Contact();
+            /*Contact contact = new Contact();
             contact = (Contact)lvDataBinding.SelectedItem;
             DetailsWindow details = new DetailsWindow(contact.Id);
-            details.Show();
+            details.Show();*/
         }
 
         private void Export_Contacts(object sender, RoutedEventArgs e)
@@ -104,6 +104,36 @@ namespace ContactManager
         }
 
         private void ResfreshList(object sender, RoutedEventArgs e)
+        {
+            refreshList();
+        }
+
+        private void DesactivateContact(object sender, RoutedEventArgs e)
+        {
+            DataBase db = new DataBase();
+            Contact selecteditem = lvDataBinding.SelectedItem as Contact;
+            if(selecteditem != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to desactivate this Contact ?", "",MessageBoxButton.YesNo,MessageBoxImage.Question);
+                if(result == MessageBoxResult.Yes)
+                {
+                    db.desactivateContact(selecteditem.Id);
+                    refreshList();
+
+                } else
+                {
+                    return;
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("No Contact has been selected", "Selection Not Found",MessageBoxButton.OK,MessageBoxImage.Error);
+            }
+            
+        }
+
+        public void refreshList()
         {
             List<Contact> contacts = new List<Contact>();
             List<Contact> displayedContacts = new List<Contact>();

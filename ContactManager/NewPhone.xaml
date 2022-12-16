@@ -1,0 +1,43 @@
+﻿<Window x:Class="ContactManager.NewPhone"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ContactManager"
+        mc:Ignorable="d"
+        Title="NewPhone" Height="279" Width="440">
+    <Grid>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF2D2D2D">
+                <Label  Height="29" Margin="10,0,0,0" FontWeight="Bold" Background="Transparent" Foreground="White">New Phone</Label>
+            </StackPanel>
+
+            <Button x:Name="saveBtn" Content="Save" DockPanel.Dock="Bottom" Width="76" Margin="0,25,0,20" Background="#FF4C4C4C" Foreground="White" BorderBrush="Black" FontWeight="Bold" Click="saveNewPhone"></Button>
+
+            <Grid MinWidth="461" MaxWidth="461" Margin="0,20,0,0" Width="229" HorizontalAlignment="Center">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130*" />
+                    <ColumnDefinition Width="331*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Type :</Label>
+                <Label x:Name="typeLabel" Content="Ex.House " Grid.Column="1" Grid.Row="0" Margin="25,0,0,0" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center"/>
+
+                <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Country Code:</Label>
+                <TextBox x:Name="countryCodeBox" Grid.Column="1" Grid.Row="1" Margin="25,8,0,8" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center"></TextBox>
+
+                <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Phone Number :</Label>
+                <TextBox x:Name="phoneBox" Grid.Column="1" Grid.Row="2" Margin="25,8,0,8" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center"></TextBox>
+
+            </Grid>
+        </DockPanel>
+
+    </Grid>
+</Window>
