@@ -5,116 +5,86 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactManager"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
-    <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-            <StackPanel>
-            <Image />
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.Column="0">
-                    <StackPanel>
-                        <Label>Title:</Label>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox Content="Mr." />
-                            <CheckBox Content="Ms." />
-                            <CheckBox x:Name="otherCheckBox" Content="Other" />
-                            <StackPanel Orientation="Horizontal">
-                                <Label>Specify:</Label>
-                                <TextBox IsEnabled="{Binding ElementName=otherCheckBox, Path=IsChecked}"
-                                 Background="LightGray" />
-                            </StackPanel>
-                        </StackPanel>
-                        <Label>First Name:</Label>
-                        <TextBox />
-                        <Label>Last Name:</Label>
-                        <TextBox />
-                        <StackPanel>
-                            <Label>Birthday:</Label>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox x:Name="birthdayTextBox" />
-                                <Calendar x:Name="birthdayCalendar" Visibility="Collapsed"
-                  SelectedDate="{Binding ElementName=birthdayTextBox, Path=Text}" />
-                                <Button Content="Select" Click="CalendarButton_Click" />
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-                <GroupBox Grid.Row="0" Grid.Column="1" Header="Addresses">
-                    <StackPanel>
-                        <ComboBox>
-                            <ComboBoxItem>Home</ComboBoxItem>
-                            <ComboBoxItem>Work</ComboBoxItem>
-                        </ComboBox>
-                        <Label>Address:</Label>
-                        <TextBox />
-                        <Label>City:</Label>
-                        <TextBox />
-                        <Label>State/Province:</Label>
-                        <TextBox />
-                        <Label>Zip Code:</Label>
-                        <TextBox />
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox Grid.Row="1" Grid.Column="0" Header="Phone Numbers">
-                    <ListView>
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Type" Width="100">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <ComboBox ItemsSource="{Binding PhoneNumberTypes}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="Number" Width="200">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBox Text="{Binding Number}"
-                                     TextChanged="PhoneNumber_TextChanged"
-                                     />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </GroupBox>
-                <GroupBox Grid.Row="1" Grid.Column="1" Header="Email Addresses">
-                    <ListView>
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Type" Width="100">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <ComboBox ItemsSource="{Binding EmailAddressTypes}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="Address" Width="200">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBox Text="{Binding Address}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </GroupBox>
-            </Grid>
-            <Button Name="saveButton">Save</Button>
+        Title="Window1" Height="649" Width="671" MinWidth="671" MinHeight="649" MaxWidth="671" MaxHeight="649">
+
+    <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Margin="0,0,0,-6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48*"></RowDefinition>
+            <RowDefinition Height="281*"></RowDefinition>
+            <RowDefinition Height="237*"></RowDefinition>
+            <RowDefinition Height="73*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#FF2D2D2D">
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0" FontWeight="Bold" Foreground="White">Contact Details</Label>
+            <Button x:Name="editBtn" Width="84" VerticalAlignment="Center" Height="22" Margin="425,0,0,0" Foreground="Black" BorderBrush="#FF8A8A8A" Background="White" Click="editContactDetails">Edit</Button>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Right">
-            <Label Content="{Binding CreatedDate}" FontSize="9" />
-            <Label Content="{Binding ModifiedDate}" FontSize="9" />
+
+        <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="24" Margin="248,0,0,0" Width="175" >
+            <Button x:Name="saveBtn" Width="75" Click="saveContactDetails" Background="#FF2D2D2D" Foreground="White">Save</Button>
+            <Button x:Name="DeleteBtn" Width="75" Grid.IsSharedSizeScope="True" Margin="25,0,0,0" Height="24" Click="DeleteContact" Background="#FFE46B6B" Foreground="White">Delete</Button>
         </StackPanel>
+
+        <GroupBox Header="E-Mails" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,274,335,0" Grid.RowSpan="2">
+
+            <ListView x:Name="EmailsList">
+
+            </ListView>
+
+        </GroupBox>
+
+        <GroupBox Header="Phone Numbers" Grid.Column="1" Margin="0,48,0,0" Grid.RowSpan="2">
+            <ListView x:Name="PhonesList">
+
+            </ListView>
+        </GroupBox>
+
+        <GroupBox Header="Addresses" Grid.Column="1" Grid.Row="1" Margin="0,274,0,0" Grid.RowSpan="2">
+            <ListView x:Name="AddressesList">
+
+            </ListView>
+        </GroupBox>
+
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="0,48,335,0" Grid.RowSpan="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55*"></ColumnDefinition>
+                <ColumnDefinition Width="113*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="41*"></RowDefinition>
+                <RowDefinition Height="41*"></RowDefinition>
+                <RowDefinition Height="41*"></RowDefinition>
+                <RowDefinition Height="149*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0"  VerticalAlignment="Center" Height="25" Width="39" HorizontalAlignment="Right" Margin="0,0,25,0">Title :</Label>
+            <TextBox x:Name="TitleBox" Grid.Column="1" Margin="0,8,28,8" />
+
+            <Label Grid.Row="1" VerticalAlignment="Center" Height="25" Width="90" HorizontalAlignment="Center">First Name :</Label>
+            <TextBox x:Name="FirstNameBox" Grid.Column="1" Grid.Row="1" Margin="0,8,28,8" />
+
+            <Label Grid.Row="2" VerticalAlignment="Center" Height="25" Width="90" HorizontalAlignment="Center">Last Name :</Label>
+            <TextBox x:Name="LastNameBox" Grid.Column="1" Grid.Row="2" Margin="0,8,28,8" />
+
+
+            <Label Grid.Row="3" VerticalAlignment="Top" Height="25" Width="88" HorizontalAlignment="Right" Grid.ColumnSpan="2" Margin="0,0,226,0">Birthday :</Label>
+            <Calendar x:Name="BirthdayCalender" Grid.Column="1" Grid.Row="3" Margin="10,0,-56,-37" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Calendar.RenderTransform>
+                    <ScaleTransform ScaleX="0.8" ScaleY="0.8" />
+                </Calendar.RenderTransform>
+            </Calendar>
+
+
+
+        </Grid>
+
     </Grid>
 
 </Window>
