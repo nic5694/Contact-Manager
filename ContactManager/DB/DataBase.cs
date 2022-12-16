@@ -15,11 +15,8 @@ namespace ContactManager.DB
     internal class DataBase
     {
         private string ConString = ConfigurationManager.ConnectionStrings["SqlServerConnection"].ConnectionString;
-        SqlConnection con;
         public DataBase()
-        {
-            con = new SqlConnection(ConString);
-        }
+        {}
 
         //GetContact
         public Contact GetContact(int id)
@@ -103,13 +100,11 @@ namespace ContactManager.DB
         }
         public List<Contact> GetAllContacts()
         {
-
+            
                 List<Contact> contacts = new List<Contact>();
-            using (con)
-            {
-                con.Open();
-
-                using (SqlCommand sq = new SqlCommand("Select * from Contact", con))
+                using (SqlConnection c = new SqlConnection(ConString)) {
+                c.Open();
+                using (SqlCommand sq = new SqlCommand("Select * from Contact", c))
                 {
                     SqlDataReader reader = sq.ExecuteReader();
                     while (reader.Read())
@@ -165,6 +160,11 @@ namespace ContactManager.DB
             cmd.ExecuteNonQuery();
 
             c.Close();
+        }
+        
+        public void EditExistingContact(Contact contact)
+        {
+            
         }
         
     }
