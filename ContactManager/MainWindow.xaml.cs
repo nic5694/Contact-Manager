@@ -149,6 +149,12 @@ namespace ContactManager
             }
             lvDataBinding.ItemsSource = displayedContacts;
         }
+
+        private void showContactDetails(object sender, RoutedEventArgs e)
+        {
+            DetailsWindow d = new DetailsWindow(1);
+            d.Show();
+        }
     }
 }
 
