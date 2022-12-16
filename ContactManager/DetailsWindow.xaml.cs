@@ -52,7 +52,8 @@ namespace ContactManager
         /*
          * the edit will undo the text boxes where their isenabled so you take the elements .isenabled = true.
          * for the double click of an address you will use the xaml that youssef created and you just bind the data needed
+         * for the delete button that youssef will put in the xaml you will use the remove function that is in the database class
          */
-       
+
     }
 }
