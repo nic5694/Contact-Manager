@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800">
     <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-            <StackPanel>
+        <StackPanel>
             <Image />
             <Grid>
                 <Grid.RowDefinitions>
@@ -39,8 +39,9 @@
                             <Label>Birthday:</Label>
                             <StackPanel Orientation="Horizontal">
                                 <TextBox x:Name="birthdayTextBox" />
-                                <Calendar x:Name="birthdayCalendar" Visibility="Collapsed"
-                  SelectedDate="{Binding ElementName=birthdayTextBox, Path=Text}" />
+                                <!-->just show the birthday<!-->
+                                <Calendar x:Name="birthdayCalendar" Visibility="Collapsed" SelectedDate="{Binding ElementName=birthdayTextBox, Path=Text}" />
+                                <!--only have select available when in edit mode-->
                                 <Button Content="Select" Click="CalendarButton_Click" />
                             </StackPanel>
                         </StackPanel>
@@ -48,18 +49,14 @@
                 </Border>
                 <GroupBox Grid.Row="0" Grid.Column="1" Header="Addresses">
                     <StackPanel>
-                        <ComboBox>
-                            <ComboBoxItem>Home</ComboBoxItem>
-                            <ComboBoxItem>Work</ComboBoxItem>
-                        </ComboBox>
-                        <Label>Address:</Label>
-                        <TextBox />
-                        <Label>City:</Label>
-                        <TextBox />
-                        <Label>State/Province:</Label>
-                        <TextBox />
-                        <Label>Zip Code:</Label>
-                        <TextBox />
+                        <ListView Height="100" d:ItemsSource="{d:SampleData ItemCount=5}">
+                            <!--sample data neecds to be changed with the data from the contact-->
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Grid.Row="1" Grid.Column="0" Header="Phone Numbers">
@@ -107,7 +104,8 @@
                     </ListView>
                 </GroupBox>
             </Grid>
-            <Button Name="saveButton">Save</Button>
+            <Button Content="Button" Height="20" Width="57"/> <!--place side to side IN EDIT MODE-->
+            <Button Name="saveButton" Width="66">Save</Button>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right">
             <Label Content="{Binding CreatedDate}" FontSize="9" />
