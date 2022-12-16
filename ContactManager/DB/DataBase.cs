@@ -15,11 +15,8 @@ namespace ContactManager.DB
     internal class DataBase
     {
         private string ConString = ConfigurationManager.ConnectionStrings["SqlServerConnection"].ConnectionString;
-        SqlConnection con;
         public DataBase()
-        {
-            con = new SqlConnection(ConString);
-        }
+        {}
 
         //GetContact
         public Contact GetContact(int id)
@@ -98,18 +95,18 @@ namespace ContactManager.DB
                         }
                     }
                 }
-                return contact;
+                return new Contact(contact.Id, contact.FirstName, contact.LastName,contact.Title, contact.Birthday, contact.Addresses, contact.Emails, contact.Phones, contact.LastUpdated, contact.Created, contact.Active, contact.Image_Id);
             }
         }
-        public List<Contact> getAllContacts()
+        public List<Contact> GetAllContacts()
         {
-
+            
                 List<Contact> contacts = new List<Contact>();
-            using (con)
+           // List<int> ids = new List<int>();
+            using (SqlConnection c = new SqlConnection(ConString))
             {
-                con.Open();
-
-                using (SqlCommand sq = new SqlCommand("Select * from Contact", con))
+                c.Open();
+                using (SqlCommand sq = new SqlCommand("Select * from Contact", c))
                 {
                     SqlDataReader reader = sq.ExecuteReader();
                     while (reader.Read())
@@ -123,13 +120,19 @@ namespace ContactManager.DB
                         contact.Active = (bool)reader["Active"];
                         contact.Created = (DateTime)reader["Created"];
                         contacts.Add(new Contact(contact.Id, contact.FirstName, contact.LastName, contact.LastUpdated, contact.Created, contact.Active));
+                      //  ids.Add(contact.Id);
                     }
                 }
+            }/*
+            foreach (int id in ids)
+            {
+                contacts.Add(GetContact(id));
+            }*/
                 return contacts;
-            }
+            
         }
 
-        public void desactivateContact(int contactId)
+        public void DesactivateContact(int contactId)
         {
             SqlConnection c = new SqlConnection(ConString);
 
@@ -147,13 +150,13 @@ namespace ContactManager.DB
 
         }
 
-        public void addNewContact(Contact contact)
+        public void AddNewContact(Contact contact)
         {
             SqlConnection c = new SqlConnection(ConString);
 
             c.Open();
             
-            String query = "Insert into Contact (FirstName,LastName,Title,Birthday,LastUpdated,Active,Created) values (@FirstName,@LastName,@Title,@Birthday,GETDATE(),1,GETDATE())";
+            String query = "Insert into Contact (FirstName,LastName,Title,Birthday,Active) values (@FirstName,@LastName,@Title,@Birthday,1)";
 
             SqlCommand cmd = new SqlCommand(query, c);
 
@@ -165,6 +168,11 @@ namespace ContactManager.DB
             cmd.ExecuteNonQuery();
 
             c.Close();
+        }
+        
+        public void EditExistingContact(Contact contact)
+        {
+            
         }
         
     }
