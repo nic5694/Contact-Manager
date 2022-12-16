@@ -25,21 +25,25 @@ namespace ContactManager
         public DetailsWindow(int id)
         {
             InitializeComponent();
+
+            DeleteBtn.Visibility = Visibility.Hidden;
+            saveBtn.Visibility = Visibility.Hidden;
+            TitleBox.IsEnabled = false;
+            FirstNameBox.IsEnabled = false;
+            LastNameBox.IsEnabled = false;
+            BirthdayCalender.IsEnabled = false;
+
             DataBase db = new DataBase();
             contact = db.GetContact(id);
             this.DataContext = contact;
         }
 
-        private void CalendarButton_Click(object sender, RoutedEventArgs e)
-        {
-            birthdayCalendar.Visibility = Visibility.Visible;
-        }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             //here you will assign all the data to the list views
-            List<Address> temp = new List<Address>();
-            temp = contact.Addresses;
-            PhoneListView.ItemsSource = contact.Addresses;
+            //List<Address> temp = new List<Address>();
+            //temp = contact.Addresses;
+            //PhoneListView.ItemsSource = contact.Addresses;
             //email
             //(emailListView)(example name).ItemsSources = contact.Emails;
             //(phoneListView)(Example name).ItemsSources = contact.phones;
@@ -49,11 +53,42 @@ namespace ContactManager
             //fiedlsnamefortitle.content = contect.title
            //bithday.content = contact.birthday maybe need to do .toString();
         }
+
+        private void editContactDetails(object sender, RoutedEventArgs e)
+        {
+            editBtn.Visibility = Visibility.Hidden;
+            DeleteBtn.Visibility = Visibility.Visible;
+            saveBtn.Visibility = Visibility.Visible;
+
+            TitleBox.IsEnabled = true;
+            FirstNameBox.IsEnabled = true;
+            LastNameBox.IsEnabled = true;
+            BirthdayCalender.IsEnabled = true;
+        }
+
+        private void saveContactDetails(object sender, RoutedEventArgs e)
+        {
+            DeleteBtn.Visibility = Visibility.Hidden;
+            saveBtn.Visibility = Visibility.Hidden;
+            editBtn.Visibility = Visibility.Visible;
+
+            TitleBox.IsEnabled = false;
+            FirstNameBox.IsEnabled = false;
+            LastNameBox.IsEnabled = false;
+            BirthdayCalender.IsEnabled = false;
+        }
+
+        private void DeleteContact(object sender, RoutedEventArgs e)
+        {
+            //DataBase db = new DataBase();
+            //db.desactivateContact(contact.Id);
+            //Close();
+        }
         /*
-         * the edit will undo the text boxes where their isenabled so you take the elements .isenabled = true.
-         * for the double click of an address you will use the xaml that youssef created and you just bind the data needed
-         * for the delete button that youssef will put in the xaml you will use the remove function that is in the database class
-         */
+* the edit will undo the text boxes where their isenabled so you take the elements .isenabled = true.
+* for the double click of an address you will use the xaml that youssef created and you just bind the data needed
+* for the delete button that youssef will put in the xaml you will use the remove function that is in the database class
+*/
 
     }
 }
