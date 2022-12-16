@@ -95,14 +95,16 @@ namespace ContactManager.DB
                         }
                     }
                 }
-                return contact;
+                return new Contact(contact.Id, contact.FirstName, contact.LastName,contact.Title, contact.Birthday, contact.Addresses, contact.Emails, contact.Phones, contact.LastUpdated, contact.Created, contact.Active, contact.Image_Id);
             }
         }
         public List<Contact> GetAllContacts()
         {
             
                 List<Contact> contacts = new List<Contact>();
-                using (SqlConnection c = new SqlConnection(ConString)) {
+           // List<int> ids = new List<int>();
+            using (SqlConnection c = new SqlConnection(ConString))
+            {
                 c.Open();
                 using (SqlCommand sq = new SqlCommand("Select * from Contact", c))
                 {
@@ -118,10 +120,16 @@ namespace ContactManager.DB
                         contact.Active = (bool)reader["Active"];
                         contact.Created = (DateTime)reader["Created"];
                         contacts.Add(new Contact(contact.Id, contact.FirstName, contact.LastName, contact.LastUpdated, contact.Created, contact.Active));
+                      //  ids.Add(contact.Id);
                     }
                 }
+            }/*
+            foreach (int id in ids)
+            {
+                contacts.Add(GetContact(id));
+            }*/
                 return contacts;
-            }
+            
         }
 
         public void DesactivateContact(int contactId)
