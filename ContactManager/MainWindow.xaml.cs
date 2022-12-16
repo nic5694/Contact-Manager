@@ -61,10 +61,10 @@ namespace ContactManager
 
         private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            /*Contact contact = new Contact();
+            Contact contact = new Contact();
             contact = (Contact)lvDataBinding.SelectedItem;
             DetailsWindow details = new DetailsWindow(contact.Id);
-            details.Show();*/
+            details.Show();
         }
 
         private void Export_Contacts(object sender, RoutedEventArgs e)
