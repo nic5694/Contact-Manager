@@ -66,7 +66,7 @@ namespace ContactManager
             contact.Birthday = birthday.ToString();
             
 
-            db.addNewContact(contact);
+            db.AddNewContact(contact);
 
             FirstNameBox.Clear();
             LastNameBox.Clear();

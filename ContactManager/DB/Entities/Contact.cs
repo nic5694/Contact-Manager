@@ -56,6 +56,5 @@ namespace ContactManager.DB.Entities
             Active = active;
             Created = created;
         }
-        public override string ToString() => this.FirstName + ", " + this.LastName;
     }
 }

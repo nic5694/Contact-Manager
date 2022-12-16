@@ -52,9 +52,14 @@
                             <ComboBoxItem>Home</ComboBoxItem>
                             <ComboBoxItem>Work</ComboBoxItem>
                         </ComboBox>
-                        <Label>Street Address:</Label>
+                        <Label>Address:</Label>
                         <TextBox />
-                        
+                        <Label>City:</Label>
+                        <TextBox />
+                        <Label>State/Province:</Label>
+                        <TextBox />
+                        <Label>Zip Code:</Label>
+                        <TextBox />
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Grid.Row="1" Grid.Column="0" Header="Phone Numbers">

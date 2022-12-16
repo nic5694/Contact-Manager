@@ -45,7 +45,7 @@ namespace ContactManager
             List<Contact> contacts = new List<Contact>();
             List<Contact> displayedContacts = new List<Contact>();
             DataBase db = new DataBase();
-            contacts = db.getAllContacts();
+            contacts = db.GetAllContacts();
 
             foreach (Contact contact in contacts)
             {
@@ -61,10 +61,10 @@ namespace ContactManager
 
         private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            /*Contact contact = new Contact();
+            Contact contact = new Contact();
             contact = (Contact)lvDataBinding.SelectedItem;
             DetailsWindow details = new DetailsWindow(contact.Id);
-            details.Show();*/
+            details.Show();
         }
 
         private void Export_Contacts(object sender, RoutedEventArgs e)
@@ -74,7 +74,7 @@ namespace ContactManager
             if (result == MessageBoxResult.Yes)
             {
                 DataBase db = new DataBase();
-                List<Contact> contacts = db.getAllContacts();
+                List<Contact> contacts = db.GetAllContacts();
 
                 string csv = "";
 
@@ -117,7 +117,7 @@ namespace ContactManager
                 MessageBoxResult result = MessageBox.Show("Are you sure you want to desactivate this Contact ?", "",MessageBoxButton.YesNo,MessageBoxImage.Question);
                 if(result == MessageBoxResult.Yes)
                 {
-                    db.desactivateContact(selecteditem.Id);
+                    db.DesactivateContact(selecteditem.Id);
                     refreshList();
 
                 } else
@@ -138,7 +138,7 @@ namespace ContactManager
             List<Contact> contacts = new List<Contact>();
             List<Contact> displayedContacts = new List<Contact>();
             DataBase db = new DataBase();
-            contacts = db.getAllContacts();
+            contacts = db.GetAllContacts();
 
             foreach (Contact contact in contacts)
             {
@@ -148,6 +148,12 @@ namespace ContactManager
                 }
             }
             lvDataBinding.ItemsSource = displayedContacts;
+        }
+
+        private void showContactDetails(object sender, RoutedEventArgs e)
+        {
+            DetailsWindow d = new DetailsWindow(1);
+            d.Show();
         }
     }
 }
