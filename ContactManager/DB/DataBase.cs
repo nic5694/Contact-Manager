@@ -101,7 +101,7 @@ namespace ContactManager.DB
                 return contact;
             }
         }
-        public List<Contact> getAllContacts()
+        public List<Contact> GetAllContacts()
         {
 
                 List<Contact> contacts = new List<Contact>();
@@ -129,7 +129,7 @@ namespace ContactManager.DB
             }
         }
 
-        public void desactivateContact(int contactId)
+        public void DesactivateContact(int contactId)
         {
             SqlConnection c = new SqlConnection(ConString);
 
@@ -147,7 +147,7 @@ namespace ContactManager.DB
 
         }
 
-        public void addNewContact(Contact contact)
+        public void AddNewContact(Contact contact)
         {
             SqlConnection c = new SqlConnection(ConString);
 
