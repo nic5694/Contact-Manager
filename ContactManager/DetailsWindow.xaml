@@ -60,7 +60,7 @@
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Grid.Row="1" Grid.Column="0" Header="Phone Numbers">
-                    <ListView>
+                    <ListView x:Name="PhoneListView">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Type" Width="100">

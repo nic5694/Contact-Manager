@@ -166,6 +166,7 @@ namespace ContactManager.DB
 
             c.Close();
         }
+        
     }
 }
 
