@@ -129,6 +129,24 @@ namespace ContactManager.DB
             }
         }
 
+        public void desactivateContact(int contactId)
+        {
+            SqlConnection c = new SqlConnection(ConString);
+
+            c.Open();
+
+            String query = "Update Contact set Active = 0 where id = @id ";
+
+            SqlCommand cmd = new SqlCommand(query, c);
+
+            cmd.Parameters.AddWithValue("@id", contactId);
+
+            cmd.ExecuteNonQuery();
+
+            c.Close();
+
+        }
+
         public void addNewContact(Contact contact)
         {
             SqlConnection c = new SqlConnection(ConString);
