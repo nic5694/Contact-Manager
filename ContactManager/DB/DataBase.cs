@@ -39,8 +39,8 @@ namespace ContactManager.DB
                         contact.FirstName = readInfo["FirstName"].ToString();
                         contact.LastName = readInfo["LastName"].ToString();
                         contact.Birthday = readInfo["Birthday"].ToString();
-                        contact.LastUpdated = (DateTime)readInfo["LastUpdated"];
-                        contact.Created = (DateTime)readInfo["Created"];
+                        contact.LastUpdated = readInfo["LastUpdated"].ToString();
+                        contact.Created = readInfo["Created"].ToString();
                     }
                 }
                 using (SqlCommand getAdresses = new SqlCommand("Select * from Address where Contact_Id = @Id", c))
@@ -120,9 +120,9 @@ namespace ContactManager.DB
                         contact.Id = (int)reader["Id"];
                         contact.FirstName = reader["FirstName"].ToString();
                         contact.LastName = reader["LastName"].ToString();
-                        contact.LastUpdated = (DateTime)reader["LastUpdated"];
+                        contact.LastUpdated = reader["LastUpdated"].ToString();
                         contact.Active = (bool)reader["Active"];
-                        contact.Created = (DateTime)reader["Created"];
+                        contact.Created = reader["Created"].ToString();
                         contacts.Add(new Contact(contact.Id, contact.FirstName, contact.LastName, contact.LastUpdated, contact.Created, contact.Active));
                       //  ids.Add(contact.Id);
                     }
@@ -170,46 +170,63 @@ namespace ContactManager.DB
                 cmd.Parameters.AddWithValue("@Birthday", contact.Birthday);
 
                 cmd.ExecuteNonQuery();
-                foreach (Address a in contact.Addresses)
+
+                List<Address> addresses = contact.Addresses;
+
+                if (addresses != null)
                 {
-                    String query2 = "Insert into Address (StreetAddress,City,Province,PostalCode,Country,ApartmentNumber,Contact_Id,Type_Code) values (@StreetAddress,@City,@Province,@PostalCode,@Country,@ApartmentNumber,@Contact_Id,@Type_Code)";
+                    foreach (Address a in addresses)
+                    {
+                        String query2 = "Insert into Address (StreetAddress,City,Province,PostalCode,Country,ApartmentNumber,Contact_Id,Type_Code) values (@StreetAddress,@City,@Province,@PostalCode,@Country,@ApartmentNumber,@Contact_Id,@Type_Code)";
 
-                    SqlCommand cmd2 = new SqlCommand(query2, c);
-                    cmd2.Parameters.AddWithValue("@StreetAddress", a.StreetAddress);
-                    cmd2.Parameters.AddWithValue("@City", a.City);
-                    cmd2.Parameters.AddWithValue("@Province", a.Province);
-                    cmd2.Parameters.AddWithValue("@PostalCode", a.PostalCode);
-                    cmd2.Parameters.AddWithValue("@Country", a.Country);
-                    cmd2.Parameters.AddWithValue("@ApartmentNumber", a.ApartmentNumber);
-                    cmd2.Parameters.AddWithValue("@Contact_Id", contact.Id);
-                    cmd2.Parameters.AddWithValue("@Type_Code", a.Type_Code);
+                        SqlCommand cmd2 = new SqlCommand(query2, c);
+                        cmd2.Parameters.AddWithValue("@StreetAddress", a.StreetAddress);
+                        cmd2.Parameters.AddWithValue("@City", a.City);
+                        cmd2.Parameters.AddWithValue("@Province", a.Province);
+                        cmd2.Parameters.AddWithValue("@PostalCode", a.PostalCode);
+                        cmd2.Parameters.AddWithValue("@Country", a.Country);
+                        cmd2.Parameters.AddWithValue("@ApartmentNumber", a.ApartmentNumber);
+                        cmd2.Parameters.AddWithValue("@Contact_Id", contact.Id);
+                        cmd2.Parameters.AddWithValue("@Type_Code", a.Type_Code);
 
-                    cmd2.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
+                    }
                 }
-                foreach (Email e in contact.Emails)
+
+                List<Email> emails = contact.Emails;
+                if (emails != null)
                 {
-                    String query3 = "Insert into Email (EmailAddress,Contact_Id,Type_Code) values (@EmailAddress,@Contact_Id,@Type_Code)";
+                    foreach (Email e in emails)
+                    {
+                        String query3 = "Insert into Email (EmailAddress,Contact_Id,Type_Code) values (@EmailAddress,@Contact_Id,@Type_Code)";
 
-                    SqlCommand cmd3 = new SqlCommand(query3, c);
+                        SqlCommand cmd3 = new SqlCommand(query3, c);
 
-                    cmd3.Parameters.AddWithValue("@EmailAddress", e.EmailAddress);
-                    cmd3.Parameters.AddWithValue("@Contact_Id", contact.Id);
-                    cmd3.Parameters.AddWithValue("@Type_Code", e.Type_Code);
+                        cmd3.Parameters.AddWithValue("@EmailAddress", e.EmailAddress);
+                        cmd3.Parameters.AddWithValue("@Contact_Id", contact.Id);
+                        cmd3.Parameters.AddWithValue("@Type_Code", e.Type_Code);
 
-                    cmd3.ExecuteNonQuery();
+                        cmd3.ExecuteNonQuery();
+                    }
+
                 }
-                foreach (Phone p in contact.Phones)
+
+                List<Phone> phones = contact.Phones;
+                if (phones != null)
                 {
-                    String query4 = "Insert into Phone (PhoneNumber,Contact_Id,Type_Code) values (@PhoneNumber,@Contact_Id,@Type_Code)";
+                    foreach (Phone p in phones)
+                    {
+                        String query4 = "Insert into Phone (PhoneNumber,Contact_Id,Type_Code) values (@PhoneNumber,@Contact_Id,@Type_Code)";
 
-                    SqlCommand cmd4 = new SqlCommand(query4, c);
+                        SqlCommand cmd4 = new SqlCommand(query4, c);
 
-                    cmd4.Parameters.AddWithValue("@PhoneNumber", p.PhoneNumber);
-                    cmd4.Parameters.AddWithValue("@Contact_Id", contact.Id);
-                    cmd4.Parameters.AddWithValue("@Type_Code", p.Type_Code);
+                        cmd4.Parameters.AddWithValue("@PhoneNumber", p.PhoneNumber);
+                        cmd4.Parameters.AddWithValue("@Contact_Id", contact.Id);
+                        cmd4.Parameters.AddWithValue("@Type_Code", p.Type_Code);
 
-                    cmd4.ExecuteNonQuery();
-                }
+                        cmd4.ExecuteNonQuery();
+                    }
+                }  
 
             }
         }
