@@ -38,7 +38,7 @@ namespace ContactManager.DB.Entities
 
         public override string ToString()
         {
-            return StreetAddress + " ," + City;
+            return ApartmentNumber + " " + StreetAddress + " ," + City + " " + Province;
         }
     }
 }

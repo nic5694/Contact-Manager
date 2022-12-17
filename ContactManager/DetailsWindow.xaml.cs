@@ -131,8 +131,21 @@ namespace ContactManager
 
         private void showEmailInfo(object sender, MouseButtonEventArgs e)
         {
-            EmailInfo emailInfo = new EmailInfo();
+            Email email = EmailsList.SelectedItem as Email;
+            EmailInfo emailInfo = new EmailInfo(email.Id);
             emailInfo.Show();
+        }
+
+        private void showPhoneInfo(object sender, MouseButtonEventArgs e)
+        {
+            PhoneInfo phoneInfo = new PhoneInfo();
+            phoneInfo.Show();
+        }
+
+        private void showAddressInfo(object sender, MouseButtonEventArgs e)
+        {
+            AddressInfo addressInfo = new AddressInfo();
+            addressInfo.Show();
         }
     }
 }

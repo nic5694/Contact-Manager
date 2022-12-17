@@ -17,7 +17,7 @@ namespace ContactManager.DB
     {
         private string ConString = ConfigurationManager.ConnectionStrings["SqlServerConnection"].ConnectionString;
         public DataBase()
-        {}
+        { }
 
         //GetContact
         public Contact GetContact(int id)
@@ -61,16 +61,16 @@ namespace ContactManager.DB
                             address.Country = readAddress["Country"].ToString();
                             address.ApartmentNumber = (int)readAddress["ApartmentNumber"];
                             address.Contact_Id = (int)readAddress["Contact_Id"];
-                            address.Type_Code = (char)readAddress["Type_Code"];
+                            address.Type_Code = readAddress["Type_Code"].ToString().ToCharArray()[0];
                             address.LastUpdated = (DateTime)readAddress["LastUpdated"];
                             addresses.Add(address);
-                            
+
                         }
-                        
+
                         contact.Addresses = addresses;
                     }
                 }
-                
+
                 using (SqlCommand getEmail = new SqlCommand("Select * from Email where Contact_Id = @Id", c))
                 {
                     getEmail.Parameters.AddWithValue("@Id", id);
@@ -87,9 +87,9 @@ namespace ContactManager.DB
                             email.Type_Code = readEmail["Type_Code"].ToString().ToCharArray()[0];
                             email.LastUpdated = (DateTime)readEmail["LastUpdated"];
                             emails.Add(email);
-                            
+
                         }
-                        
+
                         contact.Emails = emails;
                     }
                 }
@@ -104,24 +104,25 @@ namespace ContactManager.DB
                         {
                             Phone phone = new Phone();
                             phone.Id = (int)readPhone["Id"];
-                            phone.PhoneNumber = readPhone["PhoneNumber"].ToString();
+                            phone.PhoneNumber = readPhone["Number"].ToString();
+                            phone.CountryCode = readPhone["ContryCode"].ToString();
                             phone.Contact_Id = (int)readPhone["Contact_Id"];
-                            phone.Type_Code = (char)readPhone["Type_Code"];
+                            phone.Type_Code = readPhone["Type_Contact"].ToString().ToCharArray()[0];
                             phone.LastUpdated = (DateTime)readPhone["LastUpdated"];
                             phones.Add(phone);
                         }
-                        
+
                         contact.Phones = phones;
                     }
                 }
-                return new Contact(contact.Id, contact.FirstName, contact.LastName,contact.Title, contact.Birthday, contact.Addresses, contact.Emails, contact.Phones, contact.LastUpdated, contact.Created, contact.Active, contact.Image_Id);
+                return new Contact(contact.Id, contact.FirstName, contact.LastName, contact.Title, contact.Birthday, contact.Addresses, contact.Emails, contact.Phones, contact.LastUpdated, contact.Created, contact.Active, contact.Image_Id);
             }
         }
         public List<Contact> GetAllContacts()
         {
-            
-                List<Contact> contacts = new List<Contact>();
-           // List<int> ids = new List<int>();
+
+            List<Contact> contacts = new List<Contact>();
+            // List<int> ids = new List<int>();
             using (SqlConnection c = new SqlConnection(ConString))
             {
                 c.Open();
@@ -139,7 +140,7 @@ namespace ContactManager.DB
                         contact.Active = (bool)reader["Active"];
                         contact.Created = reader["Created"].ToString();
                         contacts.Add(new Contact(contact.Id, contact.FirstName, contact.LastName, contact.LastUpdated, contact.Created, contact.Active));
-                      //  ids.Add(contact.Id);
+                        //  ids.Add(contact.Id);
                     }
                 }
             }/*
@@ -147,8 +148,8 @@ namespace ContactManager.DB
             {
                 contacts.Add(GetContact(id));
             }*/
-                return contacts;
-            
+            return contacts;
+
         }
 
         public void DesactivateContact(int contactId)
@@ -176,13 +177,13 @@ namespace ContactManager.DB
 
                 c.Open();
 
-                String query = "Insert into Contact (FirstName,LastName,Title,Birthday,Active) values (@FirstName,@LastName,@Title,@Birthday,1)";
+                String query = "Insert into Contact (FirstName,LastName,Title,Birthday,Active,LastUpdated) values (@FirstName,@LastName,@Title,@Birthday,1,GETDATE())";
 
                 SqlCommand cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", contact.LastName);
                 cmd.Parameters.AddWithValue("@Title", contact.Title);
-                cmd.Parameters.AddWithValue("@Birthday", contact.Birthday);
+                cmd.Parameters.AddWithValue("@Birthday", contact.Birthday.ToString());
 
                 cmd.ExecuteNonQuery();
 
@@ -241,11 +242,11 @@ namespace ContactManager.DB
 
                         cmd4.ExecuteNonQuery();
                     }
-                }  
+                }
 
             }
         }
-        
+
         public void EditExistingContact(Contact contact)
         {
             using (SqlConnection c = new SqlConnection(ConString))
@@ -253,7 +254,7 @@ namespace ContactManager.DB
                 c.Open();
                 String query = "Update Contact set FirstName = @FirstName, LastName = @LastName, Title = @Title, Birthday = @Birthday where Id = @Id";
                 SqlCommand cmd = new SqlCommand(query, c);
-                cmd.Parameters.AddWithValue("@Id",contact.Id);
+                cmd.Parameters.AddWithValue("@Id", contact.Id);
                 cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", contact.LastName);
                 cmd.Parameters.AddWithValue("@Title", contact.Title);
@@ -262,13 +263,13 @@ namespace ContactManager.DB
 
                 List<Address> addresses = contact.Addresses;
 
-                if(addresses != null)
+                if (addresses != null)
                 {
-                    foreach(Address a in addresses)
+                    foreach (Address a in addresses)
                     {
                         string addressUpdate = "Update Address set StreetAddress = @StreetAddress, City = @City, Province = @Province, PostalCode = @PostalCode, Country = @Country, ApartmentNumber = @ApartmentNumber, Type_Code = @Type_Code where Id = @Id";
                         SqlCommand cmd2 = new SqlCommand(addressUpdate, c);
-               
+
                         cmd2.Parameters.AddWithValue("@StreetAddress", a.StreetAddress);
                         cmd2.Parameters.AddWithValue("@City", a.City);
                         cmd2.Parameters.AddWithValue("@Province", a.Province);
@@ -283,9 +284,9 @@ namespace ContactManager.DB
                 }
 
                 List<Phone> phones = contact.Phones;
-                if(phones != null)
+                if (phones != null)
                 {
-                    foreach(Phone p in phones)
+                    foreach (Phone p in phones)
                     {
                         string phoneUpdate = "Update Phone set Number = @Number, CountryCode = @CountryCode, Contact_Id = @ContactId, Type_Code = @Type_Code where Id = @Id";
                         SqlCommand cmd3 = new SqlCommand(phoneUpdate, c);
@@ -299,7 +300,7 @@ namespace ContactManager.DB
                 }
 
                 List<Email> emails = contact.Emails;
-                if(emails != null)
+                if (emails != null)
                 {
                     foreach (Email e in emails)
                     {
@@ -313,11 +314,45 @@ namespace ContactManager.DB
                     }
                 }
 
-                
+
             }
 
         }
-        
+
+        public Address getAddress(int addressId) { 
+            return null;
+        }
+
+        public Address getPhone(int addressId)
+        {
+            return null;
+        }
+
+        public Email getEmail(int emailId)
+        {
+            SqlConnection c = new SqlConnection(ConString);
+            Email email = new Email();
+            
+            c.Open();
+
+            string query = "Select * from Email where id = @id";
+
+            SqlCommand cmd = new SqlCommand(query, c);
+
+            cmd.Parameters.AddWithValue("@id", emailId);
+
+            SqlDataReader readInfo = cmd.ExecuteReader();
+
+            while (readInfo.Read())
+            {
+                email.Type_Code = readInfo["Type_Code"].ToString().ToCharArray()[0];
+                email.EmailAddress = readInfo["Email"].ToString();
+            }
+
+
+            return email;
+        }
+
     }
 }
 

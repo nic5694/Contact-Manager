@@ -42,7 +42,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="E-mail" Width="260" DisplayMemberBinding="{Binding EmailAddress}"/>
+                        <GridViewColumn Header="E-mail" Width="225" DisplayMemberBinding="{Binding EmailAddress}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -56,12 +56,12 @@
                         <GridViewColumn Header="Type" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Type_Code}" Foreground="Blue"/>
+                                    <Label Content="{Binding Type_Code}" Foreground="Blue" MouseDoubleClick="showPhoneInfo"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Country code" Width="100" />
-                        <GridViewColumn Header="Phone Number" Width="165" />
+                        <GridViewColumn Header="Country code" Width="100" DisplayMemberBinding="{Binding CountryCode}" />
+                        <GridViewColumn Header="Phone Number" Width="165" DisplayMemberBinding="{Binding PhoneNumber}" />
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -74,7 +74,7 @@
                         <GridViewColumn Header="Type" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Type_Code}" Foreground="Blue"/>
+                                    <Label Content="{Binding Type_Code}" Foreground="Blue" MouseDoubleClick="showAddressInfo"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

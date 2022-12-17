@@ -51,19 +51,22 @@ namespace ContactManager
                 return;
             }
 
-            DataBase db = new DataBase();
+            DataBase db = new DataBase(); 
+            Contact contact = new Contact();
      
             String FirstName = FirstNameBox.Text;
             var birthday = calender1.SelectedDate;
+            if(birthday != null)
+            {
+                birthday = calender1.SelectedDate;
+                contact.Birthday = (DateTime)birthday;
+            }
             String lastname = LastNameBox.Text;
             String title = TitleBox.Text;
-
-            Contact contact = new Contact();
 
             contact.FirstName = FirstName;
             contact.Title = title;
             contact.LastName = lastname;
-            contact.Birthday = (DateTime)birthday;
             
 
             db.AddNewContact(contact);

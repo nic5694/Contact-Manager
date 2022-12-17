@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ContactManager.DB;
+using ContactManager.DB.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,28 @@ namespace ContactManager
     /// </summary>
     public partial class EmailInfo : Window
     {
-        public EmailInfo()
+        DataBase db = new DataBase();
+        Email e;
+        public EmailInfo(int emailId)
         {
             InitializeComponent();
+            e = db.getEmail(emailId);
+            string type;
+
+            if(e.Type_Code == 'P')
+            {
+                type = "Personal";
+            } else if (e.Type_Code == 'B')
+            {
+                type = "Business";
+            } else
+            {
+                type = "Other";
+            }
+
+
+            typeLabel.Content = type;
+            emailBox.Text = e.EmailAddress;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
