@@ -36,5 +36,9 @@ namespace ContactManager.DB.Entities
 
         public Address() { }
 
+        public override string ToString()
+        {
+            return StreetAddress + " ," + City;
+        }
     }
 }
