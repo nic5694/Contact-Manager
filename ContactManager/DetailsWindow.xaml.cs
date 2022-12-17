@@ -40,18 +40,19 @@ namespace ContactManager
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            //here you will assign all the data to the list views
-            //List<Address> temp = new List<Address>();
-            //temp = contact.Addresses;
-            //PhoneListView.ItemsSource = contact.Addresses;
-            //email
-            //(emailListView)(example name).ItemsSources = contact.Emails;
-            //(phoneListView)(Example name).ItemsSources = contact.phones;
-            //names of the first name field
-            //fieldnameisforName.content = contact.firstname
-            //fieldsnameforlastName.content = contact.lastname
-            //fiedlsnamefortitle.content = contect.title
-           //bithday.content = contact.birthday maybe need to do .toString();
+            DataBase db = new DataBase();
+            contact = db.GetContact(contact.Id);
+            this.DataContext = contact;
+
+            TitleBox.Text = contact.Title;
+            FirstNameBox.Text = contact.FirstName;
+            LastNameBox.Text = contact.LastName;
+            BirthdayCalender.DataContext = contact.Birthday;
+
+            AddressesList.ItemsSource = contact.Addresses;
+            EmailsList.ItemsSource = contact.Emails;
+            PhonesList.ItemsSource = contact.Phones;
+
         }
 
         private void editContactDetails(object sender, RoutedEventArgs e)
@@ -76,19 +77,18 @@ namespace ContactManager
             FirstNameBox.IsEnabled = false;
             LastNameBox.IsEnabled = false;
             BirthdayCalender.IsEnabled = false;
+
+            DataBase db = new DataBase();
+            db.EditExistingContact(contact);
+
         }
 
         private void DeleteContact(object sender, RoutedEventArgs e)
         {
-            //DataBase db = new DataBase();
-            //db.desactivateContact(contact.Id);
-            //Close();
+            DataBase db = new DataBase();
+            db.DesactivateContact(contact.Id);
+            Close();
         }
-        /*
-* the edit will undo the text boxes where their isenabled so you take the elements .isenabled = true.
-* for the double click of an address you will use the xaml that youssef created and you just bind the data needed
-* for the delete button that youssef will put in the xaml you will use the remove function that is in the database class
-*/
 
     }
 }

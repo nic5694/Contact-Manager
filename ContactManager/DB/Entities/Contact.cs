@@ -26,12 +26,12 @@ namespace ContactManager.DB.Entities
         public List<Address> Addresses { get; set; }
         public List<Email> Emails { get; set; }
         public List<Phone> Phones { get; set; }
-        public DateTime LastUpdated { get; set; }
-        public DateTime Created { get; set; }
+        public string LastUpdated { get; set; }
+        public string Created { get; set; }
         public bool Active { get; set; }
         public int Image_Id { get; set; }
 
-        public Contact(int id, string firstName, string lastName, string title, string birthday, List<Address> addresses, List<Email> emails, List<Phone> phones, DateTime lastUpdated, DateTime created, bool active, int image_Id)
+        public Contact(int id, string firstName, string lastName, string title, string birthday, List<Address> addresses, List<Email> emails, List<Phone> phones, string lastUpdated, string created, bool active, int image_Id)
         {
             Id = id;
             FirstName = firstName;
@@ -47,7 +47,7 @@ namespace ContactManager.DB.Entities
             Image_Id = image_Id;
         }
         public Contact() { }
-        public Contact(int id, string firstName, string lastName, DateTime lastUpdated, DateTime created, bool active)
+        public Contact(int id, string firstName, string lastName, string lastUpdated, string created, bool active)
         {
             Id = id;
             FirstName = firstName;

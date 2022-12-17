@@ -61,8 +61,7 @@ namespace ContactManager
 
         private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Contact contact = new Contact();
-            contact = (Contact)lvDataBinding.SelectedItem;
+            Contact contact = lvDataBinding.SelectedItem as Contact;
             DetailsWindow details = new DetailsWindow(contact.Id);
             details.Show();
         }
@@ -147,13 +146,8 @@ namespace ContactManager
                     displayedContacts.Add(contact);
                 }
             }
-            lvDataBinding.ItemsSource = displayedContacts;
-        }
 
-        private void showContactDetails(object sender, RoutedEventArgs e)
-        {
-            DetailsWindow d = new DetailsWindow(1);
-            d.Show();
+            lvDataBinding.ItemsSource = displayedContacts;
         }
     }
 }
