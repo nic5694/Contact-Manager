@@ -323,9 +323,30 @@ namespace ContactManager.DB
             return null;
         }
 
-        public Address getPhone(int addressId)
+        public Phone getPhone(int phoneId)
         {
-            return null;
+            SqlConnection c = new SqlConnection(ConString);
+            Phone phone = new Phone();
+
+            c.Open();
+
+            string query = "Select * from Phone where id = @id";
+
+            SqlCommand cmd = new SqlCommand(query, c);
+
+            cmd.Parameters.AddWithValue("@id", phoneId);
+
+            SqlDataReader readInfo = cmd.ExecuteReader();
+
+            while (readInfo.Read())
+            {
+                phone.Type_Code = readInfo["Type_Contact"].ToString().ToCharArray()[0];
+                phone.CountryCode = readInfo["ContryCode"].ToString();
+                phone.PhoneNumber = readInfo["Number"].ToString();
+                
+            }
+
+            return phone;
         }
 
         public Email getEmail(int emailId)

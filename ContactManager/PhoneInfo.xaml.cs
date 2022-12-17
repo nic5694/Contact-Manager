@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ContactManager.DB;
+using ContactManager.DB.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,33 @@ namespace ContactManager
     /// </summary>
     public partial class PhoneInfo : Window
     {
-        public PhoneInfo()
+        DataBase db = new DataBase();
+        Phone phone;
+        public PhoneInfo(int phoneId)
         {
             InitializeComponent();
+            phone = db.getPhone(phoneId);
+
+            string type;
+
+            if (phone.Type_Code == 'P')
+            {
+                type = "Personal";
+            }
+            else if (phone.Type_Code == 'B')
+            {
+                type = "Business";
+            }
+            else
+            {
+                type = "Other";
+            }
+
+            typeLabel.Content = type;
+
+            countryCodeBox.Text = phone.CountryCode;
+            phoneBox.Text = phone.PhoneNumber;
+                
         }
 
         private void Save_Phone(object sender, RoutedEventArgs e)
@@ -30,6 +56,7 @@ namespace ContactManager
             saveBtn.Visibility = Visibility.Hidden;
             phoneBox.IsEnabled = false;
             editBtn.Visibility = Visibility.Visible;
+            countryCodeBox.IsEnabled = false;
         }
 
         private void Edit_Phone(object sender, RoutedEventArgs e)
@@ -37,6 +64,7 @@ namespace ContactManager
             editBtn.Visibility = Visibility.Hidden;
             saveBtn.Visibility = Visibility.Visible;
             phoneBox.IsEnabled = true;
+            countryCodeBox.IsEnabled = true;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -49,6 +77,7 @@ namespace ContactManager
         {
             saveBtn.Visibility = Visibility.Hidden;
             phoneBox.IsEnabled = false;
+            countryCodeBox.IsEnabled = false;
         }
     }
 }

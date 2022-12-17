@@ -138,7 +138,8 @@ namespace ContactManager
 
         private void showPhoneInfo(object sender, MouseButtonEventArgs e)
         {
-            PhoneInfo phoneInfo = new PhoneInfo();
+            Phone phone = PhonesList.SelectedItem as Phone;
+            PhoneInfo phoneInfo = new PhoneInfo(phone.Id);
             phoneInfo.Show();
         }
 
