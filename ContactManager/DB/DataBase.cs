@@ -164,7 +164,6 @@ namespace ContactManager.DB
                 String query = "Insert into Contact (FirstName,LastName,Title,Birthday,Active) values (@FirstName,@LastName,@Title,@Birthday,1)";
 
                 SqlCommand cmd = new SqlCommand(query, c);
-
                 cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", contact.LastName);
                 cmd.Parameters.AddWithValue("@Title", contact.Title);
@@ -222,47 +221,67 @@ namespace ContactManager.DB
                 c.Open();
                 String query = "Update Contact set FirstName = @FirstName, LastName = @LastName, Title = @Title, Birthday = @Birthday where Id = @Id";
                 SqlCommand cmd = new SqlCommand(query, c);
+                cmd.Parameters.AddWithValue("@Id",contact.Id);
                 cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", contact.LastName);
                 cmd.Parameters.AddWithValue("@Title", contact.Title);
                 cmd.Parameters.AddWithValue("@Birthday", contact.Birthday);
                 cmd.ExecuteNonQuery();
-                foreach(Address a in contact.Addresses)
+
+                List<Address> addresses = contact.Addresses;
+
+                if(addresses != null)
                 {
-                    string addressUpdate = "Update Address set StreetAddress = @StreetAddress, City = @City, Province = @Province, PostalCode = @PostalCode, Country = @Country, ApartmentNumber = @ApartmentNumber, Type_Code = @Type_Code where Id = @Id";
-                    SqlCommand cmd2 = new SqlCommand(addressUpdate, c);
+                    foreach(Address a in addresses)
+                    {
+                        string addressUpdate = "Update Address set StreetAddress = @StreetAddress, City = @City, Province = @Province, PostalCode = @PostalCode, Country = @Country, ApartmentNumber = @ApartmentNumber, Type_Code = @Type_Code where Id = @Id";
+                        SqlCommand cmd2 = new SqlCommand(addressUpdate, c);
                
-                    cmd2.Parameters.AddWithValue("@StreetAddress", a.StreetAddress);
-                    cmd2.Parameters.AddWithValue("@City", a.City);
-                    cmd2.Parameters.AddWithValue("@Province", a.Province);
-                    cmd2.Parameters.AddWithValue("@PostalCode", a.PostalCode);
-                    cmd2.Parameters.AddWithValue("@Contry", a.Country);
-                    cmd2.Parameters.AddWithValue("@ApartmentNumber", a.ApartmentNumber);
-                    cmd2.Parameters.AddWithValue("Type_Code", a.Type_Code);
-                    cmd2.Parameters.AddWithValue("@Id", a.Id);
-                    cmd2.ExecuteNonQuery();
+                        cmd2.Parameters.AddWithValue("@StreetAddress", a.StreetAddress);
+                        cmd2.Parameters.AddWithValue("@City", a.City);
+                        cmd2.Parameters.AddWithValue("@Province", a.Province);
+                        cmd2.Parameters.AddWithValue("@PostalCode", a.PostalCode);
+                        cmd2.Parameters.AddWithValue("@Contry", a.Country);
+                        cmd2.Parameters.AddWithValue("@ApartmentNumber", a.ApartmentNumber);
+                        cmd2.Parameters.AddWithValue("Type_Code", a.Type_Code);
+                        cmd2.Parameters.AddWithValue("@Id", a.Id);
+
+                        cmd2.ExecuteNonQuery();
+                    }
                 }
-                foreach(Phone p in contact.Phones)
+
+                List<Phone> phones = contact.Phones;
+                if(phones != null)
                 {
-                    string phoneUpdate = "Update Phone set Number = @Number, CountryCode = @CountryCode, Contact_Id = @ContactId, Type_Code = @Type_Code where Id = @Id";
-                    SqlCommand cmd3 = new SqlCommand(phoneUpdate, c);
-                    cmd3.Parameters.AddWithValue("@Number", p.PhoneNumber);
-                    cmd3.Parameters.AddWithValue("@CountryCode", p.CountryCode);
-                    cmd3.Parameters.AddWithValue("@ContactId", p.Contact_Id);
-                    cmd3.Parameters.AddWithValue("@Type_Code", p.Type_Code);
-                    cmd3.Parameters.AddWithValue("@Id", p.Id);
-                    cmd3.ExecuteNonQuery();
+                    foreach(Phone p in phones)
+                    {
+                        string phoneUpdate = "Update Phone set Number = @Number, CountryCode = @CountryCode, Contact_Id = @ContactId, Type_Code = @Type_Code where Id = @Id";
+                        SqlCommand cmd3 = new SqlCommand(phoneUpdate, c);
+                        cmd3.Parameters.AddWithValue("@Number", p.PhoneNumber);
+                        cmd3.Parameters.AddWithValue("@CountryCode", p.CountryCode);
+                        cmd3.Parameters.AddWithValue("@ContactId", p.Contact_Id);
+                        cmd3.Parameters.AddWithValue("@Type_Code", p.Type_Code);
+                        cmd3.Parameters.AddWithValue("@Id", p.Id);
+                        cmd3.ExecuteNonQuery();
+                    }
                 }
-                foreach(Email e in contact.Emails)
+
+                List<Email> emails = contact.Emails;
+                if(emails != null)
                 {
-                    string emailUpdate = "Update Email set Email = @Email, Contact_Id=@Contact_Id, Type_Code = @Type_Code where Id = @Id";
-                    SqlCommand cmd4 = new SqlCommand(emailUpdate, c);
-                    cmd4.Parameters.AddWithValue("@Email", e.EmailAddress);
-                    cmd4.Parameters.AddWithValue("@Contact_Id", e.Contact_Id);
-                    cmd4.Parameters.AddWithValue("@Type_Code", e.Type_Code);
-                    cmd4.Parameters.AddWithValue("@Id", e.Id);
-                    cmd4.ExecuteNonQuery();
+                    foreach (Email e in emails)
+                    {
+                        string emailUpdate = "Update Email set Email = @Email, Contact_Id=@Contact_Id, Type_Code = @Type_Code where Id = @Id";
+                        SqlCommand cmd4 = new SqlCommand(emailUpdate, c);
+                        cmd4.Parameters.AddWithValue("@Email", e.EmailAddress);
+                        cmd4.Parameters.AddWithValue("@Contact_Id", e.Contact_Id);
+                        cmd4.Parameters.AddWithValue("@Type_Code", e.Type_Code);
+                        cmd4.Parameters.AddWithValue("@Id", e.Id);
+                        cmd4.ExecuteNonQuery();
+                    }
                 }
+
+                
             }
 
         }
