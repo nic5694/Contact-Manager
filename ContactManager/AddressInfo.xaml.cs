@@ -21,10 +21,37 @@ namespace ContactManager
     /// </summary>
     public partial class AddressInfo : Window
     {
+        DataBase db = new DataBase();
+        Address address;
         
-        public AddressInfo()
+        public AddressInfo(int addressId)
         {
             InitializeComponent();
+            address = db.getAddress(addressId);
+
+            string type;
+
+            if (address.Type_Code == 'P')
+            {
+                type = "Personal";
+            }
+            else if (address.Type_Code == 'B')
+            {
+                type = "Business";
+            }
+            else
+            {
+                type = "Other";
+            }
+
+            typeLabel.Content = type;
+            appNumberBox.Text = address.ApartmentNumber.ToString();
+            addressBox.Text = address.StreetAddress.ToString();
+            cityBox.Text = address.City.ToString();
+            provinceBox.Text = address.Province.ToString();
+            countryBox.Text = address.Country.ToString();
+            postalCodeBox.Text = address.PostalCode.ToString();
+
         }
 
         private void AddressWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)

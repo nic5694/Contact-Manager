@@ -145,7 +145,8 @@ namespace ContactManager
 
         private void showAddressInfo(object sender, MouseButtonEventArgs e)
         {
-            AddressInfo addressInfo = new AddressInfo();
+            Address address = AddressesList.SelectedItem as Address;
+            AddressInfo addressInfo = new AddressInfo(address.Id);
             addressInfo.Show();
         }
     }

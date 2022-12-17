@@ -319,8 +319,34 @@ namespace ContactManager.DB
 
         }
 
-        public Address getAddress(int addressId) { 
-            return null;
+        public Address getAddress(int addressId) {
+            
+            SqlConnection c = new SqlConnection(ConString);
+            Address address = new Address();
+
+            c.Open();
+
+            string query = "Select * from Address where id = @id";
+
+            SqlCommand cmd = new SqlCommand(query, c);
+
+            cmd.Parameters.AddWithValue("@id", addressId);
+
+            SqlDataReader readInfo = cmd.ExecuteReader();
+
+            while (readInfo.Read()) {
+
+                address.StreetAddress = readInfo["StreetAddress"].ToString();
+                address.City = readInfo["City"].ToString();
+                address.Province = readInfo["Province"].ToString();
+                address.PostalCode = readInfo["PostalCode"].ToString();
+                address.Country = readInfo["Country"].ToString();
+                address.ApartmentNumber = (int)readInfo["ApartmentNumber"];
+                address.Contact_Id = (int)readInfo["Contact_Id"];
+                address.Type_Code = readInfo["Type_Code"].ToString().ToCharArray()[0];
+            }
+
+            return address;
         }
 
         public Phone getPhone(int phoneId)
