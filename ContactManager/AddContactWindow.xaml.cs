@@ -63,7 +63,7 @@ namespace ContactManager
             contact.FirstName = FirstName;
             contact.Title = title;
             contact.LastName = lastname;
-            contact.Birthday = birthday.ToString();
+            contact.Birthday = (DateTime)birthday;
             
 
             db.AddNewContact(contact);

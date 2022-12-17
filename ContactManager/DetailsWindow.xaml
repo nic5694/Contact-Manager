@@ -32,45 +32,55 @@
 
         <GroupBox Header="E-Mails" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,274,335,0" Grid.RowSpan="2">
 
-            <ListView x:Name="EmailsList" ItemsSource="{Binding EmailAddresses}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Type_Code}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <TextBlock Text="{Binding EmailAddress}" />
-
+            <ListView x:Name="EmailsList">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Type" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Type_Code}" Foreground="Blue" MouseDoubleClick="showEmailInfo"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="E-mail" Width="260" DisplayMemberBinding="{Binding EmailAddress}"/>
+                    </GridView>
+                </ListView.View>
             </ListView>
 
         </GroupBox>
 
         <GroupBox Header="Phone Numbers" Grid.Column="1" Margin="0,48,0,0" Grid.RowSpan="2">
-            <ListView x:Name="PhonesList" ItemsSource="{Binding PhoneNumbers}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding PhoneNumber}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <ListView x:Name="PhonesList">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Type" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Type_Code}" Foreground="Blue"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Country code" Width="100" />
+                        <GridViewColumn Header="Phone Number" Width="165" />
+                    </GridView>
+                </ListView.View>
             </ListView>
         </GroupBox>
 
         <GroupBox Header="Addresses" Grid.Column="1" Grid.Row="1" Margin="0,274,0,0" Grid.RowSpan="2">
-            <ListView x:Name="AddressesList" ItemsSource="{Binding Addresses}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding StreetAddress}" />
-                            <TextBlock Text=", " />
-                            <TextBlock Text="{Binding City}" />
-                            <TextBlock Text=", " />
-                            <TextBlock Text="{Binding Province}" />
-                            <TextBlock Text=" " />
-                            <TextBlock Text="{Binding PostalCode}" />
-                            <TextBlock Text=", " />
-                            <TextBlock Text="{Binding Country}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <ListView x:Name="AddressesList">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Type" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Type_Code}" Foreground="Blue"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                     <GridViewColumn Header="Address" Width="265" />
+                    </GridView>
+                </ListView.View>
             </ListView>
         </GroupBox>
 

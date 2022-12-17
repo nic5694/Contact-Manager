@@ -36,23 +36,17 @@ namespace ContactManager
             DataBase db = new DataBase();
             contact = db.GetContact(id);
             this.DataContext = contact;
-        }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            DataBase db = new DataBase();
-            contact = db.GetContact(contact.Id);
-            this.DataContext = contact;
-
+            
             TitleBox.Text = contact.Title;
             FirstNameBox.Text = contact.FirstName;
             LastNameBox.Text = contact.LastName;
-            BirthdayCalender.DataContext = contact.Birthday;
+            BirthdayCalender.DisplayDate = contact.Birthday;
+
+           
 
             AddressesList.ItemsSource = contact.Addresses;
             EmailsList.ItemsSource = contact.Emails;
             PhonesList.ItemsSource = contact.Phones;
-
         }
 
         private void editContactDetails(object sender, RoutedEventArgs e)
@@ -69,17 +63,62 @@ namespace ContactManager
 
         private void saveContactDetails(object sender, RoutedEventArgs e)
         {
-            DeleteBtn.Visibility = Visibility.Hidden;
-            saveBtn.Visibility = Visibility.Hidden;
-            editBtn.Visibility = Visibility.Visible;
 
-            TitleBox.IsEnabled = false;
-            FirstNameBox.IsEnabled = false;
-            LastNameBox.IsEnabled = false;
-            BirthdayCalender.IsEnabled = false;
+            string t = TitleBox.Text;
+            string fn = FirstNameBox.Text;
+            string ln = LastNameBox.Text;
+            DateTime b;
+            if (BirthdayCalender.SelectedDate.HasValue)
+            {
+                b = (DateTime)BirthdayCalender.SelectedDate;
+            } else
+            {
+                b = contact.Birthday;
+            }
+            List<Address> addresses = new List<Address>();
+            List<Phone> phones = new List<Phone>();
+            List<Email> emails = new List<Email>();
 
-            DataBase db = new DataBase();
-            db.EditExistingContact(contact);
+            foreach(Address a in AddressesList.Items)
+            {
+                addresses.Add(a);
+            }
+
+            foreach (Phone p in PhonesList.Items)
+            {
+                phones.Add(p);
+            }
+
+            foreach (Email em in EmailsList.Items)
+            {
+                emails.Add(em);
+            }
+
+            if (fn == "" || ln == "" )
+            {
+                MessageBox.Show("First name or last name can not be empty");
+            }
+            else
+            {
+                DeleteBtn.Visibility = Visibility.Hidden;
+                saveBtn.Visibility = Visibility.Hidden;
+                editBtn.Visibility = Visibility.Visible;
+
+                TitleBox.IsEnabled = false;
+                FirstNameBox.IsEnabled = false;
+                LastNameBox.IsEnabled = false;
+                BirthdayCalender.IsEnabled = false;
+                
+                Contact c = new Contact();
+                c.Id = contact.Id;
+                c.Title = t;
+                c.FirstName = fn;
+                c.Birthday = b;
+                c.LastName = ln;
+
+                DataBase db = new DataBase();
+                db.EditExistingContact(c);
+            } 
 
         }
 
@@ -90,5 +129,10 @@ namespace ContactManager
             Close();
         }
 
+        private void showEmailInfo(object sender, MouseButtonEventArgs e)
+        {
+            EmailInfo emailInfo = new EmailInfo();
+            emailInfo.Show();
+        }
     }
 }

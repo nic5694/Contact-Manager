@@ -38,7 +38,7 @@ namespace ContactManager.DB
                         contact.Id = (int)readInfo["Id"];
                         contact.FirstName = readInfo["FirstName"].ToString();
                         contact.LastName = readInfo["LastName"].ToString();
-                        contact.Birthday = readInfo["Birthday"].ToString();
+                        contact.Birthday = (DateTime)readInfo["Birthday"];
                         contact.LastUpdated = readInfo["LastUpdated"].ToString();
                         contact.Created = readInfo["Created"].ToString();
                     }
@@ -48,6 +48,8 @@ namespace ContactManager.DB
                     getAdresses.Parameters.AddWithValue("@Id", id);
                     using (SqlDataReader readAddress = getAdresses.ExecuteReader())
                     {
+                        List<Address> addresses = new List<Address>();
+
                         while (readAddress.Read())
                         {
                             Address address = new Address();
@@ -61,25 +63,34 @@ namespace ContactManager.DB
                             address.Contact_Id = (int)readAddress["Contact_Id"];
                             address.Type_Code = (char)readAddress["Type_Code"];
                             address.LastUpdated = (DateTime)readAddress["LastUpdated"];
-                            contact.Addresses.Add(address);
+                            addresses.Add(address);
+                            
                         }
+                        
+                        contact.Addresses = addresses;
                     }
                 }
+                
                 using (SqlCommand getEmail = new SqlCommand("Select * from Email where Contact_Id = @Id", c))
                 {
                     getEmail.Parameters.AddWithValue("@Id", id);
                     using (SqlDataReader readEmail = getEmail.ExecuteReader())
                     {
+                        List<Email> emails = new List<Email>();
+
                         while (readEmail.Read())
                         {
                             Email email = new Email();
                             email.Id = (int)readEmail["Id"];
-                            email.EmailAddress = readEmail["EmailAddress"].ToString();
+                            email.EmailAddress = readEmail["Email"].ToString();
                             email.Contact_Id = (int)readEmail["Contact_Id"];
-                            email.Type_Code = (char)readEmail["Type_Code"];
+                            email.Type_Code = readEmail["Type_Code"].ToString().ToCharArray()[0];
                             email.LastUpdated = (DateTime)readEmail["LastUpdated"];
-                            contact.Emails.Add(email);
+                            emails.Add(email);
+                            
                         }
+                        
+                        contact.Emails = emails;
                     }
                 }
                 using (SqlCommand getPhone = new SqlCommand("Select * from Phone where Contact_Id = @Id", c))
@@ -87,6 +98,8 @@ namespace ContactManager.DB
                     getPhone.Parameters.AddWithValue("@Id", id);
                     using (SqlDataReader readPhone = getPhone.ExecuteReader())
                     {
+                        List<Phone> phones = new List<Phone>();
+
                         while (readPhone.Read())
                         {
                             Phone phone = new Phone();
@@ -95,8 +108,10 @@ namespace ContactManager.DB
                             phone.Contact_Id = (int)readPhone["Contact_Id"];
                             phone.Type_Code = (char)readPhone["Type_Code"];
                             phone.LastUpdated = (DateTime)readPhone["LastUpdated"];
-                            contact.Phones.Add(phone);
+                            phones.Add(phone);
                         }
+                        
+                        contact.Phones = phones;
                     }
                 }
                 return new Contact(contact.Id, contact.FirstName, contact.LastName,contact.Title, contact.Birthday, contact.Addresses, contact.Emails, contact.Phones, contact.LastUpdated, contact.Created, contact.Active, contact.Image_Id);
