@@ -63,7 +63,8 @@ namespace ContactManager
         {
             Contact contact = new Contact();
             contact = (Contact)lvDataBinding.SelectedItem;
-            DetailsWindow details = new DetailsWindow(contact.Id);
+            //DetailsWindow details = new DetailsWindow(contact.Id);
+            DetailsWindow details = new DetailsWindow(2);
             details.Show();
         }
 

@@ -35,9 +35,10 @@
             <ListView x:Name="EmailsList" ItemsSource="{Binding EmailAddresses}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding EmailAddress}" />
+                        <TextBlock Text="{Binding Type_Code}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <TextBlock Text="{Binding EmailAddress}" />
 
             </ListView>
 
