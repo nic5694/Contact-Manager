@@ -47,8 +47,11 @@ namespace ContactManager
             TitleBox.Text = contact.Title;
             FirstNameBox.Text = contact.FirstName;
             LastNameBox.Text = contact.LastName;
+            BirthdayCalender.TextInput = contact.Birthday.ToString;
 
-
+            AddressesList.ItemsSource = contact.Addresses;
+            EmailsList.ItemsSource = contact.Emails;
+            PhonesList.ItemsSource = contact.Phones;
 
 
 
