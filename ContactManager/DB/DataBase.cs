@@ -175,7 +175,7 @@ namespace ContactManager.DB
             using (SqlConnection c = new SqlConnection(ConString))
             {
 
-                c.Open();
+                
 
                 String query = "Insert into Contact (FirstName,LastName,Title,Birthday,Active,LastUpdated) values (@FirstName,@LastName,@Title,@Birthday,1,GETDATE())";
 
@@ -184,8 +184,18 @@ namespace ContactManager.DB
                 cmd.Parameters.AddWithValue("@LastName", contact.LastName);
                 cmd.Parameters.AddWithValue("@Title", contact.Title);
                 cmd.Parameters.AddWithValue("@Birthday", contact.Birthday.ToString());
+                
+                c.Open();
 
                 cmd.ExecuteNonQuery();
+
+                string queryNewId = "Select @@Identity as newId from Contact";
+                cmd.CommandText = queryNewId;
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = c;
+                var newId = Convert.ToInt32(cmd.ExecuteScalar());
+
+
 
                 List<Address> addresses = contact.Addresses;
 
@@ -193,7 +203,7 @@ namespace ContactManager.DB
                 {
                     foreach (Address a in addresses)
                     {
-                        String query2 = "Insert into Address (StreetAddress,City,Province,PostalCode,Country,ApartmentNumber,Contact_Id,Type_Code) values (@StreetAddress,@City,@Province,@PostalCode,@Country,@ApartmentNumber,@Contact_Id,@Type_Code)";
+                        String query2 = "Insert into Address (StreetAddress,City,Province,PostalCode,Country,ApartmentNumber,Contact_Id,Type_Code,LastUpdated) values (@StreetAddress,@City,@Province,@PostalCode,@Country,@ApartmentNumber,@Contact_Id,@Type_Code,GETDATE())";
 
                         SqlCommand cmd2 = new SqlCommand(query2, c);
                         cmd2.Parameters.AddWithValue("@StreetAddress", a.StreetAddress);
@@ -202,7 +212,7 @@ namespace ContactManager.DB
                         cmd2.Parameters.AddWithValue("@PostalCode", a.PostalCode);
                         cmd2.Parameters.AddWithValue("@Country", a.Country);
                         cmd2.Parameters.AddWithValue("@ApartmentNumber", a.ApartmentNumber);
-                        cmd2.Parameters.AddWithValue("@Contact_Id", contact.Id);
+                        cmd2.Parameters.AddWithValue("@Contact_Id", newId);
                         cmd2.Parameters.AddWithValue("@Type_Code", a.Type_Code);
 
                         cmd2.ExecuteNonQuery();
@@ -214,12 +224,12 @@ namespace ContactManager.DB
                 {
                     foreach (Email e in emails)
                     {
-                        String query3 = "Insert into Email (EmailAddress,Contact_Id,Type_Code) values (@EmailAddress,@Contact_Id,@Type_Code)";
+                        String query3 = "Insert into Email (Email,Contact_Id,Type_Code,LastUpdated) values (@EmailAddress,@Contact_Id,@Type_Code,GETDATE())";
 
                         SqlCommand cmd3 = new SqlCommand(query3, c);
 
                         cmd3.Parameters.AddWithValue("@EmailAddress", e.EmailAddress);
-                        cmd3.Parameters.AddWithValue("@Contact_Id", contact.Id);
+                        cmd3.Parameters.AddWithValue("@Contact_Id", newId);
                         cmd3.Parameters.AddWithValue("@Type_Code", e.Type_Code);
 
                         cmd3.ExecuteNonQuery();
@@ -232,12 +242,13 @@ namespace ContactManager.DB
                 {
                     foreach (Phone p in phones)
                     {
-                        String query4 = "Insert into Phone (PhoneNumber,Contact_Id,Type_Code) values (@PhoneNumber,@Contact_Id,@Type_Code)";
+                        String query4 = "Insert into Phone (Number,ContryCode,Contact_Id,Type_Contact,LastUpdated) values (@PhoneNumber,@CountryCode,@Contact_Id,@Type_Code,GETDATE())";
 
                         SqlCommand cmd4 = new SqlCommand(query4, c);
 
                         cmd4.Parameters.AddWithValue("@PhoneNumber", p.PhoneNumber);
-                        cmd4.Parameters.AddWithValue("@Contact_Id", contact.Id);
+                        cmd4.Parameters.AddWithValue("@CountryCode", p.CountryCode);
+                        cmd4.Parameters.AddWithValue("@Contact_Id", newId);
                         cmd4.Parameters.AddWithValue("@Type_Code", p.Type_Code);
 
                         cmd4.ExecuteNonQuery();
@@ -274,7 +285,7 @@ namespace ContactManager.DB
                         cmd2.Parameters.AddWithValue("@City", a.City);
                         cmd2.Parameters.AddWithValue("@Province", a.Province);
                         cmd2.Parameters.AddWithValue("@PostalCode", a.PostalCode);
-                        cmd2.Parameters.AddWithValue("@Contry", a.Country);
+                        cmd2.Parameters.AddWithValue("@Country", a.Country);
                         cmd2.Parameters.AddWithValue("@ApartmentNumber", a.ApartmentNumber);
                         cmd2.Parameters.AddWithValue("Type_Code", a.Type_Code);
                         cmd2.Parameters.AddWithValue("@Id", a.Id);
@@ -288,12 +299,12 @@ namespace ContactManager.DB
                 {
                     foreach (Phone p in phones)
                     {
-                        string phoneUpdate = "Update Phone set Number = @Number, CountryCode = @CountryCode, Contact_Id = @ContactId, Type_Code = @Type_Code where Id = @Id";
+                        string phoneUpdate = "Update Phone set Number = @Number, ContryCode = @CountryCode, Contact_Id = @ContactId, Type_Contact = @Type_Contact where Id = @Id";
                         SqlCommand cmd3 = new SqlCommand(phoneUpdate, c);
                         cmd3.Parameters.AddWithValue("@Number", p.PhoneNumber);
                         cmd3.Parameters.AddWithValue("@CountryCode", p.CountryCode);
                         cmd3.Parameters.AddWithValue("@ContactId", p.Contact_Id);
-                        cmd3.Parameters.AddWithValue("@Type_Code", p.Type_Code);
+                        cmd3.Parameters.AddWithValue("@Type_Contact", p.Type_Code);
                         cmd3.Parameters.AddWithValue("@Id", p.Id);
                         cmd3.ExecuteNonQuery();
                     }

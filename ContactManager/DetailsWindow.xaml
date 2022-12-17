@@ -61,7 +61,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Country code" Width="100" DisplayMemberBinding="{Binding CountryCode}" />
-                        <GridViewColumn Header="Phone Number" Width="165" DisplayMemberBinding="{Binding PhoneNumber}" />
+                        <GridViewColumn Header="Phone Number" Width="125" DisplayMemberBinding="{Binding PhoneNumber}" />
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -78,7 +78,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                     <GridViewColumn Header="Address" Width="265" />
+                     <GridViewColumn Header="Address" Width="225" />
                     </GridView>
                 </ListView.View>
             </ListView>

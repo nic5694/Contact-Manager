@@ -115,6 +115,9 @@ namespace ContactManager
                 c.FirstName = fn;
                 c.Birthday = b;
                 c.LastName = ln;
+                c.Addresses = addresses;
+                c.Emails = emails;
+                c.Phones = phones;
 
                 DataBase db = new DataBase();
                 db.EditExistingContact(c);

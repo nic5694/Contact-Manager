@@ -25,6 +25,7 @@ namespace ContactManager
     {
         private int emailCount = 0;
         private int phoneCount = 0;
+        private int addressCount = 0;
         static List<Email> emails = new List<Email>();
         static List<Phone> phones = new List<Phone>();
         static List<Address> addresses = new List<Address>();
@@ -34,7 +35,7 @@ namespace ContactManager
             InitializeComponent();
         }
 
-        private void AddContact_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        public void AddContact_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
             emailCount = 0;
@@ -42,7 +43,7 @@ namespace ContactManager
             this.Hide();
         }
 
-        private void AddContact(object sender, RoutedEventArgs e)
+        public void AddContact(object sender, RoutedEventArgs e)
         {
 
             if(FirstNameBox.Text == "" || LastNameBox.Text == "")
@@ -67,6 +68,9 @@ namespace ContactManager
             contact.FirstName = FirstName;
             contact.Title = title;
             contact.LastName = lastname;
+            contact.Addresses = addresses;
+            contact.Emails = emails;
+            contact.Phones = phones;
             
 
             db.AddNewContact(contact);
@@ -80,7 +84,7 @@ namespace ContactManager
 
         }
 
-        private void clearFields(object sender, RoutedEventArgs e)
+        public void clearFields(object sender, RoutedEventArgs e)
         {
             FirstNameBox.Clear();
             LastNameBox.Clear();
@@ -90,7 +94,7 @@ namespace ContactManager
             emails.Clear();
         }
 
-        private void newEmailWindow(object sender, RoutedEventArgs e)
+        public void newEmailWindow(object sender, RoutedEventArgs e)
         {
             emailCount++;
             if(emailCount < 4)
@@ -111,7 +115,7 @@ namespace ContactManager
             emails.Add(contactEmail);
         }
 
-        private void newPhoneWindow(object sender, RoutedEventArgs e)
+        public void newPhoneWindow(object sender, RoutedEventArgs e)
         {
             phoneCount++;
             if (phoneCount < 4)
@@ -132,6 +136,27 @@ namespace ContactManager
             phones.Add(phone);
         }
 
+        private void newAddressWindow(object sender, RoutedEventArgs e)
+        {
+            addressCount++;
+            if (addressCount < 4)
+            {
+                NewAddress newAddress = new NewAddress(addressCount);
+                newAddress.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("3 Phone Numbers is the max !");
+            }
+        }
+
+        public void addAddressToList(object a)
+        {
+            Address address = a as Address;
+            addresses.Add(address);
+        }
+
 
         private void showPhones(object sender, RoutedEventArgs e)
         {
@@ -148,5 +173,14 @@ namespace ContactManager
                 MessageBox.Show(email.Type_Code.ToString() + " : " + email.EmailAddress);
             }
         }
+
+        private void showAddresses(object sender, RoutedEventArgs e)
+        {
+            foreach (Address address in addresses)
+            {
+                MessageBox.Show(address.Type_Code.ToString() + " : " + address.ApartmentNumber + " " + address.StreetAddress + " " + address.Province);
+            }
+        }
+
     }
 }
