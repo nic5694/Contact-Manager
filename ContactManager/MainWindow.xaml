@@ -12,14 +12,13 @@
         <DockPanel>
 
             <Label DockPanel.Dock="Top" FontSize="20" Margin="10,0,0,0">Contact Informations</Label>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="10,10,10,10" Width="505">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="10,10,10,10" Width="454">
                 
                 <Button Margin="0,0,25,0" Width="90" Height="28" Click="AddContact">Add Contact</Button>
                 <Button Margin="0,0,25,0" Width="90" Height="28" Click="DesactivateContact" >Delete Contact</Button>
                 <Button Margin="0,0,25,0" Width="90" Height="28" Click="Export_Contacts" >Export</Button>
                 <Button Margin="0,0,25,0" Width="106" Height="28" Click="ResfreshList">Refresh Contacts</Button>
-                <Button Click="showContactDetails">test</Button>
-                
+
             </StackPanel>
                
             <ListView x:Name="lvDataBinding" Padding="0,5,0,5">
@@ -28,7 +27,7 @@
                         <GridViewColumn Header="First Name" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding FirstName}" Foreground="Blue" PreviewMouseDown="TextBlock_PreviewMouseDown"/>
+                                    <Label Content="{Binding FirstName}" Foreground="Blue" MouseDoubleClick="TextBlock_PreviewMouseDown"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
