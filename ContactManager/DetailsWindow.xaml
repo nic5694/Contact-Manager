@@ -32,21 +32,44 @@
 
         <GroupBox Header="E-Mails" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,274,335,0" Grid.RowSpan="2">
 
-            <ListView x:Name="EmailsList">
+            <ListView x:Name="EmailsList" ItemsSource="{Binding EmailAddresses}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding EmailAddress}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
             </ListView>
 
         </GroupBox>
 
         <GroupBox Header="Phone Numbers" Grid.Column="1" Margin="0,48,0,0" Grid.RowSpan="2">
-            <ListView x:Name="PhonesList">
-
+            <ListView x:Name="PhonesList" ItemsSource="{Binding PhoneNumbers}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding PhoneNumber}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </GroupBox>
 
         <GroupBox Header="Addresses" Grid.Column="1" Grid.Row="1" Margin="0,274,0,0" Grid.RowSpan="2">
-            <ListView x:Name="AddressesList">
-
+            <ListView x:Name="AddressesList" ItemsSource="{Binding Addresses}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding StreetAddress}" />
+                            <TextBlock Text=", " />
+                            <TextBlock Text="{Binding City}" />
+                            <TextBlock Text=", " />
+                            <TextBlock Text="{Binding Province}" />
+                            <TextBlock Text=" " />
+                            <TextBlock Text="{Binding PostalCode}" />
+                            <TextBlock Text=", " />
+                            <TextBlock Text="{Binding Country}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </GroupBox>
 
@@ -65,13 +88,13 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0"  VerticalAlignment="Center" Height="25" Width="39" HorizontalAlignment="Right" Margin="0,0,25,0">Title :</Label>
-            <TextBox x:Name="TitleBox" Grid.Column="1" Margin="0,8,28,8" />
+            <TextBox x:Name="TitleBox" Grid.Column="1" Margin="0,8,28,8" Text="{Binding Title}" />
 
             <Label Grid.Row="1" VerticalAlignment="Center" Height="25" Width="90" HorizontalAlignment="Center">First Name :</Label>
-            <TextBox x:Name="FirstNameBox" Grid.Column="1" Grid.Row="1" Margin="0,8,28,8" />
+            <TextBox x:Name="FirstNameBox" Grid.Column="1" Grid.Row="1" Margin="0,8,28,8" Text="{Binding FirstName}" />
 
             <Label Grid.Row="2" VerticalAlignment="Center" Height="25" Width="90" HorizontalAlignment="Center">Last Name :</Label>
-            <TextBox x:Name="LastNameBox" Grid.Column="1" Grid.Row="2" Margin="0,8,28,8" />
+            <TextBox x:Name="LastNameBox" Grid.Column="1" Grid.Row="2" Margin="0,8,28,8" Text="{Binding LastName}"/>
 
 
             <Label Grid.Row="3" VerticalAlignment="Top" Height="25" Width="88" HorizontalAlignment="Right" Grid.ColumnSpan="2" Margin="0,0,226,0">Birthday :</Label>

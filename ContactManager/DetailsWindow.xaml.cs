@@ -40,9 +40,23 @@ namespace ContactManager
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            DataBase db = new DataBase();
+            contact = db.GetContact(contact.Id);
+            this.DataContext = contact;
+
+            TitleBox.Text = contact.Title;
+            FirstNameBox.Text = contact.FirstName;
+            LastNameBox.Text = contact.LastName;
+
+
+
+
+
             //here you will assign all the data to the list views
-            //List<Address> temp = new List<Address>();
-            //temp = contact.Addresses;
+            List<Address> addrs = new List<Address>();
+            addrs = contact.Addresses;
+
+
             //PhoneListView.ItemsSource = contact.Addresses;
             //email
             //(emailListView)(example name).ItemsSources = contact.Emails;
