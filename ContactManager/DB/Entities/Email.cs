@@ -12,9 +12,9 @@ namespace ContactManager.DB.Entities
         public string EmailAddress { get; set; }
         public int Contact_Id { get; set; }
         public char Type_Code { get; set; }
-        public DateTime LastUpdated { get; set; }
+        public string LastUpdated { get; set; }
 
-        public Email(int id, string emailAddress, int contact_Id, char type_Code, DateTime lastUpdated)
+        public Email(int id, string emailAddress, int contact_Id, char type_Code, string lastUpdated)
         {
             Id = id;
             EmailAddress = emailAddress;

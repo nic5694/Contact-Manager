@@ -27,7 +27,7 @@ namespace ContactManager
         public AddressInfo(int addressId)
         {
             InitializeComponent();
-            address = db.getAddress(addressId);
+            address = db.GetAddress(addressId);
 
             string type;
 
@@ -85,13 +85,13 @@ namespace ContactManager
             deleteBtn.Visibility = Visibility.Visible;
         }
 
-        private void deleteAddress(object sender, RoutedEventArgs e)
+        private void DeleteAddress(object sender, RoutedEventArgs e)
         {
-            db.DeleteAddress(address.Id);
+            db.DeleteAddress(address);
             Close();
         }
 
-        private void saveNewAddress(object sender, RoutedEventArgs e)
+        private void SaveNewAddress(object sender, RoutedEventArgs e)
         {
             editBtn.Visibility = Visibility.Visible;
             appNumberBox.IsEnabled = false;

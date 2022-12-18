@@ -18,9 +18,9 @@ namespace ContactManager.DB.Entities
         public int ApartmentNumber { get; set; }
         public int Contact_Id { get; set; }
         public char Type_Code { get; set; }
-        public DateTime LastUpdated { get; set; }
+        public string LastUpdated { get; set; }
 
-        public Address(int id, string streetAddress, string city, string province, string postalCode, string country, int apartmentNumber, int contact_Id, char type_Code, DateTime lastUpdated)
+        public Address(int id, string streetAddress, string city, string province, string postalCode, string country, int apartmentNumber, int contact_Id, char type_Code, string lastUpdated)
         {
             Id = id;
             StreetAddress = streetAddress;

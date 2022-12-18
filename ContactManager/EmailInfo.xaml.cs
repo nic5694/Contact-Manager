@@ -26,7 +26,7 @@ namespace ContactManager
         public EmailInfo(int emailId)
         {
             InitializeComponent();
-            email = db.getEmail(emailId);
+            email = db.GetEmail(emailId);
             string type;
 
             if(email.Type_Code == 'P')
@@ -66,7 +66,7 @@ namespace ContactManager
             deleteBtn.Visibility = Visibility.Visible;
         }
 
-        private void saveNewEmail(object sender, RoutedEventArgs e)
+        private void SaveNewEmail(object sender, RoutedEventArgs e)
         {
             editBtn.Visibility = Visibility.Visible;
             emailBox.IsEnabled = false;
@@ -77,9 +77,9 @@ namespace ContactManager
             Close();
         }
 
-        private void deleteEmail(object sender, RoutedEventArgs e)
+        private void DeleteEmail(object sender, RoutedEventArgs e)
         {
-            db.DeleteEmail(email.Id);
+            db.DeleteEmail(email);
             Close();
         }
     }

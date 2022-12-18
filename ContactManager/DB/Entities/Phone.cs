@@ -13,9 +13,9 @@ namespace ContactManager.DB.Entities
         public string CountryCode { get; set; }
         public int Contact_Id { get; set; }
         public char Type_Code { get; set; }
-        public DateTime LastUpdated { get; set; }
+        public string LastUpdated { get; set; }
 
-        public Phone(int id, string phoneNumber, string countryCode, int contact_Id, char type_Code, DateTime lastUpdated)
+        public Phone(int id, string phoneNumber, string countryCode, int contact_Id, char type_Code, string lastUpdated)
         {
             Id = id;
             PhoneNumber = phoneNumber;

@@ -26,7 +26,7 @@ namespace ContactManager
         public PhoneInfo(int phoneId)
         {
             InitializeComponent();
-            phone = db.getPhone(phoneId);
+            phone = db.GetPhone(phoneId);
 
             string type;
 
@@ -73,14 +73,14 @@ namespace ContactManager
             countryCodeBox.IsEnabled = false;
         }
 
-        private void deletePhone(object sender, RoutedEventArgs e)
+        private void DeletePhone(object sender, RoutedEventArgs e)
         {
 
-            db.DeletePhone(phone.Id);
+            db.DeletePhone(phone);
             Close();
         }
 
-        private void saveNewPhone(object sender, RoutedEventArgs e)
+        private void SaveNewPhone(object sender, RoutedEventArgs e)
         {
             saveBtn.Visibility = Visibility.Hidden;
             phoneBox.IsEnabled = false;
