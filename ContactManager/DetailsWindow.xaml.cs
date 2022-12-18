@@ -152,5 +152,17 @@ namespace ContactManager
             AddressInfo addressInfo = new AddressInfo(address.Id);
             addressInfo.Show();
         }
+        private void updateFields(object sender, RoutedEventArgs e)
+        {
+            DataBase data = new DataBase();
+            contact = data.GetContact(contact.Id);
+            TitleBox.Text = contact.Title;
+            FirstNameBox.Text = contact.FirstName;
+            LastNameBox.Text = contact.LastName;
+            BirthdayCalender.DisplayDate = contact.Birthday;
+            AddressesList.ItemsSource = contact.Addresses;
+            EmailsList.ItemsSource = contact.Emails;
+            PhonesList.ItemsSource = contact.Phones;
+        }
     }
 }

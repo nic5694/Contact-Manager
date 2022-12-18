@@ -22,17 +22,17 @@ namespace ContactManager
     public partial class EmailInfo : Window
     {
         DataBase db = new DataBase();
-        Email e;
+        Email email;
         public EmailInfo(int emailId)
         {
             InitializeComponent();
-            e = db.getEmail(emailId);
+            email = db.getEmail(emailId);
             string type;
 
-            if(e.Type_Code == 'P')
+            if(email.Type_Code == 'P')
             {
                 type = "Personal";
-            } else if (e.Type_Code == 'B')
+            } else if (email.Type_Code == 'B')
             {
                 type = "Business";
             } else
@@ -42,7 +42,7 @@ namespace ContactManager
 
 
             typeLabel.Content = type;
-            emailBox.Text = e.EmailAddress;
+            emailBox.Text = email.EmailAddress;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -55,6 +55,7 @@ namespace ContactManager
         {
             emailBox.IsEnabled = false;
             saveBtn.Visibility = Visibility.Hidden;
+            deleteBtn.Visibility = Visibility.Hidden;
         }
 
         private void Edit_Email(object sender, RoutedEventArgs e)
@@ -62,14 +63,24 @@ namespace ContactManager
             editBtn.Visibility = Visibility.Hidden;
             emailBox.IsEnabled = true;
             saveBtn.Visibility = Visibility.Visible;
+            deleteBtn.Visibility = Visibility.Visible;
         }
 
-        private void Save_Email(object sender, RoutedEventArgs e)
+        private void saveNewEmail(object sender, RoutedEventArgs e)
         {
-            //update contact email
             editBtn.Visibility = Visibility.Visible;
             emailBox.IsEnabled = false;
             saveBtn.Visibility = Visibility.Hidden;
+            email.EmailAddress = emailBox.Text;
+            //could add validation
+            db.UpdateEmailExistingContact(email);
+            Close();
+        }
+
+        private void deleteEmail(object sender, RoutedEventArgs e)
+        {
+            db.DeleteEmail(email.Id);
+            Close();
         }
     }
 }

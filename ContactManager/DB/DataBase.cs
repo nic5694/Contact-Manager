@@ -1,6 +1,7 @@
 ﻿using ContactManager.DB.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -264,7 +265,7 @@ namespace ContactManager.DB
             using (SqlConnection c = new SqlConnection(ConString))
             {
                 c.Open();
-                String query = "Update Contact set FirstName = @FirstName, LastName = @LastName, Title = @Title, Birthday = @Birthday where Id = @Id";
+                String query = "Update Contact set FirstName=@FirstName,LastName=@LastName,Title=@Title,Birthday=@Birthday where Id=@Id";
                 SqlCommand cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@Id", contact.Id);
                 cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
@@ -356,6 +357,7 @@ namespace ContactManager.DB
                 address.ApartmentNumber = (int)readInfo["ApartmentNumber"];
                 address.Contact_Id = (int)readInfo["Contact_Id"];
                 address.Type_Code = readInfo["Type_Code"].ToString().ToCharArray()[0];
+                address.Id = (int)readInfo["Id"];
             }
 
             return address;
@@ -381,7 +383,8 @@ namespace ContactManager.DB
                 phone.Type_Code = readInfo["Type_Contact"].ToString().ToCharArray()[0];
                 phone.CountryCode = readInfo["ContryCode"].ToString();
                 phone.PhoneNumber = readInfo["Number"].ToString();
-                
+                phone.Contact_Id = (int) readInfo["ContacT_Id"];
+                phone.Id = (int)readInfo["Id"];
             }
 
             return phone;
@@ -406,10 +409,101 @@ namespace ContactManager.DB
             {
                 email.Type_Code = readInfo["Type_Code"].ToString().ToCharArray()[0];
                 email.EmailAddress = readInfo["Email"].ToString();
+                email.Contact_Id = (int)readInfo["Contact_Id"];
+                email.Id = (int)readInfo["Id"];
             }
 
 
             return email;
+        }
+
+        public void AddPhoneToExistingContact(Phone p)
+        {
+            using (SqlConnection c = new SqlConnection(ConString))
+            {
+                c.Open();
+                String query = "Insert into Phone (Number,ContryCode,Contact_Id,Type_Contact,LastUpdated) values (@PhoneNumber,@CountryCode,@Contact_Id,@Type_Code,GETDATE())";
+                SqlCommand cmd = new SqlCommand(query, c);
+                cmd.Parameters.AddWithValue("@PhoneNumber", p.PhoneNumber);
+                cmd.Parameters.AddWithValue("@CountryCode", p.CountryCode);
+                cmd.Parameters.AddWithValue("@Contact_Id", p.Contact_Id);
+                cmd.Parameters.AddWithValue("@Type_Code", p.Type_Code);
+                cmd.Parameters.AddWithValue("@Id", p.Id);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeletePhone(int phoneId)
+        {
+            using(SqlConnection c = new SqlConnection(ConString))
+            {
+                c.Open();
+                string query = "Delete Phone where Id = @Id";
+                SqlCommand cmd = new SqlCommand(query, c);
+                cmd.Parameters.AddWithValue("@Id", phoneId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateEmailExistingContact(Email e)
+        {
+            using (SqlConnection c = new SqlConnection(ConString))
+            {
+                c.Open();
+                string emailUpdate = "Update Email set Email = @Email, Contact_Id=@Contact_Id, Type_Code = @Type_Code where Id = @Id";
+                SqlCommand cmd4 = new SqlCommand(emailUpdate, c);
+                cmd4.Parameters.AddWithValue("@Email", e.EmailAddress);
+                cmd4.Parameters.AddWithValue("@Contact_Id", e.Contact_Id);
+                cmd4.Parameters.AddWithValue("@Type_Code", e.Type_Code);
+                cmd4.Parameters.AddWithValue("@Id", e.Id);
+                cmd4.ExecuteNonQuery();
+            }
+        }
+        
+
+        public void DeleteEmail(int emailId)
+        {
+            using (SqlConnection c = new SqlConnection(ConString))
+            {
+                c.Open();
+                string query = "Delete Email where Id = @Id";
+                SqlCommand cmd = new SqlCommand(query, c);
+                cmd.Parameters.AddWithValue("@Id", emailId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateAddressContact(Address a)
+        {
+            using(SqlConnection c = new SqlConnection(ConString))
+            {
+                c.Open();
+                String query = "Update Address set StreetAddress = @StreetAddress, City = @City, Province = @Province, PostalCode = @PostalCode, Country = @Country,Contact_ID = @Contact_Id, ApartmentNumber = @ApartmentNumber, Type_Code = @Type_Code, LastUpdated = GETDATE() where Id = @Id";
+                SqlCommand cmd2 = new SqlCommand(query, c);
+                cmd2.Parameters.AddWithValue("@StreetAddress", a.StreetAddress);
+                cmd2.Parameters.AddWithValue("@City", a.City);
+                cmd2.Parameters.AddWithValue("@Province", a.Province);
+                cmd2.Parameters.AddWithValue("@PostalCode", a.PostalCode);
+                cmd2.Parameters.AddWithValue("@Country", a.Country);
+                cmd2.Parameters.AddWithValue("@ApartmentNumber", a.ApartmentNumber);
+                cmd2.Parameters.AddWithValue("@Id", a.Id);
+                cmd2.Parameters.AddWithValue("@Type_Code", a.Type_Code);
+                cmd2.Parameters.AddWithValue("Contact_Id", a.Contact_Id);
+                cmd2.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteAddress(int addressId)
+        {
+            using (SqlConnection c = new SqlConnection(ConString))
+            {
+                c.Open();
+                string query = "Delete Address where Id = @Id";
+                SqlCommand cmd = new SqlCommand(query, c);
+                cmd.Parameters.AddWithValue("@Id", addressId);
+                cmd.ExecuteNonQuery();
+            }
+            
         }
         
 

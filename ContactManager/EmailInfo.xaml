@@ -13,7 +13,10 @@
                 <Button x:Name="editBtn" Content="Edit" Width="72" HorizontalContentAlignment="Center" ScrollViewer.CanContentScroll="True" Margin="269,0,0,0" Height="22" Foreground="Black" Background="White" BorderBrush="#FF656565" Click="Edit_Email"/>
             </StackPanel>
 
-            <Button x:Name="saveBtn" Content="Save" DockPanel.Dock="Bottom" Width="76" Margin="0,25,0,20" Background="#FF4C4C4C" Foreground="White" BorderBrush="Black" FontWeight="Bold" Click="Save_Email"></Button>
+            <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button x:Name="saveBtn" Content="Save" Margin="0,25,25,20" Background="#FF4C4C4C" Foreground="White" BorderBrush="Black" FontWeight="Bold" Click="saveNewEmail" Height="20" Width="63"/>
+                <Button x:Name="deleteBtn" Content="Delete" Margin="0,25,0,20" Background="#FFE46B6B" Foreground="White" BorderBrush="Black" FontWeight="Bold" Click="deleteEmail" Height="20" Width="63"/>
+            </StackPanel>
 
             <Grid MinWidth="461" MaxWidth="461" Margin="0,20,0,0" Width="229" HorizontalAlignment="Center">
 

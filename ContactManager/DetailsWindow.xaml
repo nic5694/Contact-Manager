@@ -22,7 +22,9 @@
 
         <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Background="#FF2D2D2D">
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0" FontWeight="Bold" Foreground="White">Contact Details</Label>
-            <Button x:Name="editBtn" Width="84" VerticalAlignment="Center" Height="22" Margin="425,0,0,0" Foreground="Black" BorderBrush="#FF8A8A8A" Background="White" Click="editContactDetails">Edit</Button>
+            <!---Cancel button to be added-->
+            <Button x:Name="editBtn" Width="84" VerticalAlignment="Center" Height="22" Margin="370,0,0,0" Foreground="Black" BorderBrush="#FF8A8A8A" Background="White" Click="editContactDetails">Edit</Button>
+            <Button x:Name="refreshBtn" Width="84" Height="22" Margin="5,0,0,0" Foreground="Black" BorderBrush="#FF8A8A8A" Background="White" Click="updateFields">Refresh</Button>
         </StackPanel>
 
         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Height="24" Margin="248,0,0,0" Width="175" >

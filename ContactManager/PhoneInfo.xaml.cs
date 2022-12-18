@@ -50,19 +50,11 @@ namespace ContactManager
                 
         }
 
-        private void Save_Phone(object sender, RoutedEventArgs e)
-        {
-            //update contact Phone
-            saveBtn.Visibility = Visibility.Hidden;
-            phoneBox.IsEnabled = false;
-            editBtn.Visibility = Visibility.Visible;
-            countryCodeBox.IsEnabled = false;
-        }
-
         private void Edit_Phone(object sender, RoutedEventArgs e)
         {
             editBtn.Visibility = Visibility.Hidden;
             saveBtn.Visibility = Visibility.Visible;
+            deleteBtn.Visibility = Visibility.Visible;
             phoneBox.IsEnabled = true;
             countryCodeBox.IsEnabled = true;
         }
@@ -76,8 +68,28 @@ namespace ContactManager
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             saveBtn.Visibility = Visibility.Hidden;
+            deleteBtn.Visibility = Visibility.Hidden;
             phoneBox.IsEnabled = false;
             countryCodeBox.IsEnabled = false;
+        }
+
+        private void deletePhone(object sender, RoutedEventArgs e)
+        {
+
+            db.DeletePhone(phone.Id);
+            Close();
+        }
+
+        private void saveNewPhone(object sender, RoutedEventArgs e)
+        {
+            saveBtn.Visibility = Visibility.Hidden;
+            phoneBox.IsEnabled = false;
+            editBtn.Visibility = Visibility.Visible;
+            countryCodeBox.IsEnabled = false;
+            phone.PhoneNumber = phoneBox.Text;
+            phone.CountryCode = countryCodeBox.Text;
+            db.AddPhoneToExistingContact(phone);
+            Close();
         }
     }
 }

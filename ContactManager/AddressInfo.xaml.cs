@@ -69,6 +69,7 @@ namespace ContactManager
             countryBox.IsEnabled = false;
             postalCodeBox.IsEnabled = false;
             saveBtn.Visibility = Visibility.Hidden;
+            deleteBtn.Visibility = Visibility.Hidden;
         }
 
         private void Edit_Address(object sender, RoutedEventArgs e)
@@ -81,11 +82,17 @@ namespace ContactManager
             countryBox.IsEnabled = true;
             postalCodeBox.IsEnabled = true;
             saveBtn.Visibility = Visibility.Visible;
+            deleteBtn.Visibility = Visibility.Visible;
         }
 
-        private void Save_Address(object sender, RoutedEventArgs e)
+        private void deleteAddress(object sender, RoutedEventArgs e)
         {
-            //update contact address
+            db.DeleteAddress(address.Id);
+            Close();
+        }
+
+        private void saveNewAddress(object sender, RoutedEventArgs e)
+        {
             editBtn.Visibility = Visibility.Visible;
             appNumberBox.IsEnabled = false;
             addressBox.IsEnabled = false;
@@ -94,6 +101,24 @@ namespace ContactManager
             countryBox.IsEnabled = false;
             postalCodeBox.IsEnabled = false;
             saveBtn.Visibility = Visibility.Hidden;
+            //address.ApartmentNumber = appNumberBox.Text;
+            int num;
+            if(int.TryParse(appNumberBox.Text, out num))
+            {
+                address.ApartmentNumber = num;
+                address.StreetAddress = addressBox.Text;
+                address.City = cityBox.Text;
+                address.Province = provinceBox.Text;
+                address.Country = countryBox.Text;
+                address.PostalCode = postalCodeBox.Text;
+                db.UpdateAddressContact(address);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("You have not entered a valid entry for the apartment number please try again");
+            }
+            
         }
     }
 }
