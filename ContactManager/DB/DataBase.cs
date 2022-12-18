@@ -38,7 +38,8 @@ namespace ContactManager.DB
                         contact.Id = (int)readInfo["Id"];
                         contact.FirstName = readInfo["FirstName"].ToString();
                         contact.LastName = readInfo["LastName"].ToString();
-                        contact.Birthday = (DateTime)readInfo["Birthday"];
+                        if (readInfo["Birthday"] != DBNull.Value)
+                            contact.Birthday = (DateTime)readInfo["Birthday"];
                         contact.LastUpdated = readInfo["LastUpdated"].ToString();
                         contact.Created = readInfo["Created"].ToString();
                     }
