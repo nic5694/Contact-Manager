@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ContactManager
@@ -23,9 +24,6 @@ namespace ContactManager
     /// </summary>
     public partial class AddContactWindow : Window
     {
-        private int emailCount = 0;
-        private int phoneCount = 0;
-        private int addressCount = 0;
         static List<Email> emails = new List<Email>();
         static List<Phone> phones = new List<Phone>();
         static List<Address> addresses = new List<Address>();
@@ -38,17 +36,18 @@ namespace ContactManager
         public void AddContact_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
-            emailCount = 0;
             emails.Clear();
+            phones.Clear();
+            addresses.Clear();
             this.Hide();
         }
 
         public void AddContact(object sender, RoutedEventArgs e)
         {
 
-            if(FirstNameBox.Text == "" || LastNameBox.Text == "")
+            if(FirstNameBox.Text == "")
             {
-                MessageBox.Show("The first name or the last name is missing !","Info Missing",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("The first name is missing !","Info Missing",MessageBoxButton.OK,MessageBoxImage.Error);
                 return;
             }
 
@@ -80,7 +79,9 @@ namespace ContactManager
             TitleBox.Clear();
             calender1.SelectedDate = DateTime.Now;
             emails.Clear();
-            emailCount = 0;
+            phones.Clear();
+            addresses.Clear();
+            Close();
 
         }
 
@@ -90,22 +91,18 @@ namespace ContactManager
             LastNameBox.Clear();
             TitleBox.Clear();
             calender1.SelectedDate = DateTime.Now;
-            emailCount = 0;
             emails.Clear();
+            phones.Clear();
+            addresses.Clear();
         }
 
+
+        // Email section
         public void newEmailWindow(object sender, RoutedEventArgs e)
         {
-            emailCount++;
-            if(emailCount < 4)
-            {
-                NewEmail newEmail = new NewEmail(emailCount);
-                newEmail.Show();
-
-            } else
-            {
-                MessageBox.Show("3 E-mails is the max !");
-            }
+            
+            NewEmail newEmail = new NewEmail();
+            newEmail.Show();
             
         }
 
@@ -115,19 +112,35 @@ namespace ContactManager
             emails.Add(contactEmail);
         }
 
-        public void newPhoneWindow(object sender, RoutedEventArgs e)
+        public bool emailTypeExistAlready(char type)
         {
-            phoneCount++;
-            if (phoneCount < 4)
-            {
-                NewPhone newPhone = new NewPhone(phoneCount);
-                newPhone.Show();
 
+            if (emails == null)
+            {
+                return false;
             }
             else
             {
-                MessageBox.Show("3 Phone Numbers is the max !");
+                foreach (Email email in emails)
+                {
+                    if (email.Type_Code.ToString().ToCharArray()[0] == type)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
+        }
+
+
+        // Phone Section
+        public void newPhoneWindow(object sender, RoutedEventArgs e)
+        {
+            
+                NewPhone newPhone = new NewPhone();
+                newPhone.Show();
+
         }
 
         public void addPhoneToList(object p)
@@ -136,19 +149,32 @@ namespace ContactManager
             phones.Add(phone);
         }
 
-        private void newAddressWindow(object sender, RoutedEventArgs e)
+        public bool phoneTypeExistAlready(char type)
         {
-            addressCount++;
-            if (addressCount < 4)
+            if (phones == null)
             {
-                NewAddress newAddress = new NewAddress(addressCount);
-                newAddress.Show();
-
+                return false;
             }
             else
             {
-                MessageBox.Show("3 Phone Numbers is the max !");
+                foreach (Phone phone in phones)
+                {
+                    if (phone.Type_Code.ToString().ToCharArray()[0] == type)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
+        }
+
+        
+        // Address Section
+        private void newAddressWindow(object sender, RoutedEventArgs e)
+        {
+                NewAddress newAddress = new NewAddress();
+                newAddress.Show();
         }
 
         public void addAddressToList(object a)
@@ -157,7 +183,27 @@ namespace ContactManager
             addresses.Add(address);
         }
 
+        public bool addressTypeExistAlready(char type)
+        {
+            if (addresses == null)
+            {
+                return false;
+            }
+            else
+            {
+                foreach (Address address in addresses)
+                {
+                    if (address.Type_Code.ToString().ToCharArray()[0] == type)
+                    {
+                        return true;
+                    }
+                }
 
+                return false;
+            }
+        }
+
+        /*
         private void showPhones(object sender, RoutedEventArgs e)
         {
             foreach(Phone phone in phones)
@@ -181,6 +227,7 @@ namespace ContactManager
                 MessageBox.Show(address.Type_Code.ToString() + " : " + address.ApartmentNumber + " " + address.StreetAddress + " " + address.Province);
             }
         }
+        */
 
     }
 }

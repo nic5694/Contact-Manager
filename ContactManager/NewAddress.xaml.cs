@@ -21,30 +21,49 @@ namespace ContactManager
     /// </summary>
     public partial class NewAddress : Window
     {
-        public NewAddress(int count)
+        public NewAddress()
         {
             InitializeComponent();
-
-            if (count == 1)
-            {
-                typeLabel.Content = "Personal";
-            }
-            else if (count == 2)
-            {
-                typeLabel.Content = "Business";
-            }
-            else if (count == 3)
-            {
-                typeLabel.Content = "Other";
-            }
         }
 
         private void saveNewAddress(object sender, RoutedEventArgs e)
         {
-            AddContactWindow aCW = new AddContactWindow();
-            Address address = new Address();
+            string type = typesComboBox.Text;
 
-            string type = typeLabel.Content.ToString();
+            if (type == "")
+            {
+                MessageBox.Show("You must select a type from the dropdown ");
+                return;
+            }
+
+            AddContactWindow aCW = new AddContactWindow();
+            char t;
+
+            if (type == "Personal")
+            {
+                t = 'P';
+
+            }
+            else if (type == "Business")
+            {
+                t = 'B';
+
+            }
+            else
+            {
+                t = 'O';
+            }
+
+            bool validate = aCW.addressTypeExistAlready(t);
+
+            if (validate)
+            {
+                MessageBox.Show(type + " address already exist, there must be only one address per type ! ");
+                return;
+            }
+
+
+            Address address = new Address();
             string streetAddress = streetAddressBox.Text;
             string city = cityBox.Text;
             string province = provinceBox.Text;

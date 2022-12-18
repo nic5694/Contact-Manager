@@ -11,7 +11,7 @@
 
         <DockPanel>
 
-            <Label DockPanel.Dock="Top" FontSize="20" Margin="10,0,0,0">Contact Informations</Label>
+            <Label DockPanel.Dock="Top" FontSize="20" Margin="10,0,0,0">Contact List</Label>
             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="10,10,10,10" Width="454">
                 
                 <Button Margin="0,0,25,0" Width="90" Height="28" Click="AddContact">Add Contact</Button>

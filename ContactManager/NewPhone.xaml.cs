@@ -20,31 +20,52 @@ namespace ContactManager
     /// </summary>
     public partial class NewPhone : Window
     {
-        public NewPhone(int count)
+        public NewPhone()
         {
             InitializeComponent();
-            if (count == 1)
-            {
-                typeLabel.Content = "Personal";
-            }
-            else if (count == 2)
-            {
-                typeLabel.Content = "Business";
-            }
-            else if (count == 3)
-            {
-                typeLabel.Content = "Other";
-            }
+            
         }
 
         private void saveNewPhone(object sender, RoutedEventArgs e)
         {
+            string type = typesComboBox.Text;
+
+            if (type == "")
+            {
+                MessageBox.Show("You must select a type from the dropdown ");
+                return;
+            }
+
             AddContactWindow aCW = new AddContactWindow();
+            char t;
+
+            if (type == "Personal")
+            {
+                t = 'P';
+
+            }
+            else if (type == "Business")
+            {
+                t = 'B';
+
+            }
+            else
+            {
+                t = 'O';
+            }
+
+            bool validate = aCW.phoneTypeExistAlready(t);
+
+            if (validate)
+            {
+                MessageBox.Show(type + " phone already exist, there must be only one phone per type ! ");
+                return;
+            }
+            
             Phone phone = new Phone();
 
-            String type = typeLabel.Content.ToString();
-            String countryCode = countryCodeBox.Text;
-            String contactPhone = phoneBox.Text.ToString();
+            string countryCode = countryCodeBox.Text;
+            string contactPhone = phoneBox.Text.ToString();
 
             if (contactPhone == "")
             {

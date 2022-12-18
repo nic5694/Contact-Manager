@@ -15,12 +15,12 @@
 
             <Label Background="#FF2D2D2D" DockPanel.Dock="Top" Height="29" FontWeight="Bold" Foreground="White" HorizontalContentAlignment="Center">Adding Contact</Label>
 
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Height="82" Width="398">
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Height="82" Width="201">
                 <Button x:Name="addBtn" Content="Add Contact"  Width="117" Margin="0,25,25,20" Background="#FF4C4C4C" Foreground="White" BorderBrush="Black" FontWeight="Bold" Height="25" Click="AddContact" />
                 <Button x:Name="clearBtn" Content="Clear"  Width="56" Margin="0,25,10,20" Background="#FFE26464" Foreground="White" BorderBrush="#FF5D5D5D" FontWeight="Bold"  Height="25" Click="clearFields"/>
-                <Button x:Name="showPBtn" Content="p"  Width="56" Margin="0,25,10,20" Background="#FFE26464" Foreground="White" BorderBrush="#FF5D5D5D" FontWeight="Bold"  Height="25" Click="showPhones" />
+                <!--<Button x:Name="showPBtn" Content="p"  Width="56" Margin="0,25,10,20" Background="#FFE26464" Foreground="White" BorderBrush="#FF5D5D5D" FontWeight="Bold"  Height="25" Click="showPhones" />
                 <Button x:Name="showEBtn" Content="E"  Width="56" Margin="0,25,10,20" Background="#FFE26464" Foreground="White" BorderBrush="#FF5D5D5D" FontWeight="Bold"  Height="25" Click="showEmails" />
-                <Button x:Name="showABtn" Content="A"  Width="56" Margin="0,25,10,20" Background="#FFE26464" Foreground="White" BorderBrush="#FF5D5D5D" FontWeight="Bold"  Height="25" Click="showAddresses" />
+                <Button x:Name="showABtn" Content="A"  Width="56" Margin="0,25,10,20" Background="#FFE26464" Foreground="White" BorderBrush="#FF5D5D5D" FontWeight="Bold"  Height="25" Click="showAddresses" />-->
             </StackPanel>
 
 
