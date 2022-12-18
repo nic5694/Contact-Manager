@@ -54,19 +54,219 @@ namespace ContactManager
             DataBase db = new DataBase(); 
             Contact contact = new Contact();
      
-            String FirstName = FirstNameBox.Text;
+            string FirstName = FirstNameBox.Text;
             var birthday = calender1.SelectedDate;
             if(birthday != null)
             {
                 birthday = calender1.SelectedDate;
                 contact.Birthday = (DateTime)birthday;
             }
-            String lastname = LastNameBox.Text;
-            String title = TitleBox.Text;
+            string lastname = LastNameBox.Text;
+            string title = TitleBox.Text;
 
             contact.FirstName = FirstName;
             contact.Title = title;
             contact.LastName = lastname;
+
+            char[] types = { 'P', 'B', 'O' };
+            string empty = "N/A";
+            
+            // add empty object where info is missing 
+            if(emails.Count == 0)
+            {
+                for(int i = 0; i < types.Length; i++)
+                {
+                    Email email = new Email();
+                    email.EmailAddress = empty;
+                    email.Type_Code = types[i];
+                    emails.Add(email);
+                }
+                
+            }
+            else if (emails.Count == 1)
+            {
+                
+                for (int i = 0; i < types.Length; i++)
+                {
+
+                    if (emails[0].Type_Code != types[i])
+                    {
+                        Email em = new Email();
+                        em.EmailAddress = empty;
+                        em.Type_Code = types[i];
+                        emails.Add(em);
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < types.Length; i++)
+                {
+
+                    if (emails[0].Type_Code != types[i] && emails[1].Type_Code != types[i])
+                    {
+                        Email em = new Email();
+                        em.EmailAddress = empty;
+                        em.Type_Code = types[i];
+                        emails.Add(em);
+                    }
+                }
+
+            }
+            else if(emails.Count == 2)
+            {
+                
+                for (int i = 0; i < types.Length; i++)
+                {
+
+                    if (emails[0].Type_Code != types[i] && emails[1].Type_Code != types[i])
+                    {
+                        Email em = new Email();
+                        em.EmailAddress = empty;
+                        em.Type_Code = types[i];
+                        emails.Add(em);
+                    }
+                }
+                
+            }
+
+            if (phones.Count == 0)
+            {
+                for (int i = 0; i < types.Length; i++)
+                {
+                    Phone phone = new Phone();
+                    phone.PhoneNumber = empty;
+                    phone.Type_Code = types[i];
+                    phone.CountryCode = empty;
+                    phones.Add(phone);
+                }
+
+            }
+            else if (phones.Count == 1)
+            {
+
+                for (int i = 0; i < types.Length; i++)
+                {
+
+                    if (phones[0].Type_Code != types[i])
+                    {
+                        Phone phone = new Phone();
+                        phone.PhoneNumber = empty;
+                        phone.Type_Code = types[i];
+                        phone.CountryCode = empty;
+                        phones.Add(phone);
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < types.Length; i++)
+                {
+
+                    if (phones[0].Type_Code != types[i] && phones[1].Type_Code != types[i])
+                    {
+                        Phone phone = new Phone();
+                        phone.PhoneNumber = empty;
+                        phone.Type_Code = types[i];
+                        phone.CountryCode = empty;
+                        phones.Add(phone);
+                    }
+                }
+
+            }
+            else if (phones.Count == 2)
+            {
+
+                for (int i = 0; i < types.Length; i++)
+                {
+
+                    if (phones[0].Type_Code != types[i] && phones[1].Type_Code != types[i])
+                    {
+                        Phone phone = new Phone();
+                        phone.PhoneNumber = empty;
+                        phone.Type_Code = types[i];
+                        phone.CountryCode = empty;
+                        phones.Add(phone);
+                    }
+                }
+
+            }
+
+            if (addresses.Count == 0)
+            {
+                for (int i = 0; i < types.Length; i++)
+                {
+                    Address address = new Address();
+                    address.Type_Code = types[i];
+                    address.StreetAddress = empty;
+                    address.City = empty;
+                    address.Country = empty;
+                    address.Province = empty;
+                    address.PostalCode = empty;
+
+                    addresses.Add(address);
+                }
+
+            }
+            else if (addresses.Count == 1)
+            {
+
+                for (int i = 0; i < types.Length; i++)
+                {
+
+                    if (addresses[0].Type_Code != types[i])
+                    {
+                        Address address = new Address();
+                        address.Type_Code = types[i];
+                        address.StreetAddress = empty;
+                        address.City = empty;
+                        address.Country = empty;
+                        address.Province = empty;
+                        address.PostalCode = empty;
+
+                        addresses.Add(address);
+                        break;
+                    }
+                }
+
+                for (int i = 0; i < types.Length; i++)
+                {
+
+                    if (addresses[0].Type_Code != types[i] && addresses[1].Type_Code != types[i])
+                    {
+                        Address address = new Address();
+                        address.Type_Code = types[i];
+                        address.StreetAddress = empty;
+                        address.City = empty;
+                        address.Country = empty;
+                        address.Province = empty;
+                        address.PostalCode = empty;
+
+                        addresses.Add(address);
+                    }
+                }
+
+            }
+            else if (addresses.Count == 2)
+            {
+
+                for (int i = 0; i < types.Length; i++)
+                {
+
+                    if (addresses[0].Type_Code != types[i] && addresses[1].Type_Code != types[i])
+                    {
+                        Address address = new Address();
+                        address.Type_Code = types[i];
+                        address.StreetAddress = empty;
+                        address.City = empty;
+                        address.Country = empty;
+                        address.Province = empty;
+                        address.PostalCode = empty;
+
+                        addresses.Add(address);
+                    }
+                }
+
+            }
+
             contact.Addresses = addresses;
             contact.Emails = emails;
             contact.Phones = phones;
