@@ -34,6 +34,7 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Type : </Label>
@@ -57,6 +58,8 @@
                 <Label Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Postal Code : </Label>
                 <TextBox x:Name="postalCodeBox" Grid.Column="1" Grid.Row="6" Margin="25,8,0,8" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center"></TextBox>
 
+                <Label Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Last Updated :</Label>
+                <Label x:Name="lastUpdatedBox" Grid.Column="1" Grid.Row="7" Margin="25,0,0,0" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center" Height="26" FontSize="10"></Label>
 
             </Grid>
 

@@ -44,7 +44,7 @@ namespace ContactManager
             typeLabel.Content = type;
             emailBox.Text = email.EmailAddress;
             lastUpdatedBox.Content = email.LastUpdated;
-            
+           
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
