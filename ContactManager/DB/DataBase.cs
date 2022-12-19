@@ -462,7 +462,7 @@ namespace ContactManager.DB
                 cmd4.Parameters.AddWithValue("@Email", e.EmailAddress);
                 cmd4.Parameters.AddWithValue("@Contact_Id", e.Contact_Id);
                 cmd4.Parameters.AddWithValue("@Type_Code", e.Type_Code);
-                cmd4.Parameters.AddWithValue("@Id", e.Contact_Id);
+                cmd4.Parameters.AddWithValue("@Id", e.Id);
                 cmd4.ExecuteNonQuery();
                 SqlCommand updateContact = new SqlCommand(updateContactString, c);
                 updateContact.Parameters.AddWithValue("@NeededId", e.Contact_Id);
