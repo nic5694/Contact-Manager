@@ -47,7 +47,9 @@ namespace ContactManager
 
             countryCodeBox.Text = phone.CountryCode;
             phoneBox.Text = phone.PhoneNumber;
-                
+            lastUpdatedBox.Content = phone.LastUpdated;
+
+
         }
 
         private void Edit_Phone(object sender, RoutedEventArgs e)
