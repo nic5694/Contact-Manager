@@ -321,6 +321,7 @@ namespace ContactManager.DB
                 address.Contact_Id = (int)readInfo["Contact_Id"];
                 address.Type_Code = readInfo["Type_Code"].ToString().ToCharArray()[0];
                 address.Id = (int)readInfo["Id"];
+                address.LastUpdated = readInfo["LastUpdated"].ToString();
             }
 
             return address;
@@ -348,6 +349,7 @@ namespace ContactManager.DB
                 phone.PhoneNumber = readInfo["Number"].ToString();
                 phone.Contact_Id = (int) readInfo["ContacT_Id"];
                 phone.Id = (int)readInfo["Id"];
+                phone.LastUpdated = readInfo["LastUpdated"].ToString();
             }
 
             return phone;
