@@ -32,7 +32,8 @@ namespace ContactManager
 
             if (type == "")
             {
-                MessageBox.Show("You must select a type from the dropdown ");
+                MessageBox.Show("You must select a type from the dropdown ", "Select type", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 return;
             }
 
@@ -58,7 +59,8 @@ namespace ContactManager
 
             if (validate)
             {
-                MessageBox.Show(type + " phone already exist, there must be only one phone per type ! ");
+                MessageBox.Show(type + " phone already exist, there must be only one phone per type ! ", "Duplicate info", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 return;
             }
             
@@ -69,7 +71,8 @@ namespace ContactManager
 
             if (contactPhone == "")
             {
-                MessageBox.Show("You must enter a phone number to save");
+                MessageBox.Show("You must enter a phone number to save", "Info Missing", MessageBoxButton.OK, MessageBoxImage.Error);
+
                 return;
             }
             else
