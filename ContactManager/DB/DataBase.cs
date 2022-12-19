@@ -275,61 +275,6 @@ namespace ContactManager.DB
                 cmd.Parameters.AddWithValue("@Title", contact.Title);
                 cmd.Parameters.AddWithValue("@Birthday", contact.Birthday);
                 cmd.ExecuteNonQuery();
-
-                List<Address> addresses = contact.Addresses;
-
-                if (addresses != null)
-                {
-                    foreach (Address a in addresses)
-                    {
-                        string addressUpdate = "Update Address set StreetAddress = @StreetAddress, City = @City, Province = @Province, PostalCode = @PostalCode, Country = @Country, ApartmentNumber = @ApartmentNumber, Type_Code = @Type_Code, LastUpdated = GETDATE() where Id = @Id";
-                        SqlCommand cmd2 = new SqlCommand(addressUpdate, c);
-
-                        cmd2.Parameters.AddWithValue("@StreetAddress", a.StreetAddress);
-                        cmd2.Parameters.AddWithValue("@City", a.City);
-                        cmd2.Parameters.AddWithValue("@Province", a.Province);
-                        cmd2.Parameters.AddWithValue("@PostalCode", a.PostalCode);
-                        cmd2.Parameters.AddWithValue("@Country", a.Country);
-                        cmd2.Parameters.AddWithValue("@ApartmentNumber", a.ApartmentNumber);
-                        cmd2.Parameters.AddWithValue("Type_Code", a.Type_Code);
-                        cmd2.Parameters.AddWithValue("@Id", a.Id);
-
-                        cmd2.ExecuteNonQuery();
-                    }
-                }
-
-                List<Phone> phones = contact.Phones;
-                if (phones != null)
-                {
-                    foreach (Phone p in phones)
-                    {
-                        string phoneUpdate = "Update Phone set Number = @Number, ContryCode = @CountryCode, Contact_Id = @ContactId, Type_Contact = @Type_Contact, LastUpdated = GETDATE() where Id = @Id";
-                        SqlCommand cmd3 = new SqlCommand(phoneUpdate, c);
-                        cmd3.Parameters.AddWithValue("@Number", p.PhoneNumber);
-                        cmd3.Parameters.AddWithValue("@CountryCode", p.CountryCode);
-                        cmd3.Parameters.AddWithValue("@ContactId", p.Contact_Id);
-                        cmd3.Parameters.AddWithValue("@Type_Contact", p.Type_Code);
-                        cmd3.Parameters.AddWithValue("@Id", p.Id);
-                        cmd3.ExecuteNonQuery();
-                    }
-                }
-
-                List<Email> emails = contact.Emails;
-                if (emails != null)
-                {
-                    foreach (Email e in emails)
-                    {
-                        string emailUpdate = "Update Email set Email = @Email, Contact_Id=@Contact_Id, Type_Code = @Type_Code, LastUpdated = GETDATE() where Id = @Id";
-                        SqlCommand cmd4 = new SqlCommand(emailUpdate, c);
-                        cmd4.Parameters.AddWithValue("@Email", e.EmailAddress);
-                        cmd4.Parameters.AddWithValue("@Contact_Id", e.Contact_Id);
-                        cmd4.Parameters.AddWithValue("@Type_Code", e.Type_Code);
-                        cmd4.Parameters.AddWithValue("@Id", e.Id);
-                        cmd4.ExecuteNonQuery();
-                    }
-                }
-
-
             }
 
         }
@@ -438,20 +383,6 @@ namespace ContactManager.DB
             }
         }
 
-        public void DeletePhone(Phone p)
-        {
-            using(SqlConnection c = new SqlConnection(ConString))
-            {
-                c.Open();
-                string query = "Delete Phone where Id = @Id";
-                SqlCommand cmd = new SqlCommand(query, c);
-                cmd.Parameters.AddWithValue("@Id", p.Id);
-                cmd.ExecuteNonQuery();
-                cmd.CommandText = updateContactString;
-                cmd.Parameters.AddWithValue("@NeededId", p.Contact_Id);
-            }
-        }
-
         public void UpdateEmailExistingContact(Email e)
         {
             using (SqlConnection c = new SqlConnection(ConString))
@@ -469,25 +400,8 @@ namespace ContactManager.DB
                 updateContact.ExecuteNonQuery();
             }
         }
-        
 
-        public void DeleteEmail(Email e)
-        {
-            using (SqlConnection c = new SqlConnection(ConString))
-            {
-                c.Open();
-                string query = "Delete Email where Id = @Id";
-                   
-                SqlCommand cmd = new SqlCommand(query, c);
-                cmd.Parameters.AddWithValue("@Id", e.Id);
-                cmd.ExecuteNonQuery();
-                cmd.CommandText = updateContactString;
-                cmd.Parameters.AddWithValue("@NeededId", e.Contact_Id);
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        public void UpdateAddressContact(Address a)
+        public void UpdateAddressExistingContact(Address a)
         {
             using(SqlConnection c = new SqlConnection(ConString))
             {
@@ -508,25 +422,7 @@ namespace ContactManager.DB
                 cmd2.Parameters.AddWithValue("@NeededId", a.Contact_Id);
                 cmd2.ExecuteNonQuery();
             }
-        }
-
-        public void DeleteAddress(Address a)
-        {
-            using (SqlConnection c = new SqlConnection(ConString))
-            {
-                c.Open();
-                string query = "Delete Address where Id = @Id";
-                SqlCommand cmd = new SqlCommand(query, c);
-                cmd.Parameters.AddWithValue("@Id", a.Id);
-                cmd.ExecuteNonQuery();
-                cmd.CommandText = updateContactString;
-                cmd.Parameters.AddWithValue("@NeededId", a.Contact_Id);
-                cmd.ExecuteNonQuery();
-            }
-            
-        }
-        
-
+        }       
     }
 }
 
