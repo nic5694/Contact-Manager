@@ -61,7 +61,7 @@ namespace ContactManager
 
             if (validate)
             {
-                MessageBox.Show(type + " Email already exist, there must be only one email per type ! ");
+                MessageBox.Show(type + " Email already exist, there must be only one email per type ! ", "Info Missing", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
