@@ -424,12 +424,12 @@ namespace ContactManager.DB
             using (SqlConnection c = new SqlConnection(ConString))
             {
                 c.Open();
-                String query = "Insert into Phone (Number,ContryCode,Contact_Id,Type_Contact,LastUpdated) values (@PhoneNumber,@CountryCode,@Contact_Id,@Type_Code,GETDATE())";
+                String query = "Update Phone set Number = @PhoneNumber, ContryCode = @CountryCode, Contact_Id = @Contact_Id, Type_Contact = @Type_Contact ,LastUpdated = GETDATE() where Id = @Id";
                 SqlCommand cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@PhoneNumber", p.PhoneNumber);
                 cmd.Parameters.AddWithValue("@CountryCode", p.CountryCode);
                 cmd.Parameters.AddWithValue("@Contact_Id", p.Contact_Id);
-                cmd.Parameters.AddWithValue("@Type_Code", p.Type_Code);
+                cmd.Parameters.AddWithValue("@Type_Contact", p.Type_Code);
                 cmd.Parameters.AddWithValue("@Id", p.Id);
                 cmd.ExecuteNonQuery();
                 SqlCommand updateContact = new SqlCommand(updateContactString, c);
