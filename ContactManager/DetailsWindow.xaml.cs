@@ -79,9 +79,6 @@ namespace ContactManager
             {
                 b = (DateTime)BirthdayCalender.SelectedDate;
                 c.Birthday = (DateTime)b;
-            } else
-            {
-                b = null;
             }
             List<Address> addresses = new List<Address>();
             List<Phone> phones = new List<Phone>();

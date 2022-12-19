@@ -283,7 +283,7 @@ namespace ContactManager.DB
                 cmd.Parameters.AddWithValue("@Title", contact.Title);
                 cmd.ExecuteNonQuery();
 
-                if(contact.Birthday != null)
+                if(contact.Birthday != new DateTime(0001,01,01))
                 {
                     String query2 = "Update Contact set Birthday=@Birthday where Id=@Id";
                     SqlCommand cmd2 = new SqlCommand(query2, c);
