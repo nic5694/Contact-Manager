@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactManager"
         mc:Ignorable="d"
-        Title="EmailInfo" Height="250" Width="461" MinWidth="461" MinHeight="250" MaxHeight="250" MaxWidth="461" Closing="Window_Closing" Loaded="Window_Loaded">
+        Title="EmailInfo" Height="300" Width="461" MinWidth="461" MinHeight="300" MaxHeight="250" MaxWidth="461" Closing="Window_Closing" Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#FF2D2D2D">
@@ -28,13 +28,17 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Type : </Label>
+                <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Type :</Label>
                 <Label x:Name="typeLabel" Content="" Grid.Column="1" Grid.Row="0" Margin="25,0,0,0" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center"/>
 
-                <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">E-Mail : </Label>
+                <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">E-Mail :</Label>
                 <TextBox x:Name="emailBox" Grid.Column="1" Grid.Row="1" Margin="25,8,0,8" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center"></TextBox>
+
+                <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Last Updated :</Label>
+                <Label x:Name="lastUpdatedBox" Content="1223" Grid.Column="1" Grid.Row="2" Margin="25,0,0,0" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center" Height="26" FontSize="10"></Label>
 
             </Grid>
 

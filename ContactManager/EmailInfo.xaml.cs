@@ -43,6 +43,7 @@ namespace ContactManager
 
             typeLabel.Content = type;
             emailBox.Text = email.EmailAddress;
+            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -56,6 +57,7 @@ namespace ContactManager
             emailBox.IsEnabled = false;
             saveBtn.Visibility = Visibility.Hidden;
             deleteBtn.Visibility = Visibility.Hidden;
+            MessageBox.Show(email.LastUpdated);
         }
 
         private void Edit_Email(object sender, RoutedEventArgs e)

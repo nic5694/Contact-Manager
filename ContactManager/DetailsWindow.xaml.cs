@@ -67,13 +67,15 @@ namespace ContactManager
             string t = TitleBox.Text;
             string fn = FirstNameBox.Text;
             string ln = LastNameBox.Text;
+
             DateTime b;
             if (BirthdayCalender.SelectedDate.HasValue)
             {
                 b = (DateTime)BirthdayCalender.SelectedDate;
             } else
             {
-                b = contact.Birthday;
+           
+                b = new DateTime(1753,01,01);
             }
             List<Address> addresses = new List<Address>();
             List<Phone> phones = new List<Phone>();
