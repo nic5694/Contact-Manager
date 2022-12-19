@@ -52,6 +52,9 @@ namespace ContactManager
             countryBox.Text = address.Country.ToString();
             postalCodeBox.Text = address.PostalCode.ToString();
 
+            lastUpdatedBox.Content = address.LastUpdated;
+
+
         }
 
         private void AddressWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
