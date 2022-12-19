@@ -102,9 +102,9 @@ namespace ContactManager
                 emails.Add(em);
             }
 
-            if (fn == "" || ln == "" )
+            if (fn == "")
             {
-                MessageBox.Show("First name or last name can not be empty");
+                MessageBox.Show("First  name can not be empty");
             }
             else
             {
