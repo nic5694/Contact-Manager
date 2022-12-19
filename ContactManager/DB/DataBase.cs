@@ -440,6 +440,95 @@ namespace ContactManager.DB
                 cmd2.ExecuteNonQuery();
             }
         }       
+
+        public List<Address> getAllAddresses(int contactId)
+        {
+            SqlConnection c = new SqlConnection(ConString);
+
+            c.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Address where Contact_Id = @Id", c);
+
+            cmd.Parameters.AddWithValue("@Id", contactId);
+
+            SqlDataReader readAddress = cmd.ExecuteReader();
+
+            List<Address> addresses = new List<Address>();
+
+            while (readAddress.Read())
+            {
+                Address address = new Address();
+                address.Id = (int)readAddress["Id"];
+                address.StreetAddress = readAddress["StreetAddress"].ToString();
+                address.City = readAddress["City"].ToString();
+                address.Province = readAddress["Province"].ToString();
+                address.PostalCode = readAddress["PostalCode"].ToString();
+                address.Country = readAddress["Country"].ToString();
+                address.ApartmentNumber = (int)readAddress["ApartmentNumber"];
+                address.Contact_Id = (int)readAddress["Contact_Id"];
+                address.Type_Code = readAddress["Type_Code"].ToString().ToCharArray()[0];
+                address.LastUpdated = readAddress["LastUpdated"].ToString();
+                addresses.Add(address);
+
+            }
+
+            return addresses;
+        }
+
+        public List<Email> getAllEmails(int contactId)
+        {
+            SqlConnection c = new SqlConnection(ConString);
+            
+            c.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Email where Contact_Id = @Id", c);
+            
+            cmd.Parameters.AddWithValue("@Id", contactId);
+
+            SqlDataReader readEmail = cmd.ExecuteReader();
+                
+            List<Email> emails = new List<Email>();
+
+            while (readEmail.Read())
+            {
+                Email email = new Email();
+                email.Id = (int)readEmail["Id"];
+                email.EmailAddress = readEmail["Email"].ToString();
+                email.Contact_Id = (int)readEmail["Contact_Id"];
+                email.Type_Code = readEmail["Type_Code"].ToString().ToCharArray()[0];
+                email.LastUpdated = readEmail["LastUpdated"].ToString();
+                emails.Add(email);
+
+            }
+
+            return emails;
+        }
+
+        public List<Phone> getAllPhones(int contactId)
+        {
+            SqlConnection c = new SqlConnection(ConString);
+
+            c.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Phone where Contact_Id = @Id", c);
+
+            cmd.Parameters.AddWithValue("@Id", contactId);
+
+            SqlDataReader readPhone = cmd.ExecuteReader();
+
+            List<Phone> phones = new List<Phone>();
+
+            while (readPhone.Read())
+            {
+                Phone phone = new Phone();
+                phone.Id = (int)readPhone["Id"];
+                phone.PhoneNumber = readPhone["Number"].ToString();
+                phone.CountryCode = readPhone["ContryCode"].ToString();
+                phone.Contact_Id = (int)readPhone["Contact_Id"];
+                phone.Type_Code = readPhone["Type_Contact"].ToString().ToCharArray()[0];
+                phone.LastUpdated = readPhone["LastUpdated"].ToString();
+                phones.Add(phone);
+            }
+
+            return phones;
+        }
     }
 }
 

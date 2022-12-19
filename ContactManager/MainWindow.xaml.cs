@@ -77,11 +77,63 @@ namespace ContactManager
 
                 string csv = "";
 
-                csv += "ID,FirstName,LastName,LastUpdated,Created\n";
+                csv +=
+                    "First Name,Last Name,Birthday,Last Updated,Created,Active," +
+                    "Type,Email,Type,Email,Type,Email," +
+                    "Type,Phone,Type,Phone,Type,Phone," +
+                    "Type, Address,Country,Postal code,Type, Address,Country,Postal code,Type, Address,Country,Postal code\n";
 
-                foreach(Contact contact in contacts)
+                foreach (Contact contact in contacts)
                 {
-                    csv += contact.Id.ToString() + "," + contact.FirstName + "," + contact.LastName + "," + contact.LastUpdated.ToString() + "," + contact.Created.ToString() + "\n";
+                    string b;
+                    if(contact.Birthday == new DateTime(0001, 01, 01))
+                    {
+                        b = "N/A";
+                    } else
+                    {
+                        b = contact.Birthday.ToString("d");
+                    }
+
+                    List<Email> emails = db.getAllEmails(contact.Id);
+                    List<Phone> phones = db.getAllPhones(contact.Id);
+                    List<Address> addresses = db.getAllAddresses(contact.Id);
+
+
+                    csv +=
+                        contact.FirstName + "," +
+                        contact.LastName + "," +
+                        b + "," +
+                        contact.LastUpdated.ToString() + "," +
+                        contact.Created.ToString() + "," +
+                        contact.Active.ToString() + "," +
+
+                        emails[0].Type_Code.ToString() + "," +
+                        emails[0].EmailAddress.ToString() + "," +
+                        emails[1].Type_Code.ToString() + "," +
+                        emails[1].EmailAddress.ToString() + "," +
+                        emails[2].Type_Code.ToString() + "," +
+                        emails[2].EmailAddress.ToString() + "," +
+
+                        phones[0].Type_Code.ToString() + "," +
+                        displayPhoneNumber(phones[0]) + "," +
+                        phones[1].Type_Code.ToString() + "," +
+                        displayPhoneNumber(phones[1]) + "," +
+                        phones[2].Type_Code.ToString() + "," +
+                        displayPhoneNumber(phones[2]) + "," +
+
+                        addresses[0].Type_Code.ToString() + "," +
+                        displayAddress(addresses[0]) + "," +
+                        addresses[0].Country + "," +
+                        addresses[0].PostalCode + "," +
+                        addresses[1].Type_Code.ToString() + "," +
+                        displayAddress(addresses[1]) + "," +
+                        addresses[1].Country + "," +
+                        addresses[1].PostalCode + "," +
+                        addresses[2].Type_Code.ToString() + "," +
+                        displayAddress(addresses[2]) + "," +
+                        addresses[2].Country + "," +
+                        addresses[2].PostalCode
+                        + "\n";
                 }
 
                 var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
@@ -149,6 +201,34 @@ namespace ContactManager
 
             lvDataBinding.ItemsSource = displayedContacts;
         }
+
+        public string displayPhoneNumber(object obj)
+        {
+            Phone p = obj as Phone;
+
+            if (p.CountryCode == "N/A" && p.PhoneNumber == "N/A")
+            {
+                return "N/A";
+
+            } else
+            {
+                return "(+"+p.CountryCode+ ")" + p.PhoneNumber;
+            }
+        }
+
+        public string displayAddress(object obj)
+        {
+            Address a = obj as Address;
+
+            if(a.StreetAddress == "N/A")
+            {
+                return "N/A";
+            } else
+            {
+                return a.ApartmentNumber.ToString() + " rue " + a.StreetAddress + " " + a.City + " " + a.Province ;
+            }
+        }
+
     }
 }
 
