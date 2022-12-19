@@ -38,7 +38,7 @@
                 <TextBox x:Name="emailBox" Grid.Column="1" Grid.Row="1" Margin="25,8,0,8" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center"></TextBox>
 
                 <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Last Updated :</Label>
-                <Label x:Name="lastUpdatedBox" Content="1223" Grid.Column="1" Grid.Row="2" Margin="25,0,0,0" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center" Height="26" FontSize="10"></Label>
+                <Label x:Name="lastUpdatedBox" Grid.Column="1" Grid.Row="2" Margin="25,0,0,0" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center" Height="26" FontSize="10"></Label>
 
             </Grid>
 

@@ -357,6 +357,7 @@ namespace ContactManager.DB
                 email.Type_Code = readInfo["Type_Code"].ToString().ToCharArray()[0];
                 email.EmailAddress = readInfo["Email"].ToString();
                 email.Contact_Id = (int)readInfo["Contact_Id"];
+                email.LastUpdated = readInfo["LastUpdated"].ToString();
                 email.Id = (int)readInfo["Id"];
             }
 
