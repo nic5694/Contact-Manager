@@ -55,15 +55,19 @@ namespace ContactManager
             Contact contact = new Contact();
      
             string FirstName = FirstNameBox.Text;
-            var birthday = calender1.SelectedDate;
-            if(birthday != null)
+            DateTime? birthday;
+            if (calender1.SelectedDate.HasValue)
             {
-                birthday = calender1.SelectedDate;
+                birthday = (DateTime)calender1.SelectedDate;
                 contact.Birthday = (DateTime)birthday;
             }
+            else
+            {
+                birthday = null;
+            }
+            
             string lastname = LastNameBox.Text;
             string title = TitleBox.Text;
-
             contact.FirstName = FirstName;
             contact.Title = title;
             contact.LastName = lastname;

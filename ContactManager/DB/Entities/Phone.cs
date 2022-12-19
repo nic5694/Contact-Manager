@@ -26,5 +26,6 @@ namespace ContactManager.DB.Entities
         }
 
         public Phone() { }
+       
     }
 }
