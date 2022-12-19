@@ -40,10 +40,15 @@ namespace ContactManager
             TitleBox.Text = contact.Title;
             FirstNameBox.Text = contact.FirstName;
             LastNameBox.Text = contact.LastName;
-            BirthdayCalender.DisplayDate = contact.Birthday;
 
-           
-
+            if(contact.Birthday == new DateTime(0001,01,01))
+            {
+                BirthdayCalender.DisplayDate = DateTime.Now;
+            } else
+            {
+               BirthdayCalender.DisplayDate = contact.Birthday; 
+            }
+            
             AddressesList.ItemsSource = contact.Addresses;
             EmailsList.ItemsSource = contact.Emails;
             PhonesList.ItemsSource = contact.Phones;
@@ -62,20 +67,21 @@ namespace ContactManager
         }
 
         private void saveContactDetails(object sender, RoutedEventArgs e)
-        {
+        { 
+            Contact c = new Contact();
 
             string t = TitleBox.Text;
             string fn = FirstNameBox.Text;
             string ln = LastNameBox.Text;
 
-            DateTime b;
+            DateTime? b ;
             if (BirthdayCalender.SelectedDate.HasValue)
             {
                 b = (DateTime)BirthdayCalender.SelectedDate;
+                c.Birthday = (DateTime)b;
             } else
             {
-           
-                b = new DateTime(1753,01,01);
+                b = null;
             }
             List<Address> addresses = new List<Address>();
             List<Phone> phones = new List<Phone>();
@@ -111,11 +117,10 @@ namespace ContactManager
                 LastNameBox.IsEnabled = false;
                 BirthdayCalender.IsEnabled = false;
                 
-                Contact c = new Contact();
+               
                 c.Id = contact.Id;
                 c.Title = t;
                 c.FirstName = fn;
-                c.Birthday = b;
                 c.LastName = ln;
                 c.Addresses = addresses;
                 c.Emails = emails;

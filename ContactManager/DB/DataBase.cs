@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 
 namespace ContactManager.DB
@@ -181,13 +182,12 @@ namespace ContactManager.DB
 
                 
 
-                String query = "Insert into Contact (FirstName,LastName,Title,Birthday,Active,LastUpdated) values (@FirstName,@LastName,@Title,@Birthday,1,GETDATE())";
+                String query = "Insert into Contact (FirstName,LastName,Title,Active,LastUpdated) values (@FirstName,@LastName,@Title,1,GETDATE())";
 
                 SqlCommand cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", contact.LastName);
                 cmd.Parameters.AddWithValue("@Title", contact.Title);
-                cmd.Parameters.AddWithValue("@Birthday", contact.Birthday.ToString());
                 
                 c.Open();
 
@@ -199,6 +199,14 @@ namespace ContactManager.DB
                 cmd.Connection = c;
                 var newId = Convert.ToInt32(cmd.ExecuteScalar());
 
+                if (contact.Birthday != new DateTime(0001,01,01))
+                {
+                    String query2 = "Update Contact set Birthday=@Birthday where Id=@Id";
+                    SqlCommand cmd2 = new SqlCommand(query2, c);
+                    cmd2.Parameters.AddWithValue("@Id", newId);
+                    cmd2.Parameters.AddWithValue("@Birthday", contact.Birthday.ToString());
+                    cmd2.ExecuteNonQuery();
+                }
 
 
                 List<Address> addresses = contact.Addresses;
@@ -267,14 +275,22 @@ namespace ContactManager.DB
             using (SqlConnection c = new SqlConnection(ConString))
             {
                 c.Open();
-                String query = "Update Contact set FirstName=@FirstName,LastName=@LastName,Title=@Title,Birthday=@Birthday, LastUpdated = GETDATE() where Id=@Id";
+                String query = "Update Contact set FirstName=@FirstName,LastName=@LastName,Title=@Title, LastUpdated = GETDATE() where Id=@Id";
                 SqlCommand cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@Id", contact.Id);
                 cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
                 cmd.Parameters.AddWithValue("@LastName", contact.LastName);
                 cmd.Parameters.AddWithValue("@Title", contact.Title);
-                cmd.Parameters.AddWithValue("@Birthday", contact.Birthday);
                 cmd.ExecuteNonQuery();
+
+                if(contact.Birthday != null)
+                {
+                    String query2 = "Update Contact set Birthday=@Birthday where Id=@Id";
+                    SqlCommand cmd2 = new SqlCommand(query2, c);
+                    cmd2.Parameters.AddWithValue("@Id", contact.Id);
+                    cmd2.Parameters.AddWithValue("@Birthday", contact.Birthday.ToString());
+                    cmd2.ExecuteNonQuery();
+                }
             }
 
         }
