@@ -77,6 +77,7 @@ namespace ContactManager
         {
             phone.CountryCode = "N/A";
             phone.PhoneNumber = "N/A";
+            phone.LastUpdated = "N/A";
             db.AddPhoneToExistingContact(phone);
             Close();
         }

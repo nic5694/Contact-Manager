@@ -93,6 +93,7 @@ namespace ContactManager
             address.Province = "N/A";
             address.Country = "N/A";
             address.PostalCode = "N/A";
+            address.LastUpdated = "N/A";
             db.UpdateAddressExistingContact(address);
             Close();
         }

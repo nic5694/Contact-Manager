@@ -80,6 +80,7 @@ namespace ContactManager
         private void DeleteEmail(object sender, RoutedEventArgs e)
         {
             email.EmailAddress = "N/A";
+            email.LastUpdated = "N/A";
             db.UpdateEmailExistingContact(email);
             Close();
         }
