@@ -29,6 +29,7 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Type :</Label>
@@ -40,6 +41,9 @@
                 <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Phone Number :</Label>
                 <TextBox x:Name="phoneBox" Grid.Column="1" Grid.Row="2" Margin="25,0,0,0" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center" Height="20"></TextBox>
 
+                <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" RenderTransformOrigin="0.496,0.516" VerticalAlignment="Center">Last Updated :</Label>
+                <Label x:Name="lastUpdatedBox" Grid.Column="1" Grid.Row="3" Margin="25,0,0,0" HorizontalAlignment="Left" Width="239" VerticalAlignment="Center" Height="26" FontSize="10" Foreground="#808080">
+                </Label>
             </Grid>
 
         </DockPanel>
