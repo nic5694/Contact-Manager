@@ -87,7 +87,13 @@ namespace ContactManager
 
         private void DeleteAddress(object sender, RoutedEventArgs e)
         {
-            db.DeleteAddress(address);
+            address.ApartmentNumber = 0;
+            address.StreetAddress = "N/A";
+            address.City = "N/A";
+            address.Province = "N/A";
+            address.Country = "N/A";
+            address.PostalCode = "N/A";
+            db.UpdateAddressExistingContact(address);
             Close();
         }
 
@@ -111,7 +117,7 @@ namespace ContactManager
                 address.Province = provinceBox.Text;
                 address.Country = countryBox.Text;
                 address.PostalCode = postalCodeBox.Text;
-                db.UpdateAddressContact(address);
+                db.UpdateAddressExistingContact(address);
                 Close();
             }
             else

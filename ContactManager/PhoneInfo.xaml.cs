@@ -75,8 +75,9 @@ namespace ContactManager
 
         private void DeletePhone(object sender, RoutedEventArgs e)
         {
-
-            db.DeletePhone(phone);
+            phone.CountryCode = "N/A";
+            phone.PhoneNumber = "N/A";
+            db.AddPhoneToExistingContact(phone);
             Close();
         }
 

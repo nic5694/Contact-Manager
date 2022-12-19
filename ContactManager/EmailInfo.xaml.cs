@@ -79,7 +79,8 @@ namespace ContactManager
 
         private void DeleteEmail(object sender, RoutedEventArgs e)
         {
-            db.DeleteEmail(email);
+            email.EmailAddress = "N/A";
+            db.UpdateEmailExistingContact(email);
             Close();
         }
     }
