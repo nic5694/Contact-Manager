@@ -126,9 +126,10 @@ namespace ContactManager
             }
             else
             {
-                MessageBox.Show("You have not entered a valid entry for the apartment number please try again");
+                MessageBox.Show("You have not entered a valid entry for the apartment number. Please try again", "Entry Not Valid", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
-            
+
         }
     }
 }

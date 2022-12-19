@@ -35,7 +35,7 @@ namespace ContactManager
             
             if(type == "")
             {
-                MessageBox.Show("You must select a type from the dropdown ");
+                MessageBox.Show("You must select a type from the dropdown ", "Select Type", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             
@@ -61,7 +61,7 @@ namespace ContactManager
 
             if (validate)
             {
-                MessageBox.Show(type + " Email already exist, there must be only one email per type ! ", "Info Missing", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(type + " Email already exist, there must be only one email per type ! ", "Duplicate Info", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace ContactManager
 
             if (contactEmail == "")
             {
-                MessageBox.Show("You must enter an email to save");
+                MessageBox.Show("You must enter an email to save", "Info Missing", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             } else
             {
