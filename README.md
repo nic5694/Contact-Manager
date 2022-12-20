@@ -24,7 +24,7 @@ On the main window, you'll find four buttons:
 
 On the main screen, you will also see a list of all your contacts, along with the date and time each contact was created and last updated. This is helpful for keeping track of any changes you've made to your contacts' information.
 
-If you want to edit a contact in your list, simply double-click the contacts name and the edit window will pop up. Here, you can press the edit buton to change the contacts title, first name, laste name, and birthday.
+If you want to edit a contact in your list, simply double-click the contacts name and the edit window will pop up. Here, you can press the edit button to change the contacts title, first name, last name, and birthday.
 
 ![edit image](https://user-images.githubusercontent.com/57469766/208755372-5d18e7f8-b100-4be1-9172-8ddb92afdaee.png)
 
@@ -37,7 +37,7 @@ Upon doing so, the user will recieve a message box error indicating what they sh
 
 ![duplicate image](https://user-images.githubusercontent.com/57469766/208755212-bec703bb-3014-40e0-946a-08e3d750360c.png)
 
-All contacts are stored in an SQL database presented in the following diagram:
+All contacts are stored in an SQL database as presented in the following diagram:
 
 ![database diagram image](https://user-images.githubusercontent.com/57469766/208757034-81ea67d7-72b8-4411-a679-06b95f20f0db.png)
 
