@@ -17,7 +17,7 @@ On the main window, you'll find four buttons:
 
 - Export: Want to share your contacts with someone else or import them into another app? Click this button to generate a .csv file with all your contacts. A prompt will appear asking you to verify if you want to export all contacts and will ask you to select the location of the export.
 
-![exported csv image](screenshots/export.png)
+![export image](https://user-images.githubusercontent.com/57469766/208755519-7c409984-fa60-47c4-9160-d899fc1824f7.png)
 
 - Refresh Contacts: If you've made any changes to your contacts and want to see the updated list, click this button to refresh the window.
 
