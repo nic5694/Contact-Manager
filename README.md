@@ -37,4 +37,8 @@ Upon doing so, the user will recieve a message box error indicating what they sh
 
 ![duplicate image](https://user-images.githubusercontent.com/57469766/208755212-bec703bb-3014-40e0-946a-08e3d750360c.png)
 
+All contacts are stored in an SQL database presented in the following diagram:
+
+
+
 Overall, the .NET WPF Contact Manager is a simpe and user-friendly tool for managing your contacts and keeping all their information organized and up-to-date.
