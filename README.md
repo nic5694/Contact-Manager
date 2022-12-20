@@ -5,7 +5,7 @@ This application allows you to easily manage your contacts by creating, editing,
 
 On the main window, you'll find four buttons:
 
-![main window image](screenshots/mainwindow.png)
+![main window image](https://user-images.githubusercontent.com/57469766/208755672-dcd9b255-391c-4da3-8316-d17c13af6e72.png)
 
 - Add Contact: Click this button to create a new contact. You can enter their title (like Mr. or Ms.), first and last name, birthday, and up to three different email addresses, phone numbers, and addresses. Only the first name field is necessary, the rest are optional.
 
