@@ -13,7 +13,7 @@ On the main window, you'll find four buttons:
 
 - Delete Contact: If you need to get rid of a contact, just click this button and select the contact you want to delete. The program will ask you to confirm the deletion of a contact. Deleting only removes a contact from your contact list. It will still exist in your database but will be inactive.
 
-![delete message image](screenshots/delete.png) 
+![delete image](https://user-images.githubusercontent.com/57469766/208754491-bd3d7d6c-ac33-4481-8f34-94509e7ce616.png)
 
 - Export: Want to share your contacts with someone else or import them into another app? Click this button to generate a .csv file with all your contacts. A prompt will appear asking you to verify if you want to export all contacts and will ask you to select the location of the export.
 
