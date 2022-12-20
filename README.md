@@ -9,7 +9,7 @@ On the main window, you'll find four buttons:
 
 - Add Contact: Click this button to create a new contact. You can enter their title (like Mr. or Ms.), first and last name, birthday, and up to three different email addresses, phone numbers, and addresses. Only the first name field is necessary, the rest are optional.
 
-![add contact window image](screenshots/newcontact.png)
+![new contact image](https://user-images.githubusercontent.com/57469766/208755824-1826f592-ab38-4855-bac7-aac22cc4fe8a.png)
 
 - Delete Contact: If you need to get rid of a contact, just click this button and select the contact you want to delete. The program will ask you to confirm the deletion of a contact. Deleting only removes a contact from your contact list. It will still exist in your database but will be inactive.
 
