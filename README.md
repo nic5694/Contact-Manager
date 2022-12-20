@@ -26,7 +26,7 @@ On the main screen, you will also see a list of all your contacts, along with th
 
 If you want to edit a contact in your list, simply double-click the contacts name and the edit window will pop up. Here, you can press the edit buton to change the contacts title, first name, laste name, and birthday.
 
-![edit window image](screenshots/edit.png)
+![edit image](https://user-images.githubusercontent.com/57469766/208755372-5d18e7f8-b100-4be1-9172-8ddb92afdaee.png)
 
 You can also double-click a phone, email or address and it's edit window will pop up as well, allowing you to change the information for every type of entry.
 
