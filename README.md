@@ -35,6 +35,6 @@ You can also double-click a phone, email or address and it's edit window will po
 The application does not allow the user to enter an email, phone number, or address in a contact without selecting a type, and will also not allow the user to use the same type twice for an entry in a contact (example: two business emails in the same contact).
 Upon doing so, the user will recieve a message box error indicating what they should change or do.
 
-![duplicate info error  image](screenshots/duplicate.png)
+![duplicate image](https://user-images.githubusercontent.com/57469766/208755212-bec703bb-3014-40e0-946a-08e3d750360c.png)
 
 Overall, the .NET WPF Contact Manager is a simpe and user-friendly tool for managing your contacts and keeping all their information organized and up-to-date.
