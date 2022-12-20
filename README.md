@@ -30,7 +30,7 @@ If you want to edit a contact in your list, simply double-click the contacts nam
 
 You can also double-click a phone, email or address and it's edit window will pop up as well, allowing you to change the information for every type of entry.
 
-![address edit window image](screenshots/addressedit.png)
+![addressedit image](https://user-images.githubusercontent.com/57469766/208754287-a9368883-566e-450c-b48d-7a5550337f46.png)
 
 The application does not allow the user to enter an email, phone number, or address in a contact without selecting a type, and will also not allow the user to use the same type twice for an entry in a contact (example: two business emails in the same contact).
 Upon doing so, the user will recieve a message box error indicating what they should change or do.
